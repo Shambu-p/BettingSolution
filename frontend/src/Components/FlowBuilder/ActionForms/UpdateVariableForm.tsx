@@ -1,0 +1,100 @@
+import { useContext, useEffect, useState } from "react";
+import MainAPI from "../../../APIs/MainAPI";
+
+import DynamicKeyValueForm from "../../../Components/Reusables/DynamicKeyValueForm";
+import ObjectBuilderForm from "../../../Components/Reusables/ObjectBuilderForm";
+import AuthContext from "../../../Contexts/AuthContext";
+import FieldTypes from "../../../Enums/FiedTypes";
+import Operators from "../../../Enums/Operators";
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import BasicConditionBuilder from "../BasicConditionBuilder";
+import ScriptEditor from "../../../Components/Reusables/ScriptEditor";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import DataObjectIcon from '@mui/icons-material/DataObject';
+import QueryBuilder from "../../../Components/Reusables/QueryBuilder";
+
+const UpdateVariableForm = ({selectedNode, updateInput, nodes}: { selectedNode: any, nodes: any[], updateInput: (name: string, value: any) => void }) => {
+
+    return (
+        <div className="w-100 border-top mt-3 py-3">
+
+            {
+                (selectedNode.type == "setVariable") ? (
+                    <h5 className="h5 mb-3"> Variable Data Options </h5>
+                ) : (
+                    <h5 className="h5 mb-3"> Output Data Options </h5>
+                )
+            }
+
+            <label className="form-label">Name</label>
+            {
+                (selectedNode.type == "setOutPut") && (
+                    <input
+                        type="text"
+                        className="form-control form-control-sm zinput mb-3" 
+                        value={selectedNode.var_name}
+                        onChange={(e) => updateInput("var_name", e.target.value)}
+                    />
+                )
+            }
+            <hr className="my-3" />
+
+            <label className="form-label">Variable Data</label>
+            <select
+                className="form-control form-control-sm zinput mb-3" 
+                value={selectedNode.value_type} 
+                onChange={(e) => updateInput("value_type", e.target.value)}
+            >
+                <option value="">Select Value Type</option>
+                <option value="object">Object</option>
+                <option value="dynamic">Get Variable</option>
+            </select>
+
+            {
+                (selectedNode.value_type == "dynamic") && (
+                    <input
+                        type="text"
+                        className="form-control form-control-sm zinput mb-3" 
+                        value={selectedNode.var_data}
+                        onChange={(e) => updateInput("var_data", e.target.value)}
+                    />
+                )
+            }
+
+            {
+                (selectedNode.value_type == "object") && (
+                    <div className="card w-100 zpanel">
+                        <div className="card-header" style={{backgroundColor: "rgba(125, 125, 125, 0.074)"}}>
+                            <h6> Dynamic Object Builder </h6>
+                        </div>
+                        <div className="card-body">
+                        <ObjectBuilderForm
+                            objectData={selectedNode.var_data || {}}
+                            emit={(result) => {
+                                updateInput("var_data", result);
+                            }}
+                        />
+                        </div>
+                    </div>
+                )
+            }
+
+            <label className="form-label">Next Action</label>
+            <select
+                className="form-control form-control-sm zinput"
+                value={selectedNode.next}
+                onChange={(e) => updateInput("next", e.target.value)}
+                disabled={selectedNode.type == "loopEnd"}
+            >
+                <option value="">Select Next Action</option>
+                {nodes.map((n) => (
+                    <option key={n.id} value={n.id}>
+                        {n.data.label}
+                    </option>
+                ))}
+            </select>
+        </div>
+    );
+}
+
+export default UpdateVariableForm;

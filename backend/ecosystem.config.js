@@ -1,0 +1,1 @@
+module.exports = {"apps":[{"name":"betting_solution_backend","script":"/home/shambel/Projects/BettingSolution/backend/server.js","env":{"NODE_ENV":"development","DATABASE_URL":"mysql://abnet:Password123%3F@localhost:3306/spinwin_db"},"env_staging":{"NODE_ENV":"staging","PORT":3005},"env_production":{"NODE_ENV":"production","PORT":3005}}]}

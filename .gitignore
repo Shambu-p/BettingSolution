@@ -1,0 +1,11 @@
+/backend/node_modules
+/frontend/node_modules
+/control/node_modules
+/backend/application/uploads
+/backend/configuration/uploads
+/backend/prisma/migrations
+/backend/package-lock.json
+/frontend/package-lock.json
+/backend/attachments
+/backend/*.crt
+/backend/*.key

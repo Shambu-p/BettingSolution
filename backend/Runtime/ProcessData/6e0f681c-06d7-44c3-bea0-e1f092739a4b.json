@@ -1,0 +1,65 @@
+{
+  "trigger_data": {
+    "sys_id": "1e2def2d-f993-4092-9fcb-fafd58afcc1a",
+    "name": "3 sid",
+    "phone_number": "0964338120",
+    "address": "09",
+    "type": "customer",
+    "credite_amount": 0,
+    "debt_amount": 0,
+    "verified": true,
+    "created_on": "2025-07-23T17:06:09.058Z",
+    "updated_on": "2025-07-23T17:06:09.058Z",
+    "created_by": "e2a29f96-6707-41a6-8be6-fae4e0a07a9f",
+    "updated_by": "e2a29f96-6707-41a6-8be6-fae4e0a07a9f"
+  },
+  "process_record": {
+    "sys_id": "6e0f681c-06d7-44c3-bea0-e1f092739a4b",
+    "flow_id": "f02e2386-9adf-4ac8-840c-09ff037fbd44",
+    "state": "running",
+    "started_on": "2025-09-24T01:40:51.469Z",
+    "finished_on": null,
+    "created_on": "2025-09-24T01:40:51.479Z",
+    "updated_on": "2025-09-24T01:40:51.479Z",
+    "created_by": "e3136470-7370-4d94-a012-8c8edca900ce",
+    "updated_by": "e3136470-7370-4d94-a012-8c8edca900ce"
+  },
+  "flow_record": {
+    "sys_id": "f02e2386-9adf-4ac8-840c-09ff037fbd44",
+    "name": "Generate Post For Customer",
+    "internal_name": "generate_customer_post",
+    "initiation_type": "record_based",
+    "trigger_environment": "user_interaction_only",
+    "next_run_date": null,
+    "table_id": "customer",
+    "specification": "{\"trigger\":{\"id\":\"trigger\",\"position\":{\"x\":-69.2138482477128,\"y\":-111.22001240193853},\"type\":\"triggerNode\",\"data\":{\"id\":\"\",\"label\":\"Trigger\",\"internalName\":\"trigger\",\"description\":\"\",\"type\":\"triggerNode\",\"options\":[],\"table_id\":\"customer\",\"filter_condition\":[],\"record_data\":{\"title\":\"Customer Created\",\"description\":\"New customer {{trigger_data.name}} has been created. phone {{trigger_data.phone_number}}.\"},\"triggerType\":\"record_based\",\"actionType\":\"normal\",\"reccurrence\":\"none\",\"given_datetime\":\"\",\"condition\":[{\"connector\":\"AND\",\"field\":\"customer|type\",\"operator\":\"equals\",\"value\":\"vendor\"}],\"next\":\"check_customer_type\",\"is_condition_open\":false,\"is_selected\":false},\"measured\":{\"width\":400,\"height\":100},\"dragging\":true},\"actions\":[{\"id\":\"create_post\",\"position\":{\"x\":-304.23499770842704,\"y\":282.80706119189387},\"type\":\"createRecord\",\"data\":{\"id\":\"\",\"label\":\"Create Post\",\"internalName\":\"create_post\",\"description\":\"\",\"type\":\"createRecord\",\"options\":[],\"table_id\":\"post\",\"filter_condition\":[],\"is_selected\":false,\"next\":\"do_advanced_script\",\"record_data\":{\"title\":\"Seller Created\",\"description\":\"New Seller {{trigger_data.name}} has been created. phone {{trigger_data.phone_number}}.\"},\"script\":\"\\n// flow script defination\\n/**\\n * this function will be called when the flow is triggered.\\n * @param {string} process_id process record sys_id\\n * @param {FlowActions} actions actions object to perform actions on the process\\n * @param {any} optionalData optional data passed to the script\\n */\\nmodule.exports = async function(process_id, actions, optionalData) {\\n\\n\\t// script content will go here\\n\\n\\tawait actions.delay(60000);\\n\\tawait actions.changeProcessState(\\\"completed\\\");\\n    \\n\\toptionalData.dependencies.logger(\\\"////////////////////////////////////////////////////////////// flow completed\\\");\\n\\n};\",\"is_script_editor_open\":false},\"measured\":{\"width\":400,\"height\":100}},{\"id\":\"check_customer_type\",\"position\":{\"x\":-68.39981199394431,\"y\":58.07531207033007},\"type\":\"decisionNode\",\"data\":{\"id\":\"\",\"label\":\"Check Customer Type\",\"internalName\":\"check_customer_type\",\"description\":\"\",\"type\":\"decisionNode\",\"options\":[{\"condition\":[{\"left\":\"{{trigger_data.type}}\",\"right\":\"customer\",\"operator\":\"not\",\"connector\":\"AND\"}],\"next\":\"create_post\",\"isOpen\":true}],\"table_id\":\"post\",\"filter_condition\":[],\"is_selected\":false,\"next\":\"create_for_buyer\",\"record_data\":{\"title\":\"New Buyer Registered\",\"description\":\"New Buyer {{trigger_data.name}} has been created. phone {{trigger_data.phone_number}}.\"}},\"measured\":{\"width\":400,\"height\":100}},{\"id\":\"create_for_buyer\",\"position\":{\"x\":138.49089993849546,\"y\":281.49341272726315},\"type\":\"createRecord\",\"data\":{\"id\":\"\",\"label\":\"New Post For buyer\",\"internalName\":\"create_for_buyer\",\"description\":\"\",\"type\":\"createRecord\",\"options\":[],\"table_id\":\"post\",\"filter_condition\":[],\"is_selected\":false,\"next\":\"do_advanced_script\",\"record_data\":{\"title\":\"New Buyer Registered\",\"description\":\"New Buyer {{trigger_data.name}} has been created. phone {{trigger_data.phone_number}}.\"},\"script\":\"\\n// flow script defination\\n/**\\n * this function will be called when the flow is triggered.\\n * @param {string} process_id process record sys_id\\n * @param {FlowActions} actions actions object to perform actions on the process\\n * @param {any} optionalData optional data passed to the script\\n */\\nmodule.exports = async function(process_id, actions, optionalData) {\\n\\n\\t// script content will go here\\n\\n\\tawait actions.delay(60000);\\n\\tawait actions.changeProcessState(\\\"completed\\\");\\n    \\n\\toptionalData.dependencies.logger(\\\"////////////////////////////////////////////////////////////// flow completed\\\");\\n\\n};\",\"is_script_editor_open\":false},\"measured\":{\"width\":400,\"height\":100},\"dragging\":true},{\"id\":\"do_advanced_script\",\"position\":{\"x\":-77.22614317554007,\"y\":469.26255189855596},\"type\":\"advanced\",\"data\":{\"id\":\"\",\"label\":\"Do Advanced Script\",\"internalName\":\"do_advanced_script\",\"description\":\"\",\"type\":\"advanced\",\"options\":[],\"script\":\"\\n// flow script defination\\n/**\\n * this function will be called when the flow is triggered.\\n * @param {string} process_id process record sys_id\\n * @param {FlowActions} actions actions object to perform actions on the process\\n * @param {any} optionalData optional data passed to the script\\n */\\nmodule.exports = async function(process_id, actions, optionalData) {\\n\\n\\t// script content will go here\\n\\n\\tawait actions.delay(6000);\\n\\t// await actions.changeProcessState(\\\"completed\\\");\\n    \\n\\toptionalData.dependencies.logger(\\\"//////// advanced script executed\\\");\\n    return \\\"success\\\";\\n\\n};\",\"is_script_editor_open\":false,\"is_selected\":false,\"nextRepeat\":\"\",\"loopStart\":\"\",\"next\":\"iterate_post_items\"},\"measured\":{\"width\":400,\"height\":100}},{\"id\":\"iterate_post_items\",\"position\":{\"x\":-77.75897096083418,\"y\":636.5453049879782},\"type\":\"forEachLoop\",\"data\":{\"id\":\"\",\"label\":\"Iterate Post Items\",\"internalName\":\"iterate_post_items\",\"description\":\"\",\"type\":\"forEachLoop\",\"options\":[],\"script\":\"\\n// flow script defination\\n/**\\n * this function will be called when the flow is triggered.\\n * @param {string} process_id process record sys_id\\n * @param {FlowActions} actions actions object to perform actions on the process\\n * @param {any} optionalData optional data passed to the script\\n */\\nmodule.exports = async function(process_id, actions, optionalData) {\\n\\n\\t// script content will go here\\n\\n\\t// await actions.delay(60000);\\n\\t// await actions.changeProcessState(\\\"completed\\\");\\n\\t// optionalData.dependencies.logger(\\\"////////////////////////////////////////////////////////////// flow completed\\\");\\n\\n    let loop_data = actions.getProcessVariable(\\\"iterate_post_items\\\");\\n\\tactions.setProcessVariable(loop_data.current, \\\"found\\\");\\n    return loop_data.current;\\n\\n};\",\"is_script_editor_open\":false,\"is_selected\":false,\"nextRepeat\":\"\",\"loopStart\":\"save_current_item\",\"next\":\"\"},\"measured\":{\"width\":400,\"height\":100}},{\"id\":\"iterate_post_items_loop_end\",\"position\":{\"x\":115.18315851746183,\"y\":1142.2140901636803},\"type\":\"loopEnd\",\"data\":{\"id\":\"iterate_post_items_loop_end\",\"label\":\"Iterate Post Items Loop End\",\"internalName\":\"iterate_post_items_loop_end\",\"description\":\"\",\"type\":\"loopEnd\",\"options\":[],\"next\":\"iterate_post_items\",\"is_selected\":true},\"dragging\":true,\"measured\":{\"width\":200,\"height\":70}},{\"id\":\"save_current_item\",\"position\":{\"x\":14.678248638068595,\"y\":886.1992615233888},\"type\":\"advanced\",\"data\":{\"id\":\"\",\"label\":\"Save Current Item\",\"internalName\":\"save_current_item\",\"description\":\"\",\"type\":\"advanced\",\"options\":[],\"script\":\"\\n// flow script defination\\n/**\\n * this function will be called when the flow is triggered.\\n * @param {string} process_id process record sys_id\\n * @param {FlowActions} actions actions object to perform actions on the process\\n * @param {any} optionalData optional data passed to the script\\n */\\nmodule.exports = async function(process_id, actions, optionalData) {\\n\\n\\t// script content will go here\\n\\n\\t// await actions.delay(60000);\\n\\t// await actions.changeProcessState(\\\"completed\\\");\\n\\t// optionalData.dependencies.logger(\\\"////////////////////////////////////////////////////////////// flow completed\\\");\\n\\n    let loop_data = actions.getProcessVariable(\\\"iterate_post_items\\\");\\n\\tactions.setProcessVariable(loop_data.current, \\\"found\\\");\\n    return loop_data.current;\\n\\n};\",\"is_script_editor_open\":false,\"is_selected\":false,\"nextRepeat\":\"\",\"loopStart\":\"save_current_item\",\"next\":\"iterate_post_items_loop_end\"},\"measured\":{\"width\":400,\"height\":100},\"dragging\":true}]}",
+    "active": false,
+    "created_on": "2025-09-20T13:20:35.139Z",
+    "updated_on": "2025-09-24T01:30:47.554Z",
+    "created_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756",
+    "updated_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756"
+  },
+  "variables": {
+    "create_for_buyer": {
+      "sys_id": "f2a77956-dc3b-4976-8087-35b9a6623f87",
+      "title": "New Buyer Registered",
+      "description": "New Buyer 3 sid has been created. phone 0964338120.",
+      "created_on": "2025-09-24T01:40:51.496Z",
+      "updated_on": "2025-09-24T01:40:51.496Z",
+      "created_by": "e3136470-7370-4d94-a012-8c8edca900ce",
+      "updated_by": "e3136470-7370-4d94-a012-8c8edca900ce"
+    },
+    "do_advanced_script": [
+      "var_one",
+      "var_two",
+      "var_three"
+    ]
+  },
+  "current_state": "running",
+  "completed_states": [
+    "create_for_buyer",
+    "do_advanced_script"
+  ],
+  "error_log": [],
+  "completedStates": []
+}

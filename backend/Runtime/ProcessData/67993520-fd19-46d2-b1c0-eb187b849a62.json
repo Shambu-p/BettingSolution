@@ -1,0 +1,58 @@
+{
+  "trigger_data": {
+    "sys_id": "9ce3b233-1e96-4bc5-bcd2-69b40f477e25",
+    "name": "jigra che",
+    "phone_number": "0911526541",
+    "address": "A.a",
+    "type": "vendor",
+    "credite_amount": 0,
+    "debt_amount": 0,
+    "verified": null,
+    "created_on": "2025-08-23T09:37:16.346Z",
+    "updated_on": "2025-08-23T09:37:16.346Z",
+    "created_by": "ce6889ef-3cce-4710-8760-2489aa861660",
+    "updated_by": "ce6889ef-3cce-4710-8760-2489aa861660"
+  },
+  "process_record": {
+    "sys_id": "67993520-fd19-46d2-b1c0-eb187b849a62",
+    "flow_id": "f02e2386-9adf-4ac8-840c-09ff037fbd44",
+    "state": "running",
+    "started_on": "2025-09-20T14:29:04.662Z",
+    "finished_on": null,
+    "created_on": "2025-09-20T14:29:04.665Z",
+    "updated_on": "2025-09-20T14:29:04.665Z",
+    "created_by": "e3136470-7370-4d94-a012-8c8edca900ce",
+    "updated_by": "e3136470-7370-4d94-a012-8c8edca900ce"
+  },
+  "flow_record": {
+    "sys_id": "f02e2386-9adf-4ac8-840c-09ff037fbd44",
+    "name": "Generate Post For Customer",
+    "internal_name": "generate_customer_post",
+    "initiation_type": "record_based",
+    "trigger_environment": "user_interaction_only",
+    "next_run_date": null,
+    "table_id": "customer",
+    "specification": "{\"trigger\":{\"id\":\"trigger\",\"position\":{\"x\":-56.86587456078185,\"y\":-205.37331176478702},\"type\":\"triggerNode\",\"data\":{\"id\":\"\",\"label\":\"Trigger\",\"internalName\":\"trigger\",\"description\":\"\",\"type\":\"triggerNode\",\"options\":[],\"table_id\":\"customer\",\"filter_condition\":[],\"record_data\":{\"title\":\"Customer Created\",\"description\":\"New customer {{trigger_data.name}} has been created. phone {{trigger_data.phone_number}}.\"},\"triggerType\":\"record_based\",\"actionType\":\"normal\",\"reccurrence\":\"none\",\"given_datetime\":\"\",\"condition\":[{\"connector\":\"AND\",\"field\":\"customer|type\",\"operator\":\"equals\",\"value\":\"vendor\"}],\"next\":\"check_customer_type\",\"is_condition_open\":false,\"is_selected\":false},\"measured\":{\"width\":400,\"height\":100},\"dragging\":true},\"actions\":[{\"id\":\"create_post\",\"position\":{\"x\":-304.23499770842704,\"y\":282.80706119189387},\"type\":\"createRecord\",\"data\":{\"id\":\"\",\"label\":\"Create Post\",\"internalName\":\"create_post\",\"description\":\"\",\"type\":\"createRecord\",\"options\":[],\"table_id\":\"post\",\"filter_condition\":[],\"is_selected\":false,\"next\":\"\",\"record_data\":{\"title\":\"Seller Created\",\"description\":\"New Seller {{trigger_data.name}} has been created. phone {{trigger_data.phone_number}}.\"}},\"measured\":{\"width\":400,\"height\":100}},{\"id\":\"check_customer_type\",\"position\":{\"x\":-68.39981199394431,\"y\":58.07531207033007},\"type\":\"decisionNode\",\"data\":{\"id\":\"\",\"label\":\"Check Customer Type\",\"internalName\":\"check_customer_type\",\"description\":\"\",\"type\":\"decisionNode\",\"options\":[{\"condition\":[{\"left\":\"{{trigger_data.type}}\",\"right\":\"customer\",\"operator\":\"not\",\"connector\":\"AND\"}],\"next\":\"create_post\",\"isOpen\":true}],\"table_id\":\"post\",\"filter_condition\":[],\"is_selected\":true,\"next\":\"create_for_buyer\",\"record_data\":{\"title\":\"New Buyer Registered\",\"description\":\"New Buyer {{trigger_data.name}} has been created. phone {{trigger_data.phone_number}}.\"}}},{\"id\":\"create_for_buyer\",\"position\":{\"x\":138.49089993849546,\"y\":275.89750798658497},\"type\":\"createRecord\",\"data\":{\"id\":\"\",\"label\":\"New Post For buyer\",\"internalName\":\"create_for_buyer\",\"description\":\"\",\"type\":\"createRecord\",\"options\":[],\"table_id\":\"post\",\"filter_condition\":[],\"is_selected\":false,\"next\":\"\",\"record_data\":{\"title\":\"New Buyer Registered\",\"description\":\"New Buyer {{trigger_data.name}} has been created. phone {{trigger_data.phone_number}}.\"}},\"dragging\":true,\"measured\":{\"width\":400,\"height\":100}}]}",
+    "active": false,
+    "created_on": "2025-09-20T13:20:35.139Z",
+    "updated_on": "2025-09-20T14:27:00.923Z",
+    "created_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756",
+    "updated_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756"
+  },
+  "variables": {
+    "create_post": {
+      "sys_id": "72ba7b85-fba2-442e-b5fc-e5971566dc53",
+      "title": "Seller Created",
+      "description": "New Seller jigra che has been created. phone 0911526541.",
+      "created_on": "2025-09-20T14:29:04.683Z",
+      "updated_on": "2025-09-20T14:29:04.683Z",
+      "created_by": "e3136470-7370-4d94-a012-8c8edca900ce",
+      "updated_by": "e3136470-7370-4d94-a012-8c8edca900ce"
+    }
+  },
+  "current_state": "running",
+  "completed_states": [
+    "create_post"
+  ],
+  "completedStates": []
+}

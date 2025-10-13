@@ -1,0 +1,909 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+//// customization tables ////
+
+model user {
+  sys_id			String		@id @default(uuid())
+  full_name			String		 @db.VarChar(50)
+  phone			String		@unique @db.VarChar(13)
+  active			Boolean		
+  password			String?		 @db.VarChar(100)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  roles			userRole[]		@relation("reference_user_roles")
+  ordersAsUser			order[]		@relation("reference_order_user_id")
+  ordersAsSeller			order[]		@relation("reference_order_seller_id")
+  ordersCreated			order[]		@relation("reference_order_user_created_by")
+  ordersUpdated			order[]		@relation("reference_order_user_updated_by")
+  usersCreated			user[]		@relation("reference_user_user_created_by")
+  usersUpdated			user[]		@relation("reference_user_user_updated_by")
+  userRolesCreated			userRole[]		@relation("reference_userRole_user_created_by")
+  userRolesUpdated			userRole[]		@relation("reference_userRole_user_updated_by")
+  attachmentsCreated			attachment[]		@relation("reference_attachment_user_created_by")
+  attachmentsUpdated			attachment[]		@relation("reference_attachment_user_updated_by")
+  attachmentDocumentsCreated			attachment_document[]		@relation("reference_attachmentDocument_user_created_by")
+  attachmentDocumentsUpdated			attachment_document[]		@relation("reference_attachmentDocument_user_updated_by")
+  choicesCreated			choice[]		@relation("reference_choice_user_created_by")
+  choicesUpdated			choice[]		@relation("reference_choice_user_updated_by")
+  inventoryCreated			inventory_item[]		@relation("reference_inventory_created_by")
+  inventoryUpdated			inventory_item[]		@relation("reference_inventory_updated_by")
+  deliveryCreated			delivery[]		@relation("reference_delivery_created_by")
+  deliveryUpdated			delivery[]		@relation("reference_delivery_updated_by")
+  productCreated			product[]		@relation("reference_product_user_created_by")
+  productUpdated			product[]		@relation("reference_product_user_updated_by")
+  customerCreated			customer[]		@relation("reference_customer_user_created_by")
+  customerUpdated			customer[]		@relation("reference_customer_user_updated_by")
+  manageStores			store[]		@relation("reference_store_user_managed_by")
+  storeCreated			store[]		@relation("reference_store_user_created_by")
+  storeUpdated			store[]		@relation("reference_store_user_updated_by")
+  storeItemCreated			store_item[]		@relation("reference_store_item_user_created_by")
+  storeItemUpdated			store_item[]		@relation("reference_store_item_user_updated_by")
+  storeProductCreated			store_product[]		@relation("reference_product_store_product_user_created_by")
+  storeProductUpdated			store_product[]		@relation("reference_product_store_product_user_updated_by")
+  approvedPurchases			purchase[]		@relation("reference_purchase_approved_by")
+  purchaseCreated			purchase[]		@relation("reference_purchase_user_created_by")
+  purchaseUpdated			purchase[]		@relation("reference_purchase_user_updated_by")
+  purchaseItemCreated			purchase_item[]		@relation("reference_purchase_item_user_created_by")
+  purchaseItemUpdated			purchase_item[]		@relation("reference_purchase_item_user_updated_by")
+  serviceCreated			service[]		@relation("reference_service_created_by")
+  serviceUpdated			service[]		@relation("reference_service_updated_by")
+  managedProductions			production[]		@relation("reference_production_managed_by")
+  productionsCreated			production[]		@relation("reference_production_user_created_by")
+  productionsUpdated			production[]		@relation("reference_production_user_updated_by")
+  autoGenerateCreated			auto_number[]		@relation("reference_auto_number_user_created_by")
+  autoGenerateUpdated			auto_number[]		@relation("reference_auto_number_user_updated_by")
+  consumptionCreated			production_consumption[]		@relation("reference_production_consumption_user_created_by")
+  consumptionUpdated			production_consumption[]		@relation("reference_production_consumption_user_updated_by")
+  finishedProductCreated			finished_product[]		@relation("reference_finished_product_user_created_by")
+  finishedProductUpdated			finished_product[]		@relation("reference_finished_product_user_updated_by")
+  activityCreated			activity[]		@relation("reference_activity_user_created_by")
+  activityUpdated			activity[]		@relation("reference_activity_user_updated_by")
+  Sells			sell[]		@relation("reference_sell_sold_by")
+  sellsCreated			sell[]		@relation("reference_sell_user_created_by")
+  sellsUpdated			sell[]		@relation("reference_sell_user_updated_by")
+  sellCreated			sell_product[]		@relation("reference_sell_product_user_created_by")
+  sellUpdated			sell_product[]		@relation("reference_sell_product_user_updated_by")
+  accountsCreated			account[]		@relation("reference_account_user_created_by")
+  accountsUpdated			account[]		@relation("reference_account_user_updated_by")
+  transactionsCreated			transaction[]		@relation("reference_transaction_user_created_by")
+  transactionsUpdated			transaction[]		@relation("reference_transaction_user_updated_by")
+  WorksIn			user_store[]		@relation("reference_user_works_in_store")
+  userStoreCreated			user_store[]		@relation("reference_userStore_user_created_by")
+  userStoreUpdated			user_store[]		@relation("reference_userStore_user_updated_by")
+  transfersCreated			transfer[]		@relation("reference_transfer_user_created_by")
+  transfersUpdated			transfer[]		@relation("reference_transfer_user_updated_by")
+  transferProdctusCreated			transfer_product[]		@relation("reference_transfer_product_user_created_by")
+  transferProductsUpdated			transfer_product[]		@relation("reference_transfer_product_user_updated_by")
+  productReceived			receive_product[]		@relation("reference_receive_product_has_receiver")
+  productReceivedCreater			receive_product[]		@relation("reference_receive_product_has_created_by")
+  productReceivedUpdater			receive_product[]		@relation("reference_receive_product_has_updated_by")
+  issuePoster			issue_ticket[]		@relation("reference_issue_user_created_by")
+  issueUpdater			issue_ticket[]		@relation("reference_issue_user_updated_by")
+  approvedTransfers			transfer[]		@relation("reference_transfer_user_approved_by")
+  acceptedTransfers			transfer[]		@relation("reference_user_transfer_accepted_by")
+  MainTrxCreated			main_transaction[]		@relation("reference_main_trx_user_created_by")
+  MainTrxUpdater			main_transaction[]		@relation("reference_main_trx_user_updated_by")
+  CreatedApiUsers			api_user[]		@relation("reference_api_user_created_by")
+  UpdatedApiUsers			api_user[]		@relation("reference_api_user_updated_by")
+  UpdatedEndpoints			endpoint[]		@relation("reference_endpoint_updated_by")
+  CreatedEndpoints			endpoint[]		@relation("reference_endpoint_created_by")
+  processesCreated			process[]		@relation("reference_process_user_created_by")
+  processesUpdated			process[]		@relation("reference_process_user_updated_by")
+  flowsCreated			flow_defination[]		@relation("reference_flow_defination_user_created_by")
+  flowsUpdated			flow_defination[]		@relation("reference_flow_defination_user_updated_by")
+  waitingProcessesCreated			waiting_process[]		@relation("reference_waiting_process_user_created_by")
+  waitingProcessesUpdated			waiting_process[]		@relation("reference_waiting_process_user_updated_by")
+  postsCreated			post[]		@relation("reference_post_user_created_by")
+  postsUpdated			post[]		@relation("reference_post_user_updated_by")
+  UIComponentsCreated			ui_component[]		@relation("reference_ui_component_created_by")
+  UIComponentsUpdated			ui_component[]		@relation("reference_ui_component_updated_by")
+  navigationCreated			system_nav[]		@relation("reference_system_nav_user_created_by")
+  navigationUpdated			system_nav[]		@relation("reference_system_nav_user_updated_by")
+  creater			user?		@relation("reference_user_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_user_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model userRole {
+  sys_id			String		@id @default(uuid())
+  role			String		 @db.VarChar(30)
+  user_id			String		 @db.VarChar(36)
+  active			Boolean		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  user			user		@relation("reference_user_roles", fields: [user_id], references: [sys_id])
+  creater			user?		@relation("reference_userRole_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_userRole_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model choice {
+  sys_id			String		@id @default(uuid())
+  label			String		 @db.VarChar(50)
+  id			String		 @db.VarChar(50)
+  value			String		 @db.VarChar(50)
+  color			String?		
+  bgColor			String?		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  creater			user?		@relation("reference_choice_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_choice_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model inventory_item {
+  sys_id			String		@id @default(uuid())
+  name			String		 @db.VarChar(100)
+  item_number			String		 @db.VarChar(50)
+  type			String		 @db.VarChar(20)
+  measuring_unit			String		 @db.VarChar(20)
+  unit_price			Float		 @db.Float
+  is_defination			Boolean?		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  storeInventories			store_item[]		@relation("reference_store_item_inventory_item_in_store")
+  purchaseItem			purchase_item[]		@relation("reference_purchased_item_has_inventory_item")
+  itemConsumed			production_consumption[]		@relation("reference_production_consumption_has_inventory_item")
+  creater			user?		@relation("reference_inventory_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_inventory_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model delivery {
+  sys_id			String		@id @default(uuid())
+  name			String		 @db.VarChar(50)
+  phone_number			String		@unique @db.VarChar(14)
+  vehicle_type			String		 @db.VarChar(20)
+  vehicle_number			String		 @db.VarChar(20)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  deliveredSells			sell[]		@relation("reference_sell_delivery")
+  deliveredTransfers			transfer[]		@relation("reference_transfer_delivery")
+  creater			user?		@relation("reference_delivery_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_delivery_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model attachment {
+  sys_id			String		@id @default(uuid())
+  name			String		 @db.VarChar(100)
+  table			String		 @db.VarChar(50)
+  record			String?		 @db.VarChar(38)
+  file_name			String?		 @db.VarChar(100)
+  extension			String?		 @db.VarChar(50)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  Documents			attachment_document[]		@relation("reference_attachmentDocument_attachment_attachment_id")
+  creater			user?		@relation("reference_attachment_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_attachment_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model attachment_document {
+  sys_id			String		@id @default(uuid())
+  content			String		 @db.LongText
+  created_on			DateTime?		
+  attachment_id			String		 @db.VarChar(36)
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  Attachment			attachment		@relation("reference_attachmentDocument_attachment_attachment_id", fields: [attachment_id], references: [sys_id])
+  creater			user?		@relation("reference_attachmentDocument_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_attachmentDocument_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model product {
+  sys_id			String		@id @default(uuid())
+  name			String		 @db.VarChar(50)
+  product_number			String		@unique @db.VarChar(50)
+  measuring_unit			String		 @db.VarChar(20)
+  unit_price			Float		 @db.Float
+  minimum_level			Int		
+  active			Boolean		
+  description			String?		 @db.LongText
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  ProductStoreItems			store_product[]		@relation("reference_product_has_many_product_item")
+  finishedProducts			finished_product[]		@relation("reference_finished_product_has_product")
+  sellProducts			sell_product[]		@relation("reference_sell_product_has_product")
+  transferItems			transfer_product[]		@relation("reference_transfer_product_has_product")
+  creater			user?		@relation("reference_product_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_product_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model customer {
+  sys_id			String		@id @default(uuid())
+  name			String		 @db.VarChar(50)
+  phone_number			String		@unique @db.VarChar(50)
+  address			String		 @db.VarChar(100)
+  type			String?		 @db.VarChar(10)
+  credite_amount			Int?		
+  debt_amount			Int?		
+  verified			Boolean?		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  sellContracts			purchase[]		@relation("reference_purchase_customer")
+  servicesProvided			service[]		@relation("reference_service_provider")
+  buyContracts			sell[]		@relation("reference_sell_customer")
+  creater			user?		@relation("reference_customer_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_customer_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model store {
+  sys_id			String		@id @default(uuid())
+  name			String		 @db.VarChar(50)
+  location			String		 @db.VarChar(100)
+  manager			String		 @db.VarChar(36)
+  active			Boolean		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  storeItems			store_item[]		@relation("reference_store_has_store_item")
+  storeProducts			store_product[]		@relation("reference_product_item_has_one_store")
+  storePurchases			purchase[]		@relation("reference_store_has_purchase")
+  storePurchaseItems			purchase_item[]		@relation("reference_store_has_purchase_item")
+  Productions			production[]		@relation("reference_store_has_production")
+  storeConsumption			production_consumption[]		@relation("reference_store_has_production_consumption")
+  finishedProducts			finished_product[]		@relation("reference_store_has_finished_product")
+  storeSells			sell[]		@relation("reference_store_has_sell")
+  storeSellProduct			sell_product[]		@relation("reference_store_has_sell_product")
+  workers			user_store[]		@relation("reference_store_has_worker")
+  fromStores			transfer[]		@relation("transfer_has_from_store")
+  toStores			transfer[]		@relation("transfer_has_to_store")
+  receveSlips			receive_product[]		@relation("reference_store_has_receive_products")
+  managedBy			user		@relation("reference_store_user_managed_by", fields: [manager], references: [sys_id])
+  creater			user?		@relation("reference_store_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_store_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model store_item {
+  sys_id			String		@id @default(uuid())
+  item_id			String		 @db.VarChar(36)
+  quantity			Float		 @db.Float
+  total_price			Float?		 @db.Float
+  level_state			String		 @db.VarChar(20)
+  store_id			String		 @db.VarChar(36)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  inStore			store		@relation("reference_store_has_store_item", fields: [store_id], references: [sys_id])
+  inventoryItem			inventory_item		@relation("reference_store_item_inventory_item_in_store", fields: [item_id], references: [sys_id])
+  creater			user?		@relation("reference_store_item_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_store_item_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model store_product {
+  sys_id			String		@id @default(uuid())
+  product_id			String		 @db.VarChar(36)
+  quantity			Float		 @db.Float
+  total_price			Float?		 @db.Float
+  level_state			String		 @db.VarChar(20)
+  store_id			String		 @db.VarChar(36)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  ProductStore			store		@relation("reference_product_item_has_one_store", fields: [store_id], references: [sys_id])
+  ItemProduct			product		@relation("reference_product_has_many_product_item", fields: [product_id], references: [sys_id])
+  creater			user?		@relation("reference_product_store_product_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_product_store_product_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model purchase {
+  sys_id			String		@id @default(uuid())
+  purchase_number			String?		@unique @db.VarChar(40)
+  store_id			String		 @db.VarChar(36)
+  customer_id			String		 @db.VarChar(36)
+  status			String?		 @db.VarChar(20)
+  approved_by			String?		 @db.VarChar(36)
+  total_price			Float?		 @db.Float
+  paid_amount			Float?		 @db.Float
+  remained_amount			Float?		 @db.Float
+  tax_amount			Float?		 @db.Float
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  purchaseItems			purchase_item[]		@relation("reference_purchased_has_purchase_item")
+  transactions			transaction[]		@relation("reference_purchase_transaction")
+  purchaseStore			store		@relation("reference_store_has_purchase", fields: [store_id], references: [sys_id])
+  ApprovedBy			user?		@relation("reference_purchase_approved_by", fields: [approved_by], references: [sys_id])
+  boughtFrom			customer		@relation("reference_purchase_customer", fields: [customer_id], references: [sys_id])
+  creater			user?		@relation("reference_purchase_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_purchase_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model purchase_item {
+  sys_id			String		@id @default(uuid())
+  item_id			String		 @db.VarChar(36)
+  store_id			String		 @db.VarChar(36)
+  purchase_id			String		 @db.VarChar(36)
+  quantity			Float		 @db.Float
+  unit_price			Float		 @db.Float
+  tax_percentage			Float?		 @db.Float
+  before_tax			Float?		 @db.Float
+  tax_amount			Float?		 @db.Float
+  total_price			Float?		 @db.Float
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  purchaseItemStore			store		@relation("reference_store_has_purchase_item", fields: [store_id], references: [sys_id])
+  Purchase			purchase		@relation("reference_purchased_has_purchase_item", fields: [purchase_id], references: [sys_id])
+  purchaseItem			inventory_item		@relation("reference_purchased_item_has_inventory_item", fields: [item_id], references: [sys_id])
+  creater			user?		@relation("reference_purchase_item_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_purchase_item_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model service {
+  sys_id			String		@id @default(uuid())
+  name			String		 @db.VarChar(50)
+  customer_id			String		 @db.VarChar(36)
+  type			String		 @db.VarChar(20)
+  interval_type			String		 @db.VarChar(20)
+  price			Float		 @db.Float
+  last_payment_date			DateTime		
+  next_payment_date			DateTime?		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  transactions			transaction[]		@relation("reference_service_transaction")
+  Provider			customer		@relation("reference_service_provider", fields: [customer_id], references: [sys_id])
+  creater			user?		@relation("reference_service_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_service_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model production {
+  sys_id			String		@id @default(uuid())
+  prod_number			String?		@unique @db.VarChar(40)
+  store_id			String		 @db.VarChar(36)
+  status			String?		 @db.VarChar(50)
+  managed_by			String?		 @db.VarChar(36)
+  total_consumed_price			Float?		 @db.Float
+  total_produced_price			Float?		 @db.Float
+  remark			String?		 @db.LongText
+  cancel_reason			String?		 @db.LongText
+  started_on			DateTime?		
+  finished_on			DateTime?		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  Consumption			production_consumption[]		@relation("reference_production_has_production_consumption")
+  finishedProducts			finished_product[]		@relation("reference_production_has_finished_product")
+  transactions			transaction[]		@relation("reference_production_transaction")
+  ReceiveSlips			receive_product[]		@relation("reference_production_has_receive_product")
+  productionStore			store		@relation("reference_store_has_production", fields: [store_id], references: [sys_id])
+  ManagedBy			user?		@relation("reference_production_managed_by", fields: [managed_by], references: [sys_id])
+  creater			user?		@relation("reference_production_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_production_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model auto_number {
+  sys_id			String		@id @default(uuid())
+  name			String		@unique @db.VarChar(100)
+  current_number			String		 @db.VarChar(10)
+  prefix			String?		 @db.VarChar(5)
+  sufix			String?		 @db.VarChar(5)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  creater			user?		@relation("reference_auto_number_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_auto_number_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model production_consumption {
+  sys_id			String		@id @default(uuid())
+  item_id			String		 @db.VarChar(36)
+  store_id			String		 @db.VarChar(36)
+  production_id			String		 @db.VarChar(36)
+  quantity			Float		 @db.Float
+  unit_price			Float?		 @db.Float
+  total_price			Float?		 @db.Float
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  productionItemStore			store		@relation("reference_store_has_production_consumption", fields: [store_id], references: [sys_id])
+  Production			production		@relation("reference_production_has_production_consumption", fields: [production_id], references: [sys_id])
+  consumedItem			inventory_item		@relation("reference_production_consumption_has_inventory_item", fields: [item_id], references: [sys_id])
+  creater			user?		@relation("reference_production_consumption_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_production_consumption_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model finished_product {
+  sys_id			String		@id @default(uuid())
+  product_id			String		 @db.VarChar(36)
+  store_id			String		 @db.VarChar(36)
+  production_id			String		 @db.VarChar(36)
+  slip_id			String		 @db.VarChar(36)
+  quantity			Float		 @db.Float
+  unit_price			Float?		 @db.Float
+  total_price			Float?		 @db.Float
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  finishedProductStore			store		@relation("reference_store_has_finished_product", fields: [store_id], references: [sys_id])
+  Production			production		@relation("reference_production_has_finished_product", fields: [production_id], references: [sys_id])
+  ReceiveSlip			receive_product		@relation("reference_slip_has_finished_product", fields: [slip_id], references: [sys_id])
+  producedItem			product		@relation("reference_finished_product_has_product", fields: [product_id], references: [sys_id])
+  creater			user?		@relation("reference_finished_product_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_finished_product_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model activity {
+  sys_id			String		@id @default(uuid())
+  description			String		 @db.LongText
+  table_id			String		 @db.VarChar(38)
+  record_id			String		 @db.VarChar(38)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  creater			user?		@relation("reference_activity_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_activity_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model sell {
+  sys_id			String		@id @default(uuid())
+  sell_number			String?		@unique @db.VarChar(40)
+  store_id			String		 @db.VarChar(36)
+  status			String?		 @db.VarChar(50)
+  customer_id			String		 @db.VarChar(36)
+  delivery_id			String?		 @db.VarChar(36)
+  sold_by			String?		 @db.VarChar(36)
+  total_price			Float?		 @db.Float
+  discount			Float?		 @db.Float
+  tax_percentage			Float?		 @db.Float
+  has_receipt			Boolean		
+  tax_amount			Float?		 @db.Float
+  paid_price			Float?		 @db.Float
+  remaining_price			Float?		 @db.Float
+  order_id			String?		 @db.VarChar(36)
+  cancel_reason			String?		 @db.LongText
+  sold_date			DateTime?		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  sellProducts			sell_product[]		@relation("reference_sell_has_sell_product")
+  transactions			transaction[]		@relation("reference_sell_transaction")
+  order			order?		@relation("reference_sell_order_id", fields: [order_id], references: [sys_id])
+  sellDelivery			delivery?		@relation("reference_sell_delivery", fields: [delivery_id], references: [sys_id])
+  sellCustomer			customer		@relation("reference_sell_customer", fields: [customer_id], references: [sys_id])
+  sellStore			store		@relation("reference_store_has_sell", fields: [store_id], references: [sys_id])
+  SoldBy			user?		@relation("reference_sell_sold_by", fields: [sold_by], references: [sys_id])
+  creater			user?		@relation("reference_sell_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_sell_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model sell_product {
+  sys_id			String		@id @default(uuid())
+  product_id			String		 @db.VarChar(36)
+  store_id			String		 @db.VarChar(36)
+  sell_id			String		 @db.VarChar(36)
+  quantity			Float		 @db.Float
+  unit_price			Float?		 @db.Float
+  total_price			Float?		 @db.Float
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  sellProductStore			store		@relation("reference_store_has_sell_product", fields: [store_id], references: [sys_id])
+  Sell			sell		@relation("reference_sell_has_sell_product", fields: [sell_id], references: [sys_id])
+  sellProduct			product		@relation("reference_sell_product_has_product", fields: [product_id], references: [sys_id])
+  creater			user?		@relation("reference_sell_product_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_sell_product_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model account {
+  sys_id			String		@id @default(uuid())
+  account_number			String?		@unique @db.VarChar(40)
+  name			String		@unique @db.VarChar(40)
+  type			String		 @db.VarChar(40)
+  status			Boolean?		
+  balance			Float?		 @db.Float
+  related_account			String?		 @db.VarChar(36)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  relatedAccounts			account[]		@relation("reference_related_account")
+  GLTrxs			main_transaction[]		@relation("reference_transaction_account_id")
+  related			account?		@relation("reference_related_account", fields: [related_account], references: [sys_id])
+  creater			user?		@relation("reference_account_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_account_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model transaction {
+  sys_id			String		@id @default(uuid())
+  trx_number			String?		@unique @db.VarChar(100)
+  category			String		 @db.VarChar(40)
+  type			String		 @db.VarChar(40)
+  status			Boolean?		
+  amount			Float		 @db.Float
+  remark			String?		 @db.LongText
+  sell_id			String?		 @db.VarChar(36)
+  purchase_id			String?		 @db.VarChar(36)
+  service_id			String?		 @db.VarChar(36)
+  production_id			String?		 @db.VarChar(36)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  Children			main_transaction[]		@relation("reference_transaction_sys_trx")
+  purchase			purchase?		@relation("reference_purchase_transaction", fields: [purchase_id], references: [sys_id])
+  sell			sell?		@relation("reference_sell_transaction", fields: [sell_id], references: [sys_id])
+  service			service?		@relation("reference_service_transaction", fields: [service_id], references: [sys_id])
+  production			production?		@relation("reference_production_transaction", fields: [production_id], references: [sys_id])
+  creater			user?		@relation("reference_transaction_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_transaction_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model user_store {
+  sys_id			String		@id @default(uuid())
+  user_id			String		 @db.VarChar(36)
+  store_id			String		 @db.VarChar(36)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  WorksIn			store		@relation("reference_store_has_worker", fields: [store_id], references: [sys_id])
+  Worker			user		@relation("reference_user_works_in_store", fields: [user_id], references: [sys_id])
+  creater			user?		@relation("reference_userStore_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_userStore_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model transfer {
+  sys_id			String		@id @default(uuid())
+  transfer_number			String?		@unique @db.VarChar(40)
+  store_from_id			String		 @db.VarChar(36)
+  store_to_id			String		 @db.VarChar(36)
+  type			String		 @db.VarChar(50)
+  status			String?		 @db.VarChar(50)
+  delivery_id			String?		 @db.VarChar(36)
+  sent_to			String		 @db.VarChar(999)
+  approved_by			String?		 @db.VarChar(36)
+  accepted_by			String?		 @db.VarChar(36)
+  total_price			Float?		 @db.Float
+  cancel_reason			String?		 @db.LongText
+  started_on			DateTime?		
+  finished_on			DateTime?		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  transferProducts			transfer_product[]		@relation("reference_transfer_has_finished_product")
+  fromStore			store		@relation("transfer_has_from_store", fields: [store_from_id], references: [sys_id])
+  toStore			store		@relation("transfer_has_to_store", fields: [store_to_id], references: [sys_id])
+  DeliveredBy			delivery?		@relation("reference_transfer_delivery", fields: [delivery_id], references: [sys_id])
+  creater			user?		@relation("reference_transfer_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_transfer_user_updated_by", fields: [updated_by], references: [sys_id])
+  approvedBy			user?		@relation("reference_transfer_user_approved_by", fields: [approved_by], references: [sys_id])
+  acceptedBy			user?		@relation("reference_user_transfer_accepted_by", fields: [accepted_by], references: [sys_id])
+}
+
+model transfer_product {
+  sys_id			String		@id @default(uuid())
+  product_id			String		 @db.VarChar(36)
+  transfer_id			String		 @db.VarChar(36)
+  quantity			Float		 @db.Float
+  total_price			Float?		 @db.Float
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  Transfer			transfer		@relation("reference_transfer_has_finished_product", fields: [transfer_id], references: [sys_id])
+  productItem			product		@relation("reference_transfer_product_has_product", fields: [product_id], references: [sys_id])
+  creater			user?		@relation("reference_transfer_product_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_transfer_product_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model receive_product {
+  sys_id			String		@id @default(uuid())
+  slip_number			String?		@unique @db.VarChar(40)
+  store_id			String		 @db.VarChar(36)
+  production_id			String		 @db.VarChar(36)
+  status			String?		 @db.VarChar(50)
+  received_by			String?		 @db.VarChar(36)
+  cancel_reason			String?		 @db.LongText
+  received_on			DateTime?		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  finishedProducts			finished_product[]		@relation("reference_slip_has_finished_product")
+  Production			production		@relation("reference_production_has_receive_product", fields: [production_id], references: [sys_id])
+  Store			store		@relation("reference_store_has_receive_products", fields: [store_id], references: [sys_id])
+  Receiver			user?		@relation("reference_receive_product_has_receiver", fields: [received_by], references: [sys_id])
+  creater			user?		@relation("reference_receive_product_has_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_receive_product_has_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model issue_ticket {
+  sys_id			String		@id @default(uuid())
+  issue_number			String?		@unique @db.VarChar(40)
+  subject			String?		 @db.VarChar(38)
+  description			String?		 @db.LongText
+  resolution_note			String?		 @db.LongText
+  type			String		 @db.VarChar(20)
+  status			String?		 @db.VarChar(20)
+  immediate_image			String?		 @db.LongText
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  creater			user?		@relation("reference_issue_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_issue_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model order {
+  sys_id			String		@id @default(uuid())
+  order_number			String?		@unique @db.VarChar(40)
+  user_id			String		 @db.VarChar(36)
+  seller_id			String		 @db.VarChar(36)
+  order_date			DateTime?		
+  delivered_date			DateTime?		
+  status			String?		 @db.VarChar(10)
+  description			String?		 @db.LongText
+  created_by			String?		 @db.VarChar(36)
+  created_on			DateTime?		
+  updated_by			String?		 @db.VarChar(36)
+  updated_on			DateTime?		
+
+
+  sells			sell[]		@relation("reference_sell_order_id")
+  user			user		@relation("reference_order_user_id", fields: [user_id], references: [sys_id])
+  seller			user		@relation("reference_order_seller_id", fields: [seller_id], references: [sys_id])
+  creater			user?		@relation("reference_order_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_order_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model main_transaction {
+  sys_id			String		@id @default(uuid())
+  trx_id			String?		 @db.VarChar(100)
+  sys_trx			String?		 @db.VarChar(36)
+  account_id			String		 @db.VarChar(36)
+  type			String		 @db.VarChar(40)
+  status			Boolean?		
+  amount			Float		 @db.Float
+  narration			String?		 @db.LongText
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  Parent			transaction?		@relation("reference_transaction_sys_trx", fields: [sys_trx], references: [sys_id])
+  GeneralLedger			account		@relation("reference_transaction_account_id", fields: [account_id], references: [sys_id])
+  creater			user?		@relation("reference_main_trx_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_main_trx_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model api_user {
+  sys_id			String		@id @default(uuid())
+  user_name			String		 @db.VarChar(100)
+  api_key			String?		 @db.VarChar(38)
+  api_secret			String?		 @db.VarChar(38)
+  expire_on			DateTime?		
+  domain_ip			String?		 @db.VarChar(100)
+  authorization_type			String		 @db.VarChar(10)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  allowedEndpoints			endpoint[]		@relation("reference_endpoint_api_user")
+  creater			user?		@relation("reference_api_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_api_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model endpoint {
+  sys_id			String		@id @default(uuid())
+  route			String		@unique @db.VarChar(400)
+  method			String		 @db.VarChar(100)
+  api_user_id			String		 @db.VarChar(36)
+  type			String		 @db.VarChar(100)
+  table_name			String?		 @db.VarChar(100)
+  fields			String?		 @db.LongText
+  access_conditions			String?		 @db.LongText
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  creater			user?		@relation("reference_endpoint_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_endpoint_updated_by", fields: [updated_by], references: [sys_id])
+  apiUser			api_user		@relation("reference_endpoint_api_user", fields: [api_user_id], references: [sys_id])
+}
+
+model flow_defination {
+  sys_id			String		@id @default(uuid())
+  name			String		 @db.VarChar(100)
+  internal_name			String		@unique @db.VarChar(100)
+  initiation_type			String		 @db.VarChar(30)
+  trigger_environment			String?		 @db.VarChar(30)
+  next_run_date			DateTime?		
+  table_id			String?		 @db.VarChar(50)
+  specification			Json?		
+  active			Boolean		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  processes			process[]		@relation("reference_flow_definition_processes")
+  creater			user?		@relation("reference_flow_defination_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_flow_defination_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model process {
+  sys_id			String		@id @default(uuid())
+  flow_id			String		 @db.VarChar(36)
+  state			String		 @db.VarChar(50)
+  started_on			DateTime		
+  finished_on			DateTime?		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  waitingProcesses			waiting_process[]		@relation("reference_waiting_process_process_id")
+  flow			flow_defination		@relation("reference_flow_definition_processes", fields: [flow_id], references: [sys_id])
+  creater			user?		@relation("reference_process_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_process_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model waiting_process {
+  sys_id			String		@id @default(uuid())
+  table_id			String		 @db.VarChar(10)
+  record_id			String		 @db.VarChar(10)
+  variable_name			String		 @db.VarChar(10)
+  process_id			String		 @db.VarChar(36)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  process			process		@relation("reference_waiting_process_process_id", fields: [process_id], references: [sys_id])
+  creater			user?		@relation("reference_waiting_process_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_waiting_process_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model post {
+  sys_id			String		@id @default(uuid())
+  title			String		 @db.VarChar(50)
+  description			String		 @db.LongText
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  creater			user?		@relation("reference_post_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_post_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model ui_component {
+  sys_id			String		@id @default(uuid())
+  title			String		@unique @db.VarChar(100)
+  name			String		 @db.VarChar(100)
+  ui_type			String		 @db.VarChar(30)
+  usage			String		 @db.VarChar(10)
+  route_params			String?		 @db.VarChar(200)
+  component_script			String?		 @db.LongText
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  creater			user?		@relation("reference_ui_component_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_ui_component_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model system_nav {
+  sys_id			String		@id @default(uuid())
+  name			String		@unique @db.VarChar(100)
+  link			String		 @db.VarChar(200)
+  order			Int?		
+  icon			String?		 @db.VarChar(200)
+  parent_id			String?		 @db.VarChar(36)
+  active			Boolean?		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  ChildNav			system_nav[]		@relation("reference_system_nav_parent")
+  creater			user?		@relation("reference_system_nav_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_system_nav_user_updated_by", fields: [updated_by], references: [sys_id])
+  ParentNav			system_nav?		@relation("reference_system_nav_parent", fields: [parent_id], references: [sys_id])
+}
+

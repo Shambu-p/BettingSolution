@@ -1,0 +1,66 @@
+{
+  "trigger_data": {
+    "sys_id": "f504e605-49d5-4101-99ac-c7baeaf1dd0e",
+    "name": "Hani ",
+    "phone_number": "0919",
+    "address": "567227e0-c72c-4387-9cc1-58541ccb2823",
+    "type": "customer",
+    "credite_amount": 0,
+    "debt_amount": 0,
+    "verified": false,
+    "created_on": "2025-09-18T12:52:52.967Z",
+    "updated_on": "2025-10-03T09:58:46.955Z",
+    "created_by": "6260ed5e-bf68-433b-a65d-06bbb87b342e",
+    "updated_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756"
+  },
+  "process_record": {
+    "sys_id": "07e6e47a-87f0-4d6d-aa4c-445751b9782f",
+    "flow_id": "391fc24f-0b4f-4aa0-ae56-a73bd0bc22d3",
+    "state": "running",
+    "started_on": "2025-10-03T09:59:40.359Z",
+    "finished_on": null,
+    "created_on": "2025-10-03T09:59:40.362Z",
+    "updated_on": "2025-10-03T09:59:40.362Z",
+    "created_by": "e3136470-7370-4d94-a012-8c8edca900ce",
+    "updated_by": "e3136470-7370-4d94-a012-8c8edca900ce"
+  },
+  "flow_record": {
+    "sys_id": "391fc24f-0b4f-4aa0-ae56-a73bd0bc22d3",
+    "name": "JO Flow",
+    "internal_name": "jo_flow",
+    "initiation_type": "record_based",
+    "trigger_environment": "user_interaction_only",
+    "next_run_date": null,
+    "table_id": "customer",
+    "specification": "{\"trigger\":{\"id\":\"trigger\",\"position\":{\"x\":-43.209598590603804,\"y\":-147.42159892617434},\"type\":\"triggerNode\",\"data\":{\"id\":\"\",\"label\":\"Trigger\",\"internalName\":\"trigger\",\"description\":\"\",\"type\":\"triggerNode\",\"options\":[],\"table_id\":\"cusotmer\",\"filter_condition\":[],\"record_id\":\"{{trigger_data.address}}\",\"relation\":\"reference\",\"triggerType\":\"record_based\",\"actionType\":\"normal\",\"reccurrence\":\"none\",\"given_datetime\":\"\",\"condition\":[],\"next\":\"jo_action\",\"script\":\"\\n\\n// flow trigger defination\\n/**\\n * this function will be called to check the flow meet the \\n * requirement to be trigger before the main flow script actually triggered.\\n * @param {any} record trigger record object\\n * @param {any} optionalData optional data passed to the script\\n * @returns {boolean} true if the trigger record data meet the requirement\\n */\\nmodule.exports = async function(record, optionalData) {\\n\\noptionalData.dependencies.logger(\\\"trigger condition is being checked \\\");\\nreturn false;\\n\\n};\",\"is_selected\":false},\"measured\":{\"width\":400,\"height\":100},\"dragging\":true},\"actions\":[{\"id\":\"jo_action\",\"position\":{\"x\":-70.02906449664397,\"y\":55.57066677852352},\"type\":\"getSingle\",\"data\":{\"id\":\"\",\"label\":\"Jo Action\",\"internalName\":\"jo_action\",\"description\":\"\",\"type\":\"getSingle\",\"options\":[],\"table_id\":\"purchase\",\"filter_condition\":[],\"record_id\":\"{{trigger_data.address}}\",\"is_selected\":true,\"relation\":\"reference\",\"triggerType\":\"record_based\",\"actionType\":\"normal\",\"reccurrence\":\"none\",\"given_datetime\":\"\",\"condition\":[],\"next\":\"jo_action_two\",\"script\":\"\\n\\n// flow trigger defination\\n/**\\n * this function will be called to check the flow meet the \\n * requirement to be trigger before the main flow script actually triggered.\\n * @param {any} record trigger record object\\n * @param {any} optionalData optional data passed to the script\\n * @returns {boolean} true if the trigger record data meet the requirement\\n */\\nmodule.exports = async function(record, optionalData) {\\n\\noptionalData.dependencies.logger(\\\"trigger condition is being checked \\\");\\nreturn false;\\n\\n};\"},\"measured\":{\"width\":400,\"height\":100},\"dragging\":true},{\"id\":\"jo_action_two\",\"position\":{\"x\":-49.439998322147375,\"y\":227.2434665771812},\"type\":\"updateRecord\",\"data\":{\"id\":\"\",\"label\":\"Jo Second action\",\"internalName\":\"jo_action_two\",\"description\":\"\",\"type\":\"updateRecord\",\"options\":[],\"table_id\":\"purchase\",\"filter_condition\":[],\"record_id\":\"{{variables.jo_action.sys_id}}\",\"is_selected\":false},\"dragging\":true,\"measured\":{\"width\":400,\"height\":100}}]}",
+    "active": false,
+    "created_on": "2025-10-03T09:46:52.566Z",
+    "updated_on": "2025-10-03T09:57:19.039Z",
+    "created_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756",
+    "updated_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756"
+  },
+  "variables": {
+    "jo_action": {
+      "sys_id": "567227e0-c72c-4387-9cc1-58541ccb2823",
+      "purchase_number": "PRCH0095",
+      "store_id": "72d10fbb-cc91-4915-b5d8-c8b55cecf855",
+      "customer_id": "c025b079-3769-426f-94fd-417a73f1be89",
+      "status": "paid",
+      "approved_by": "4c3cc5b0-0c15-4b45-8c8a-94d6c8f63006",
+      "total_price": 17340,
+      "paid_amount": 17340,
+      "remained_amount": 0,
+      "tax_amount": 0,
+      "created_on": "2025-09-15T15:33:42.876Z",
+      "updated_on": "2025-09-15T21:47:15.476Z",
+      "created_by": "ce6889ef-3cce-4710-8760-2489aa861660",
+      "updated_by": "e3136470-7370-4d94-a012-8c8edca900ce"
+    }
+  },
+  "current_state": "running",
+  "completed_states": [
+    "jo_action"
+  ],
+  "error_log": [],
+  "completedStates": []
+}

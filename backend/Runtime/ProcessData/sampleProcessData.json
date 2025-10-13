@@ -1,0 +1,13 @@
+{
+    "trigger_data": "[any object]",
+    "process_record": "[object]",
+    "flow_record": "[object]",
+    "completed_states": [
+        "[state_name]",
+        "[state_name]"
+    ],
+    "current_state": "[state_name]",
+    "variables": [
+        "[var_name]: [any object]"
+    ]
+}

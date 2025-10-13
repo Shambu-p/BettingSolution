@@ -1,0 +1,58 @@
+{
+  "trigger_data": {
+    "sys_id": "0da0e423-0d84-4e5d-a559-80b474cc2de1",
+    "name": "Esayas",
+    "phone_number": "0911649332",
+    "address": "09",
+    "type": "customer",
+    "credite_amount": 0,
+    "debt_amount": 0,
+    "verified": true,
+    "created_on": "2025-08-20T15:17:35.340Z",
+    "updated_on": "2025-08-20T15:17:35.340Z",
+    "created_by": "e2a29f96-6707-41a6-8be6-fae4e0a07a9f",
+    "updated_by": "e2a29f96-6707-41a6-8be6-fae4e0a07a9f"
+  },
+  "process_record": {
+    "sys_id": "98adbb26-3eb5-4247-b7b1-147674852c50",
+    "flow_id": "f02e2386-9adf-4ac8-840c-09ff037fbd44",
+    "state": "running",
+    "started_on": "2025-09-20T13:36:57.628Z",
+    "finished_on": null,
+    "created_on": "2025-09-20T13:36:57.644Z",
+    "updated_on": "2025-09-20T13:36:57.644Z",
+    "created_by": "e3136470-7370-4d94-a012-8c8edca900ce",
+    "updated_by": "e3136470-7370-4d94-a012-8c8edca900ce"
+  },
+  "flow_record": {
+    "sys_id": "f02e2386-9adf-4ac8-840c-09ff037fbd44",
+    "name": "Generate Post For Customer",
+    "internal_name": "generate_customer_post",
+    "initiation_type": "record_based",
+    "trigger_environment": "user_interaction_only",
+    "next_run_date": null,
+    "table_id": "customer",
+    "specification": "{\"trigger\":{\"id\":\"trigger\",\"position\":{\"x\":2.5,\"y\":-106},\"type\":\"triggerNode\",\"data\":{\"id\":\"\",\"label\":\"Trigger\",\"internalName\":\"trigger\",\"description\":\"\",\"type\":\"triggerNode\",\"options\":[],\"table_id\":\"customer\",\"filter_condition\":[],\"record_data\":{\"title\":\"Customer Created\",\"description\":\"New customer {{trigger_data.name}} has been created. phone {{trigger_data.phone_number}}.\"},\"triggerType\":\"record_based\",\"actionType\":\"normal\",\"reccurrence\":\"none\",\"given_datetime\":\"\",\"condition\":[{\"connector\":\"AND\",\"field\":\"customer|type\",\"operator\":\"equals\",\"value\":\"vendor\"}],\"next\":\"create_post\",\"is_condition_open\":false,\"is_selected\":false},\"dragging\":true,\"measured\":{\"width\":400,\"height\":100}},\"actions\":[{\"id\":\"create_post\",\"position\":{\"x\":5.5,\"y\":106},\"type\":\"createRecord\",\"data\":{\"id\":\"\",\"label\":\"Create Post\",\"internalName\":\"create_post\",\"description\":\"\",\"type\":\"createRecord\",\"options\":[],\"table_id\":\"post\",\"filter_condition\":[],\"record_data\":{\"title\":\"Customer Created\",\"description\":\"New customer {{trigger_data.name}} has been created. phone {{trigger_data.phone_number}}.\"},\"is_selected\":true},\"dragging\":true,\"measured\":{\"width\":400,\"height\":100}}]}",
+    "active": false,
+    "created_on": "2025-09-20T13:20:35.139Z",
+    "updated_on": "2025-09-20T13:25:28.251Z",
+    "created_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756",
+    "updated_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756"
+  },
+  "variables": {
+    "create_post": {
+      "sys_id": "66eae659-d82a-4975-b66c-fef47b745b96",
+      "title": "Customer Created",
+      "description": "New customer Esayas has been created. phone 0911649332.",
+      "created_on": "2025-09-20T13:36:57.663Z",
+      "updated_on": "2025-09-20T13:36:57.663Z",
+      "created_by": "e3136470-7370-4d94-a012-8c8edca900ce",
+      "updated_by": "e3136470-7370-4d94-a012-8c8edca900ce"
+    }
+  },
+  "current_state": "running",
+  "completed_states": [
+    "create_post"
+  ],
+  "completedStates": []
+}

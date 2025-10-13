@@ -1,0 +1,5 @@
+{
+    "main_server_location": "/home/shambel/Projects/BettingSolution/backend",
+    "process_id": "betting_solution_backend",
+    "main_api_address": "http://localhost:3005"
+}

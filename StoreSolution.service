@@ -1,0 +1,15 @@
+[Unit]
+Description=Store Solution
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/ProductionStoreSolution
+StandardOutput=file:/var/www/ProductionStoreSolution/system_logs.log
+StandardError=file:/var/www/ProductionStoreSolution/system_errors.log
+ExecStart=/bin/bash -c 'source /root/.nvm/nvm.sh && nvm use 20.11.0 && npm run dev'
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target

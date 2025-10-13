@@ -1,0 +1,133 @@
+{
+  "trigger_data": {
+    "sys_id": "f504e605-49d5-4101-99ac-c7baeaf1dd0e",
+    "name": "Hani ",
+    "phone_number": "0919",
+    "address": "ea5ba5b5-dd25-45a7-9862-76c72a52d19c",
+    "type": "customer",
+    "credite_amount": 0,
+    "debt_amount": 0,
+    "verified": false,
+    "created_on": "2025-09-18T12:52:52.967Z",
+    "updated_on": "2025-10-03T10:00:47.495Z",
+    "created_by": "6260ed5e-bf68-433b-a65d-06bbb87b342e",
+    "updated_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756"
+  },
+  "process_record": {
+    "sys_id": "cfecb906-78de-479b-8ec4-996a35fc482e",
+    "flow_id": "391fc24f-0b4f-4aa0-ae56-a73bd0bc22d3",
+    "state": "running",
+    "started_on": "2025-10-03T10:01:01.866Z",
+    "finished_on": null,
+    "created_on": "2025-10-03T10:01:01.869Z",
+    "updated_on": "2025-10-03T10:01:01.869Z",
+    "created_by": "e3136470-7370-4d94-a012-8c8edca900ce",
+    "updated_by": "e3136470-7370-4d94-a012-8c8edca900ce"
+  },
+  "flow_record": {
+    "sys_id": "391fc24f-0b4f-4aa0-ae56-a73bd0bc22d3",
+    "name": "JO Flow",
+    "internal_name": "jo_flow",
+    "initiation_type": "record_based",
+    "trigger_environment": "user_interaction_only",
+    "next_run_date": null,
+    "table_id": "customer",
+    "specification": "{\"trigger\":{\"id\":\"trigger\",\"position\":{\"x\":-43.209598590603804,\"y\":-147.42159892617434},\"type\":\"triggerNode\",\"data\":{\"id\":\"\",\"label\":\"Trigger\",\"internalName\":\"trigger\",\"description\":\"\",\"type\":\"triggerNode\",\"options\":[],\"table_id\":\"cusotmer\",\"filter_condition\":[],\"record_id\":\"{{trigger_data.address}}\",\"relation\":\"reference\",\"triggerType\":\"record_based\",\"actionType\":\"normal\",\"reccurrence\":\"none\",\"given_datetime\":\"\",\"condition\":[],\"next\":\"jo_action\",\"script\":\"\\n\\n// flow trigger defination\\n/**\\n * this function will be called to check the flow meet the \\n * requirement to be trigger before the main flow script actually triggered.\\n * @param {any} record trigger record object\\n * @param {any} optionalData optional data passed to the script\\n * @returns {boolean} true if the trigger record data meet the requirement\\n */\\nmodule.exports = async function(record, optionalData) {\\n\\noptionalData.dependencies.logger(\\\"trigger condition is being checked \\\");\\nreturn false;\\n\\n};\",\"is_selected\":false},\"measured\":{\"width\":400,\"height\":100},\"dragging\":true},\"actions\":[{\"id\":\"jo_action\",\"position\":{\"x\":-70.02906449664397,\"y\":55.57066677852352},\"type\":\"getSingle\",\"data\":{\"id\":\"\",\"label\":\"Jo Action\",\"internalName\":\"jo_action\",\"description\":\"\",\"type\":\"getSingle\",\"options\":[],\"table_id\":\"purchase\",\"filter_condition\":[],\"record_id\":\"{{trigger_data.address}}\",\"is_selected\":true,\"relation\":\"reference\",\"triggerType\":\"record_based\",\"actionType\":\"normal\",\"reccurrence\":\"none\",\"given_datetime\":\"\",\"condition\":[],\"next\":\"jo_action_two\",\"script\":\"\\n\\n// flow trigger defination\\n/**\\n * this function will be called to check the flow meet the \\n * requirement to be trigger before the main flow script actually triggered.\\n * @param {any} record trigger record object\\n * @param {any} optionalData optional data passed to the script\\n * @returns {boolean} true if the trigger record data meet the requirement\\n */\\nmodule.exports = async function(record, optionalData) {\\n\\noptionalData.dependencies.logger(\\\"trigger condition is being checked \\\");\\nreturn false;\\n\\n};\"},\"measured\":{\"width\":400,\"height\":100},\"dragging\":true},{\"id\":\"jo_action_two\",\"position\":{\"x\":-49.439998322147375,\"y\":227.2434665771812},\"type\":\"updateRecord\",\"data\":{\"id\":\"\",\"label\":\"Jo Second action\",\"internalName\":\"jo_action_two\",\"description\":\"\",\"type\":\"updateRecord\",\"options\":[],\"table_id\":\"purchase\",\"filter_condition\":[],\"record_id\":\"{{variables.jo_action.sys_id}}\",\"is_selected\":false},\"dragging\":true,\"measured\":{\"width\":400,\"height\":100}}]}",
+    "active": false,
+    "created_on": "2025-10-03T09:46:52.566Z",
+    "updated_on": "2025-10-03T09:57:19.039Z",
+    "created_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756",
+    "updated_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756"
+  },
+  "variables": {
+    "jo_action": {
+      "sys_id": "ea5ba5b5-dd25-45a7-9862-76c72a52d19c",
+      "purchase_number": "PRCH0089",
+      "store_id": "72d10fbb-cc91-4915-b5d8-c8b55cecf855",
+      "customer_id": "9ce3b233-1e96-4bc5-bcd2-69b40f477e25",
+      "status": "draft",
+      "approved_by": null,
+      "total_price": null,
+      "paid_amount": null,
+      "remained_amount": null,
+      "tax_amount": null,
+      "created_on": "2025-08-25T17:56:23.037Z",
+      "updated_on": "2025-08-25T17:56:23.037Z",
+      "created_by": "ce6889ef-3cce-4710-8760-2489aa861660",
+      "updated_by": "ce6889ef-3cce-4710-8760-2489aa861660"
+    },
+    "jo_action_two": {
+      "sys_id": "ea5ba5b5-dd25-45a7-9862-76c72a52d19c",
+      "purchase_number": "PRCH0089",
+      "store_id": "72d10fbb-cc91-4915-b5d8-c8b55cecf855",
+      "customer_id": "9ce3b233-1e96-4bc5-bcd2-69b40f477e25",
+      "status": "draft",
+      "approved_by": null,
+      "total_price": null,
+      "paid_amount": null,
+      "remained_amount": null,
+      "tax_amount": null,
+      "created_on": "2025-08-25T17:56:23.037Z",
+      "updated_on": "2025-10-03T10:01:01.895Z",
+      "created_by": "ce6889ef-3cce-4710-8760-2489aa861660",
+      "updated_by": "e3136470-7370-4d94-a012-8c8edca900ce",
+      "purchaseStore": {
+        "sys_id": "72d10fbb-cc91-4915-b5d8-c8b55cecf855",
+        "name": "Peacock",
+        "location": "picok",
+        "manager": "4c3cc5b0-0c15-4b45-8c8a-94d6c8f63006",
+        "active": true,
+        "created_on": "2025-04-09T20:27:52.206Z",
+        "updated_on": "2025-05-16T06:49:37.424Z",
+        "created_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756",
+        "updated_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756"
+      },
+      "ApprovedBy": null,
+      "boughtFrom": {
+        "sys_id": "9ce3b233-1e96-4bc5-bcd2-69b40f477e25",
+        "name": "jigra che",
+        "phone_number": "0911526541",
+        "address": "A.a",
+        "type": "vendor",
+        "credite_amount": 0,
+        "debt_amount": 0,
+        "verified": true,
+        "created_on": "2025-08-23T09:37:16.346Z",
+        "updated_on": "2025-09-26T14:20:40.961Z",
+        "created_by": "ce6889ef-3cce-4710-8760-2489aa861660",
+        "updated_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756"
+      },
+      "creater": {
+        "sys_id": "ce6889ef-3cce-4710-8760-2489aa861660",
+        "full_name": "Anteneh Admin",
+        "phone": "0972103310",
+        "active": true,
+        "password": "$2b$10$JIyy2D2/hJzmoWpCAsDsJOqo8lIPWJ6icR.33w2uhWnFbt2Yo.fGi",
+        "created_on": "2025-05-06T15:38:00.879Z",
+        "updated_on": "2025-05-17T14:23:39.392Z",
+        "created_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756",
+        "updated_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756"
+      },
+      "updater": {
+        "sys_id": "ce6889ef-3cce-4710-8760-2489aa861660",
+        "full_name": "Anteneh Admin",
+        "phone": "0972103310",
+        "active": true,
+        "password": "$2b$10$JIyy2D2/hJzmoWpCAsDsJOqo8lIPWJ6icR.33w2uhWnFbt2Yo.fGi",
+        "created_on": "2025-05-06T15:38:00.879Z",
+        "updated_on": "2025-05-17T14:23:39.392Z",
+        "created_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756",
+        "updated_by": "5e20e429-7c16-49c5-b5c7-98b8a7f4d756"
+      },
+      "purchaseItems": [],
+      "transactions": []
+    }
+  },
+  "current_state": "running",
+  "completed_states": [
+    "jo_action",
+    "jo_action_two"
+  ],
+  "error_log": [],
+  "completedStates": []
+}

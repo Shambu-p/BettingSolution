@@ -1,0 +1,19 @@
+# Enable rewriting.
+RewriteEngine on
+
+# Optional: do not allow perusal of directories.
+Options -Indexes
+
+# Optional: explicitly enable per-directory rewrites in the .htaccess context.
+Options +FollowSymLinks
+
+# Required when not in the webroot. Always use a trailing slash.
+RewriteBase /
+
+# To be able to access existing directories and files (standalone scripts).
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Redirect everything else to index.php.
+# Add QSA to ensure that querystring variables are registered as such.
+RewriteRule . index.html [L,QSA]

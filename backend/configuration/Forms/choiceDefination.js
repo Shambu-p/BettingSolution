@@ -1,0 +1,269 @@
+const FieldType = require("../../Interface/FieldType");
+const UserRoles = require("../../Interface/UserRoles");
+
+const choiceDefination = {
+    "name": "choice",
+    "backup_order": 30,
+    title: "Choices",
+    id: "choice",
+    activityRoles: [UserRoles.Admin],
+    canReadAttachment: [],
+    canAddAttachment: [],
+    realId: "sys_id",
+    idColumn: "label",
+    "fields": {
+        "sys_id": {
+            "type": FieldType.string,
+            "maxLength": 40,
+            "minLength": 32,
+            "required": false,
+
+            id: "sys_id",
+            label: "System Id",
+            description: "",
+            order: 1,
+            visible: false,
+            readonly: true,
+            notOnList: true,
+            onChange: "default",
+
+            "writeRoles": [],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "updateRoles": []
+        },
+        "label": {
+            "type": FieldType.string,
+            "maxLength": 50,
+            "minLength": 3,
+            "required": true,
+
+            id: "label",
+            label: "Label",
+            description: "",
+            order: 1,
+            visible: true,
+            readonly: false,
+            notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "updateRoles": [UserRoles.Admin]
+        },
+        "id": {
+            "type": FieldType.string,
+            "minLength": 3,
+            "maxLength": 50,
+            "required": true,
+
+            id: "id",
+            label: "Field Address",
+            description: "",
+            order: 1,
+            visible: true,
+            readonly: false,
+            notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "updateRoles": [UserRoles.Admin]
+        },
+        "value": {
+            "type": FieldType.string,
+            "maxLength": 50,
+            "minLength": 1,
+            "required": true,
+
+            id: "value",
+            label: "Internal Value",
+            description: "",
+            order: 1,
+            visible: true,
+            readonly: false,
+            notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "updateRoles": [UserRoles.Admin]
+        },
+        "color": {
+            "type": FieldType.color,
+            "maxLength": 10,
+            "minLength": 6,
+            "required": false,
+
+            id: "color",
+            label: "Color",
+            description: "",
+            order: 1,
+            visible: true,
+            readonly: false,
+            notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "updateRoles": [UserRoles.Admin]
+        },
+        "bgColor": {
+            "type": FieldType.color,
+            "maxLength": 10,
+            "minLength": 6,
+            "required": false,
+
+            id: "bgColor",
+            label: "Background Color",
+            description: "",
+            order: 1,
+            visible: true,
+            readonly: false,
+            notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "updateRoles": [UserRoles.Admin]
+        },
+        "created_on": {
+            "type": FieldType.dateTime,
+            "defaultValue": {
+                "name": "currentDate"
+            },
+
+            id: "created_on",
+            label: "Created On",
+            description: "",
+            order: 1,
+            visible: true,
+            readonly: false,
+            notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [],
+            "readRoles": [UserRoles.Admin],
+            "updateRoles": []
+        },
+        "updated_on": {
+            "type": FieldType.dateTime,
+            "defaultValue": {
+                "name": "currentDate"
+            },
+
+            id: "updated_on",
+            label: "Updated On",
+            description: "",
+            order: 1,
+            visible: true,
+            readonly: false,
+            notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [],
+            "readRoles": [UserRoles.Admin],
+            "updateRoles": []
+        },
+        "created_by": {
+            "type": FieldType.reference,
+            "minLength": 32,
+            "maxLength": 38,
+            "defaultValue": {
+                "name": "currentUser",
+                "property": "Id"
+            },
+
+            id: "created_by",
+            label: "Created By",
+            description: "",
+            order: 1,
+            visible: true,
+            readonly: false,
+            notOnList: true,
+            references: "user",
+            displayField: "full_name",
+            onChange: "default",
+
+            "writeRoles": [],
+            "readRoles": [UserRoles.Admin],
+            "updateRoles": []
+        },
+        "updated_by": {
+            "type": FieldType.reference,
+            "minLength": 32,
+            "maxLength": 38,
+            "defaultValue": {
+                "name": "currentUser",
+                "property": "Id"
+            },
+
+            id: "updated_by",
+            label: "Updated By",
+            description: "",
+            order: 1,
+            visible: true,
+            readonly: false,
+            notOnList: true,
+            references: "user",
+            displayField: "full_name",
+            onChange: "default",
+
+            "writeRoles": [],
+            "readRoles": [UserRoles.Admin],
+            "updateRoles": []
+        }
+    },
+    "keys": [
+        {
+            "id": "reference_choice_user_created_by",
+            "table": "user",
+            "column": "created_by",
+            "property": "creater"
+        },
+        {
+            "id": "reference_choice_user_updated_by",
+            "table": "user",
+            "column": "updated_by",
+            "property": "updater"
+        }
+    ],
+    "children": [],
+    "writeRoles": [UserRoles.Admin],
+    "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+    "updateRoles": [UserRoles.Admin],
+    "deleteRoles": [UserRoles.Admin],
+    "additionalFilter": [],
+    "createAaccessCondition": true,
+    "deleteAccessCondition": true,
+    "updateAaccessCondition": true,
+    "createScript": {
+    },
+    "updateScript": {
+    },
+    "deleteScript": {
+    },
+
+    onsubmit: "defaultOnsubmit",
+    listLoader: "defaultListLoader",
+    onload: "defaultOnload",
+    relatedList: [
+    ],
+    actions: [
+        {
+            roles: [UserRoles.Admin],
+            lable: "Update",
+            class: "zbtn",
+            action: "defaultUpdate",
+            stayOnForm: false
+        },
+        {
+            roles: [UserRoles.Admin],
+            lable: "Duplicate",
+            class: "zbtn-outline",
+            action: "defaultDuplicate",
+            stayOnForm: true
+        }
+    ]
+};
+
+module.exports = choiceDefination;
