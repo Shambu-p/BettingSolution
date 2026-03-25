@@ -1,0 +1,239 @@
+{
+  "name": "post",
+  "title": "Post",
+  "id": "post",
+  "application_id": "global",
+  "backup_order": 50,
+  "realId": "sys_id",
+  "idColumn": "title",
+  "canReadAttachment": [
+    "admin",
+    "system"
+  ],
+  "canAddAttachment": [
+    "admin",
+    "system"
+  ],
+  "activityRoles": [
+    "admin",
+    "system"
+  ],
+  "fields": {
+    "sys_id": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 32,
+      "required": false,
+      "id": "sys_id",
+      "label": "System Id",
+      "visible": false,
+      "readonly": true,
+      "notOnList": true,
+      "order": 1,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "title": {
+      "type": "text",
+      "required": true,
+      "id": "title",
+      "label": "Title",
+      "minLength": 3,
+      "maxLength": 50,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "order": 2,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "finance",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system",
+        "finance",
+        "branch_manager",
+        "production_manager",
+        "sells",
+        "guest"
+      ]
+    },
+    "description": {
+      "type": "textarea",
+      "required": true,
+      "minLength": 3,
+      "maxLength": 900,
+      "id": "description",
+      "label": "Description",
+      "visible": true,
+      "readonly": false,
+      "notOnList": true,
+      "order": 3,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "finance",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system",
+        "finance",
+        "branch_manager",
+        "production_manager",
+        "sells",
+        "guest"
+      ]
+    },
+    "created_on": {
+      "type": "datetime-local",
+      "readonly": true,
+      "id": "created_on",
+      "label": "Created On",
+      "visible": true,
+      "notOnList": false,
+      "order": 4,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "updated_on": {
+      "type": "datetime-local",
+      "readonly": true,
+      "id": "updated_on",
+      "label": "Updated On",
+      "visible": true,
+      "notOnList": false,
+      "order": 5,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "created_by": {
+      "type": "reference",
+      "references": "user",
+      "displayField": "full_name",
+      "minLength": 32,
+      "maxLength": 38,
+      "readonly": true,
+      "id": "created_by",
+      "label": "Created By",
+      "visible": true,
+      "notOnList": false,
+      "order": 6,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "updated_by": {
+      "type": "reference",
+      "references": "user",
+      "displayField": "full_name",
+      "minLength": 32,
+      "maxLength": 38,
+      "readonly": true,
+      "id": "updated_by",
+      "label": "Updated By",
+      "visible": true,
+      "notOnList": false,
+      "order": 7,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    }
+  },
+  "keys": [
+    {
+      "id": "reference_post_user_created_by",
+      "table": "user",
+      "column": "created_by",
+      "property": "creater"
+    },
+    {
+      "id": "reference_post_user_updated_by",
+      "table": "user",
+      "column": "updated_by",
+      "property": "updater"
+    }
+  ],
+  "children": [],
+  "writeRoles": [
+    "admin",
+    "finance",
+    "system"
+  ],
+  "updateRoles": [
+    "admin",
+    "finance",
+    "system"
+  ],
+  "readRoles": [
+    "admin",
+    "finance",
+    "branch_manager",
+    "production_manager",
+    "sells",
+    "guest"
+  ],
+  "deleteRoles": [
+    "admin",
+    "system"
+  ],
+  "additionalFilter": [],
+  "createAccessCondition": true,
+  "updateAccessCondition": true,
+  "deleteAccessCondition": true,
+  "createScript": {},
+  "updateScript": {},
+  "deleteScript": {},
+  "onsubmit": "defaultOnsubmit",
+  "listLoader": "defaultListLoader",
+  "onload": "defaultOnload",
+  "relatedList": [],
+  "actions": [
+    {
+      "roles": [
+        "admin",
+        "finance",
+        "system"
+      ],
+      "lable": "Update",
+      "class": "zbtn",
+      "action": "defaultUpdate",
+      "stayOnForm": false
+    }
+  ]
+}

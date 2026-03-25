@@ -28,7 +28,7 @@ const choiceDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         },
         "label": {
@@ -47,7 +47,7 @@ const choiceDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "id": {
@@ -66,7 +66,7 @@ const choiceDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "value": {
@@ -85,7 +85,7 @@ const choiceDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "color": {
@@ -104,7 +104,7 @@ const choiceDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "bgColor": {
@@ -123,7 +123,7 @@ const choiceDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "created_on": {
@@ -142,7 +142,7 @@ const choiceDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         },
         "updated_on": {
@@ -161,7 +161,7 @@ const choiceDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         },
         "created_by": {
@@ -185,7 +185,7 @@ const choiceDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         },
         "updated_by": {
@@ -209,7 +209,7 @@ const choiceDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         }
     },
@@ -229,7 +229,7 @@ const choiceDefination = {
     ],
     "children": [],
     "writeRoles": [UserRoles.Admin],
-    "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+    "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
     "updateRoles": [UserRoles.Admin],
     "deleteRoles": [UserRoles.Admin],
     "additionalFilter": [],

@@ -1,0 +1,779 @@
+{
+  "name": "transfer",
+  "backup_order": 90,
+  "title": "Sell Order",
+  "id": "transfer",
+  "application_id": "global",
+  "canReadAttachment": [
+    "admin"
+  ],
+  "canAddAttachment": [
+    "admin"
+  ],
+  "activityRoles": [
+    "admin"
+  ],
+  "realId": "sys_id",
+  "idColumn": "transfer_number",
+  "fields": {
+    "sys_id": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 32,
+      "required": false,
+      "id": "sys_id",
+      "label": "System Id",
+      "description": "",
+      "order": 1,
+      "visible": false,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": []
+    },
+    "transfer_number": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 3,
+      "required": false,
+      "unique": true,
+      "id": "transfer_number",
+      "label": "Transfer Number",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": []
+    },
+    "store_from_id": {
+      "id": "store_from_id",
+      "label": "Out From",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": true,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "references": "store",
+      "displayField": "name",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "updateRoles": []
+    },
+    "store_to_id": {
+      "id": "store_to_id",
+      "label": "Receiver",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": true,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "references": "store",
+      "displayField": "name",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "updateRoles": []
+    },
+    "type": {
+      "id": "type",
+      "label": "Type",
+      "description": "",
+      "type": "select",
+      "minLength": 1,
+      "maxLength": 50,
+      "required": true,
+      "order": 20,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "status": {
+      "id": "status",
+      "label": "Status",
+      "description": "",
+      "type": "select",
+      "minLength": 1,
+      "maxLength": 50,
+      "required": false,
+      "order": 20,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "sells",
+        "branch_manager",
+        "finance"
+      ]
+    },
+    "delivery_id": {
+      "id": "delivery_id",
+      "label": "Delivery",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": true,
+      "onChange": "default",
+      "references": "delivery",
+      "displayField": "name",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "finance"
+      ]
+    },
+    "sent_to": {
+      "id": "sent_to",
+      "label": "Sent To",
+      "description": "",
+      "type": "text",
+      "minLength": 5,
+      "maxLength": 999,
+      "required": true,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "finance"
+      ]
+    },
+    "approved_by": {
+      "id": "approved_by",
+      "label": "Approved By",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "references": "user",
+      "displayField": "full_name",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "accepted_by": {
+      "id": "accepted_by",
+      "label": "Accepted By",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "references": "user",
+      "displayField": "full_name",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "total_price": {
+      "id": "total_price",
+      "label": "Total Price",
+      "description": "",
+      "type": "float",
+      "minLength": 1,
+      "maxLength": 11,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "cancel_reason": {
+      "id": "cancel_reason",
+      "label": "Cancellation Reason",
+      "description": "",
+      "type": "textarea",
+      "minLength": 3,
+      "maxLength": 999,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ]
+    },
+    "started_on": {
+      "id": "started_on",
+      "label": "Started On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 30,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "finished_on": {
+      "id": "finished_on",
+      "label": "Finished On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 30,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "finance"
+      ]
+    },
+    "created_on": {
+      "id": "created_on",
+      "label": "Created On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 30,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_on": {
+      "id": "updated_on",
+      "label": "Updated On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 35,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "created_by": {
+      "id": "created_by",
+      "label": "Created by",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 40,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_by": {
+      "id": "updated_by",
+      "label": "Updated by",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 45,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    }
+  },
+  "keys": [
+    {
+      "id": "transfer_has_from_store",
+      "table": "store",
+      "column": "store_from_id",
+      "property": "fromStore"
+    },
+    {
+      "id": "transfer_has_to_store",
+      "table": "store",
+      "column": "store_to_id",
+      "property": "toStore"
+    },
+    {
+      "id": "reference_transfer_delivery",
+      "table": "delivery",
+      "column": "delivery_id",
+      "property": "DeliveredBy"
+    },
+    {
+      "id": "reference_transfer_user_created_by",
+      "table": "user",
+      "column": "created_by",
+      "property": "creater"
+    },
+    {
+      "id": "reference_transfer_user_updated_by",
+      "table": "user",
+      "column": "updated_by",
+      "property": "updater"
+    },
+    {
+      "id": "reference_transfer_user_approved_by",
+      "table": "user",
+      "column": "approved_by",
+      "property": "approvedBy"
+    },
+    {
+      "id": "reference_user_transfer_accepted_by",
+      "table": "user",
+      "column": "accepted_by",
+      "property": "acceptedBy"
+    }
+  ],
+  "children": [
+    {
+      "id": "reference_transfer_has_finished_product",
+      "table": "transfer_product",
+      "property": "transferProducts"
+    }
+  ],
+  "writeRoles": [
+    "admin",
+    "finance"
+  ],
+  "readRoles": [
+    "admin",
+    "branch_manager",
+    "finance",
+    "sells"
+  ],
+  "updateRoles": [
+    "admin",
+    "sells",
+    "branch_manager",
+    "finance"
+  ],
+  "deleteRoles": [
+    "admin"
+  ],
+  "additionalFilter": [
+    {
+      "condition": [
+        {
+          "left": "admin",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": "finance",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": "sells",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "branch_manager",
+          "connector": "AND"
+        }
+      ],
+      "filter": [
+        {
+          "column": "store_from_id",
+          "operator": "in",
+          "value": {
+            "name": "currentUser",
+            "property": "Stores"
+          },
+          "connector": "OR"
+        },
+        {
+          "column": "store_to_id",
+          "operator": "in",
+          "value": {
+            "name": "currentUser",
+            "property": "Stores"
+          },
+          "connector": "OR"
+        },
+        {
+          "column": "status",
+          "operator": "not",
+          "value": "draft",
+          "connector": "AND"
+        }
+      ]
+    },
+    {
+      "condition": [
+        {
+          "left": "admin",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": "finance",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "sells",
+          "connector": "AND"
+        }
+      ],
+      "filter": [
+        {
+          "column": "store_to_id",
+          "operator": "in",
+          "value": {
+            "name": "currentUser",
+            "property": "Stores"
+          },
+          "connector": "OR"
+        },
+        {
+          "column": "store_from_id",
+          "operator": "in",
+          "value": {
+            "name": "currentUser",
+            "property": "Stores"
+          },
+          "connector": "OR"
+        },
+        {
+          "column": "status",
+          "operator": "in",
+          "value": [
+            "store_approved",
+            "received",
+            "cancelled"
+          ],
+          "connector": "AND"
+        }
+      ]
+    },
+    {
+      "condition": [
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "admin",
+          "connector": "OR"
+        },
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "finance",
+          "connector": "OR"
+        }
+      ],
+      "filter": []
+    }
+  ],
+  "createAccessCondition": [
+    {
+      "left": {
+        "name": "currentData",
+        "property": "store_to_id"
+      },
+      "operator": "not",
+      "right": {
+        "name": "currentData",
+        "property": "store_from_id"
+      },
+      "connector": "AND"
+    }
+  ],
+  "updateAccessCondition": [],
+  "deleteAccessCondition": true,
+  "createScript": {
+    "before": "createSellOrderBefore"
+  },
+  "updateScript": {
+    "before": "updateTransferBefore",
+    "after": "updateTransferAfter"
+  },
+  "deleteScript": {},
+  "onsubmit": "defaultOnsubmit",
+  "listLoader": "defaultListLoader",
+  "onload": "defaultOnload",
+  "relatedList": [
+    {
+      "id": "ref_transfer_product",
+      "table": "transfer_product",
+      "label": "Ordered Products",
+      "column_id": "transfer_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "roles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "lable": "Update",
+      "class": "zbtn",
+      "action": "defaultUpdate",
+      "stayOnForm": true
+    },
+    {
+      "roles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "lable": "Change View",
+      "class": "btn-success",
+      "action": "changeTransferView",
+      "stayOnForm": true,
+      "noRedirect": true,
+      "notBelow": true,
+      "showOnNewForm": true
+    }
+  ]
+}

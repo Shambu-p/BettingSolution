@@ -144,9 +144,9 @@ function TopNav() {
 						<MenuIcon sx={{ fontSize: 15, color: coloring.color1 }} />
 					</IconButton>
 				)}
-				<img src="/images/byae_logo.png" className="me-2" style={{ width: "25px", height: "auto" }} alt="logo" />
+				<img src="/images/ev_charger_logo_small.png" className="me-2" style={{ width: "25px", height: "auto" }} alt="logo" />
 				{/* <img src="/images/splash_screen.png" className="me-2" style={{ width: "25px", height: "auto" }} alt="logo" /> */}
-				<span className="card-title text-center me-4" style={{color: "var(--button_bg)"}}>BYAE Business</span>
+				<span className="card-title text-center me-4" style={{color: "var(--button_bg)"}}>Green Addis</span>
 			</div>
 			{
 				(!isMobile) && (

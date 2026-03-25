@@ -7,7 +7,11 @@ const UserRoles = {
     Sells: "sells",
     Client: "client",
     System: "system",
-    Guest: "guest"
+    Guest: "guest",
+    AppBuilder: "app_builder",
+    ChargeStationOperator: "charge_station_operator",
+    ChargeStationOwner: "owner",
+    EVDriver: "ev_driver"
 };
 
 module.exports = UserRoles;

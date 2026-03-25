@@ -1,0 +1,442 @@
+{
+  "name": "flow_defination",
+  "title": "Flow Definition",
+  "id": "flow_defination",
+  "application_id": "global",
+  "backup_order": 20,
+  "realId": "sys_id",
+  "idColumn": "name",
+  "canReadAttachment": [
+    "admin",
+    "system"
+  ],
+  "canAddAttachment": [
+    "admin",
+    "system"
+  ],
+  "activityRoles": [
+    "admin",
+    "system"
+  ],
+  "fields": {
+    "sys_id": {
+      "id": "sys_id",
+      "label": "System Id",
+      "type": "text",
+      "description": "",
+      "maxLength": 40,
+      "minLength": 32,
+      "required": false,
+      "order": 1,
+      "visible": false,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "name": {
+      "type": "text",
+      "label": "Name",
+      "id": "name",
+      "description": "",
+      "maxLength": 100,
+      "minLength": 2,
+      "required": true,
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "internal_name": {
+      "type": "text",
+      "label": "Internal Name",
+      "id": "internal_name",
+      "description": "Unique identifier (letters, numbers, underscores only)",
+      "maxLength": 100,
+      "minLength": 2,
+      "required": true,
+      "unique": true,
+      "order": 2,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "initiation_type": {
+      "type": "select",
+      "options": [
+        {
+          "value": "manual",
+          "label": "Manual"
+        },
+        {
+          "value": "time_based",
+          "label": "Scheduled"
+        },
+        {
+          "value": "record_based",
+          "label": "Record Based"
+        }
+      ],
+      "label": "Initiation Type",
+      "id": "initiation_type",
+      "description": "",
+      "maxLength": 30,
+      "minLength": 3,
+      "required": true,
+      "order": 3,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "trigger_environment": {
+      "type": "select",
+      "maxLength": 30,
+      "minLength": 3,
+      "required": false,
+      "label": "Trigger Environment",
+      "id": "trigger_environment",
+      "description": "",
+      "options": [
+        {
+          "value": "user_interaction_only",
+          "label": "User Interaction"
+        },
+        {
+          "value": "both",
+          "label": "System & User Interaction"
+        }
+      ],
+      "order": 4,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "next_run_date": {
+      "type": "datetime-local",
+      "required": false,
+      "label": "Next Run Date",
+      "id": "next_run_date",
+      "description": "",
+      "order": 5,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "table_id": {
+      "type": "text",
+      "maxLength": 50,
+      "required": false,
+      "label": "Table ID",
+      "description": "",
+      "id": "table_id",
+      "order": 6,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "specification": {
+      "type": "json",
+      "maxLength": 50,
+      "required": false,
+      "label": "Specification",
+      "description": "",
+      "id": "specification",
+      "order": 6,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "active": {
+      "type": "boolean",
+      "default": false,
+      "label": "Active",
+      "description": "",
+      "id": "active",
+      "order": 7,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "required": true,
+      "writeRoles": [
+        "admin",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "created_on": {
+      "type": "datetime-local",
+      "readonly": true,
+      "id": "created_on",
+      "label": "Created On",
+      "description": "",
+      "order": 8,
+      "visible": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "updated_on": {
+      "type": "datetime-local",
+      "readonly": true,
+      "id": "updated_on",
+      "label": "Updated On",
+      "description": "",
+      "order": 9,
+      "visible": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "created_by": {
+      "type": "reference",
+      "references": "user",
+      "displayField": "full_name",
+      "readonly": true,
+      "id": "created_by",
+      "label": "Created By",
+      "description": "",
+      "order": 10,
+      "visible": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "updated_by": {
+      "type": "reference",
+      "references": "user",
+      "displayField": "full_name",
+      "readonly": true,
+      "id": "updated_by",
+      "label": "Updated By",
+      "description": "",
+      "order": 11,
+      "visible": true,
+      "notOnList": false,
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    }
+  },
+  "keys": [
+    {
+      "id": "reference_flow_defination_user_created_by",
+      "table": "user",
+      "column": "created_by",
+      "property": "creater"
+    },
+    {
+      "id": "reference_flow_defination_user_updated_by",
+      "table": "user",
+      "column": "updated_by",
+      "property": "updater"
+    }
+  ],
+  "children": [
+    {
+      "id": "reference_flow_definition_processes",
+      "table": "process",
+      "property": "processes"
+    }
+  ],
+  "writeRoles": [
+    "admin",
+    "system"
+  ],
+  "updateRoles": [
+    "admin",
+    "system"
+  ],
+  "readRoles": [
+    "admin",
+    "system"
+  ],
+  "deleteRoles": [
+    "admin",
+    "system"
+  ],
+  "additionalFilter": [],
+  "createAccessCondition": true,
+  "updateAccessCondition": true,
+  "deleteAccessCondition": true,
+  "createScript": {
+    "before": "createFlowBefore"
+  },
+  "updateScript": {},
+  "deleteScript": {},
+  "onsubmit": "defaultOnsubmit",
+  "listLoader": "defaultListLoader",
+  "onload": "defaultOnload",
+  "relatedList": [
+    {
+      "id": "ref_flow_processes",
+      "table": "process",
+      "label": "Processes",
+      "column_id": "flow_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "roles": [
+        "admin",
+        "system"
+      ],
+      "lable": "Update",
+      "class": "zbtn",
+      "action": "defaultUpdate",
+      "stayOnForm": false
+    },
+    {
+      "roles": [
+        "admin",
+        "system"
+      ],
+      "lable": "Flow Designer",
+      "class": "btn-success",
+      "action": "changeFlowView",
+      "stayOnForm": true,
+      "noRedirect": true,
+      "notBelow": true,
+      "showOnNewForm": false
+    },
+    {
+      "roles": [
+        "admin",
+        "system"
+      ],
+      "lable": "Test Flow",
+      "class": "btn-primary",
+      "action": "testFlowView",
+      "stayOnForm": true,
+      "noRedirect": true,
+      "notBelow": true,
+      "showOnNewForm": false
+    }
+  ]
+}

@@ -93,7 +93,7 @@
 .zinput:focus {
     border-color: var(--button_bg);
     /* box-shadow: 0 0 2px 4px var(--input_ring); */
-    background: var(--panel_bg);
+    /* background: var(--panel_bg); */
     color: var(--text_color);
 }
 
@@ -112,5 +112,9 @@ thead {
 
 td, th, thead, tr {
     border: none !important;
+}
+
+.zinput:focus, .zinput:hover, input:focus, input:hover {
+    background: var(--input-ring-color) !important;
 }
 

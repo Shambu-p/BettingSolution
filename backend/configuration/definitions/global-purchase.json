@@ -1,0 +1,586 @@
+{
+  "name": "purchase",
+  "backup_order": 25,
+  "title": "Purchase",
+  "id": "purchase",
+  "application_id": "global",
+  "activityRoles": [
+    "admin",
+    "finance",
+    "branch_manager",
+    "production_manager"
+  ],
+  "canReadAttachment": [
+    "admin",
+    "finance"
+  ],
+  "canAddAttachment": [
+    "admin",
+    "finance"
+  ],
+  "realId": "sys_id",
+  "idColumn": "purchase_number",
+  "fields": {
+    "sys_id": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 32,
+      "required": false,
+      "id": "sys_id",
+      "label": "System Id",
+      "description": "",
+      "order": 1,
+      "visible": false,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance"
+      ],
+      "updateRoles": []
+    },
+    "purchase_number": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 3,
+      "required": false,
+      "unique": true,
+      "id": "purchase_number",
+      "label": "Purchase Number",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance"
+      ],
+      "updateRoles": []
+    },
+    "store_id": {
+      "id": "store_id",
+      "label": "Store/Branch",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": true,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "references": "store",
+      "displayField": "name",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "finance",
+        "branch_manager"
+      ],
+      "updateRoles": []
+    },
+    "customer_id": {
+      "id": "customer_id",
+      "label": "Customer/Vendor",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": true,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "references": "customer",
+      "displayField": "name",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "finance"
+      ]
+    },
+    "status": {
+      "id": "status",
+      "label": "Purchase Status",
+      "description": "",
+      "type": "select",
+      "minLength": 1,
+      "maxLength": 20,
+      "required": false,
+      "order": 20,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance"
+      ],
+      "updateRoles": [
+        "admin",
+        "branch_manager",
+        "finance"
+      ]
+    },
+    "approved_by": {
+      "id": "approved_by",
+      "label": "Approved By",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": true,
+      "onChange": "default",
+      "references": "user",
+      "displayField": "full_name",
+      "writeRoles": [
+        "admin",
+        "finance"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance"
+      ],
+      "updateRoles": [
+        "admin",
+        "branch_manager",
+        "finance"
+      ]
+    },
+    "total_price": {
+      "id": "total_price",
+      "label": "Total Price",
+      "description": "",
+      "type": "float",
+      "minLength": 1,
+      "maxLength": 11,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "finance",
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "paid_amount": {
+      "id": "paid_amount",
+      "label": "Paid Amount",
+      "description": "",
+      "type": "float",
+      "minLength": 1,
+      "maxLength": 11,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "finance",
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "remained_amount": {
+      "id": "remained_amount",
+      "label": "Remained Amount",
+      "description": "",
+      "type": "float",
+      "minLength": 1,
+      "maxLength": 11,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "finance",
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "tax_amount": {
+      "id": "tax_amount",
+      "label": "Tax Amount",
+      "description": "",
+      "type": "float",
+      "minLength": 1,
+      "maxLength": 11,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "finance",
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "created_on": {
+      "id": "created_on",
+      "label": "Created On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 30,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance"
+      ],
+      "updateRoles": []
+    },
+    "updated_on": {
+      "id": "updated_on",
+      "label": "Updated On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 35,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "created_by": {
+      "id": "created_by",
+      "label": "Created by",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 40,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_by": {
+      "id": "updated_by",
+      "label": "Updated by",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 45,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    }
+  },
+  "keys": [
+    {
+      "id": "reference_store_has_purchase",
+      "table": "store",
+      "column": "store_id",
+      "property": "purchaseStore"
+    },
+    {
+      "id": "reference_purchase_approved_by",
+      "table": "user",
+      "column": "approved_by",
+      "property": "ApprovedBy"
+    },
+    {
+      "id": "reference_purchase_customer",
+      "table": "customer",
+      "column": "customer_id",
+      "property": "boughtFrom"
+    },
+    {
+      "id": "reference_purchase_user_created_by",
+      "table": "user",
+      "column": "created_by",
+      "property": "creater"
+    },
+    {
+      "id": "reference_purchase_user_updated_by",
+      "table": "user",
+      "column": "updated_by",
+      "property": "updater"
+    }
+  ],
+  "children": [
+    {
+      "id": "reference_purchased_has_purchase_item",
+      "table": "purchase_item",
+      "property": "purchaseItems"
+    },
+    {
+      "id": "reference_purchase_transaction",
+      "table": "transaction",
+      "property": "transactions"
+    }
+  ],
+  "writeRoles": [
+    "admin",
+    "finance"
+  ],
+  "updateRoles": [
+    "admin",
+    "branch_manager",
+    "finance"
+  ],
+  "readRoles": [
+    "admin",
+    "branch_manager",
+    "finance"
+  ],
+  "deleteRoles": [
+    "admin"
+  ],
+  "additionalFilter": [
+    {
+      "condition": [
+        {
+          "left": "admin",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": "finance",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "branch_manager",
+          "connector": "AND"
+        }
+      ],
+      "filter": [
+        {
+          "column": "store_id",
+          "operator": "in",
+          "value": {
+            "name": "currentUser",
+            "property": "Stores"
+          },
+          "connector": "AND"
+        },
+        {
+          "column": "status",
+          "operator": "not",
+          "value": "draft",
+          "connector": "AND"
+        }
+      ]
+    },
+    {
+      "condition": [
+        {
+          "left": "admin",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": "finance",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        }
+      ],
+      "filter": [
+        {
+          "column": "store_id",
+          "operator": "in",
+          "value": {
+            "name": "currentUser",
+            "property": "Stores"
+          },
+          "connector": "AND"
+        }
+      ]
+    },
+    {
+      "condition": [
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "admin",
+          "connector": "AND"
+        },
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "finance",
+          "connector": "AND"
+        }
+      ],
+      "filter": []
+    }
+  ],
+  "createAccessCondition": true,
+  "updateAccessCondition": [],
+  "deleteAccessCondition": true,
+  "createScript": {
+    "before": "createPurchaseBefore"
+  },
+  "updateScript": {
+    "before": "updatePurchaseBefore",
+    "after": "updatePurchaseAfter"
+  },
+  "deleteScript": {},
+  "onsubmit": "defaultOnsubmit",
+  "listLoader": "defaultListLoader",
+  "onload": "purchaseOnLoad",
+  "relatedList": [
+    {
+      "id": "ref_purchase_items",
+      "table": "purchase_item",
+      "label": "Purchase Items",
+      "column_id": "purchase_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "branch_manager"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Update",
+      "class": "zbtn",
+      "action": "defaultUpdate",
+      "stayOnForm": true
+    },
+    {
+      "roles": [
+        "admin",
+        "branch_manager"
+      ],
+      "lable": "Approve",
+      "class": "btn-success",
+      "action": "approvePurchase",
+      "condition": "purchaseApprovalButtonCondition",
+      "stayOnForm": true
+    },
+    {
+      "roles": [
+        "admin",
+        "branch_manager"
+      ],
+      "lable": "Change View",
+      "class": "btn-success",
+      "action": "changePurchaseView",
+      "stayOnForm": true,
+      "noRedirect": true,
+      "notBelow": true,
+      "showOnNewForm": true
+    }
+  ]
+}

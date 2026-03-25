@@ -34,7 +34,7 @@ const Pages = (props: {
     const getComponent = (page: string) => {
         return (
             <ComponentLoader
-                page={page}
+                compId={page}
                 parentType={props.parentType}
                 routeData={props.routeData}
                 dataPassed={props.dataPassed}

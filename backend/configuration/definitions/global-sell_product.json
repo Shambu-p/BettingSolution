@@ -1,0 +1,436 @@
+{
+  "name": "sell_product",
+  "backup_order": 45,
+  "title": "Sell Products",
+  "id": "sell_product",
+  "application_id": "global",
+  "activityRoles": [
+    "admin"
+  ],
+  "canReadAttachment": [
+    "admin"
+  ],
+  "canAddAttachment": [],
+  "realId": "sys_id",
+  "idColumn": "product_id",
+  "fields": {
+    "sys_id": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 32,
+      "required": false,
+      "id": "sys_id",
+      "label": "System Id",
+      "description": "",
+      "order": 1,
+      "visible": false,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": []
+    },
+    "product_id": {
+      "id": "product_id",
+      "label": "Product",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": true,
+      "order": 5,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "references": "product",
+      "displayField": "name",
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance",
+        "sells"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "branch_manager",
+        "sells"
+      ]
+    },
+    "store_id": {
+      "id": "store_id",
+      "label": "Store/Branch/Seller",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": true,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "storeOnSellProduct",
+      "references": "store",
+      "displayField": "name",
+      "writeRoles": [
+        "admin",
+        "finance",
+        "sells"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": []
+    },
+    "sell_id": {
+      "id": "sell_id",
+      "label": "Sell Info",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": true,
+      "order": 5,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "references": "sell",
+      "displayField": "sell_number",
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance",
+        "sells"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "branch_manager",
+        "sells"
+      ]
+    },
+    "quantity": {
+      "id": "quantity",
+      "label": "Quantity",
+      "description": "",
+      "type": "float",
+      "minLength": 1,
+      "maxLength": 11,
+      "required": true,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance",
+        "sells"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "branch_manager",
+        "sells"
+      ]
+    },
+    "unit_price": {
+      "id": "unit_price",
+      "label": "Unit Price",
+      "description": "",
+      "type": "float",
+      "minLength": 1,
+      "maxLength": 11,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance",
+        "sells"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "total_price": {
+      "id": "total_price",
+      "label": "Total Price",
+      "description": "",
+      "type": "float",
+      "minLength": 1,
+      "maxLength": 11,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "created_on": {
+      "id": "created_on",
+      "label": "Created On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 30,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_on": {
+      "id": "updated_on",
+      "label": "Updated On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 35,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "created_by": {
+      "id": "created_by",
+      "label": "Created by",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 40,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_by": {
+      "id": "updated_by",
+      "label": "Updated by",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 45,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    }
+  },
+  "keys": [
+    {
+      "id": "reference_store_has_sell_product",
+      "table": "store",
+      "column": "store_id",
+      "property": "sellProductStore"
+    },
+    {
+      "id": "reference_sell_has_sell_product",
+      "table": "sell",
+      "column": "sell_id",
+      "property": "Sell"
+    },
+    {
+      "id": "reference_sell_product_has_product",
+      "table": "product",
+      "column": "product_id",
+      "property": "sellProduct"
+    },
+    {
+      "id": "reference_sell_product_user_created_by",
+      "table": "user",
+      "column": "created_by",
+      "property": "creater"
+    },
+    {
+      "id": "reference_sell_product_user_updated_by",
+      "table": "user",
+      "column": "updated_by",
+      "property": "updater"
+    }
+  ],
+  "children": [],
+  "writeRoles": [
+    "admin",
+    "finance",
+    "sells"
+  ],
+  "updateRoles": [
+    "admin",
+    "finance",
+    "sells"
+  ],
+  "readRoles": [
+    "admin",
+    "branch_manager",
+    "finance",
+    "sells"
+  ],
+  "deleteRoles": [
+    "admin",
+    "sells"
+  ],
+  "additionalFilter": [
+    {
+      "condition": [
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "notIn",
+          "right": "admin",
+          "connector": "AND"
+        },
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "notIn",
+          "right": "finance",
+          "connector": "AND"
+        }
+      ],
+      "filter": [
+        {
+          "column": "store_id",
+          "operator": "in",
+          "value": {
+            "name": "currentUser",
+            "property": "Stores"
+          },
+          "connector": "AND"
+        }
+      ]
+    },
+    {
+      "condition": [
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "admin",
+          "connector": "OR"
+        },
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "finance",
+          "connector": "OR"
+        }
+      ],
+      "filter": []
+    }
+  ],
+  "createAccessCondition": true,
+  "updateAccessCondition": [],
+  "deleteAccessCondition": true,
+  "createScript": {
+    "after": "createSellProductAfter",
+    "before": "createSellProductBefore"
+  },
+  "updateScript": {
+    "after": "updateSellProductAfter",
+    "before": "updateSellProductBefore"
+  },
+  "deleteScript": {},
+  "onsubmit": "defaultOnsubmit",
+  "listLoader": "defaultListLoader",
+  "onload": "defaultOnload",
+  "relatedList": [],
+  "actions": [
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Update",
+      "class": "zbtn",
+      "action": "defaultUpdate",
+      "stayOnForm": true
+    }
+  ]
+}

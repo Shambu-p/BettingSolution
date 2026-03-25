@@ -158,6 +158,38 @@ const fieldOnChange: any = {
 
         return value;
 
+    },
+    typeOnRateRange: async (token: string, fields: any[], value: any, set_field: (index: number, vl: IField) => void): Promise<any> => {
+
+        // let categoryFieldIndex = fields.findIndex(fld => (fld.id == "category"));
+        // let sellFieldIndex = fields.findIndex(fld => (fld.id == "fixed_amount"));
+        let fixedAmountFieldIndex = fields.findIndex(fld => (fld.id == "fixed_amount"));
+        let productionFieldIndex = fields.findIndex(fld => (fld.id == "production_id"));
+        let purchaseFieldIndex = fields.findIndex(fld => (fld.id == "purchase_id"));
+        let serviceFieldIndex = fields.findIndex(fld => (fld.id == "service_id"));
+
+        console.log("category value ", value);
+
+        if(value == "fixed") {
+
+            set_field(fixedAmountFieldIndex, {
+                ...fields[fixedAmountFieldIndex],
+                visible: true,
+                required: true
+            });
+
+        } else {
+
+            set_field(fixedAmountFieldIndex, {
+                ...fields[fixedAmountFieldIndex],
+                visible: false,
+                required: false
+            });
+
+        }
+
+        return value;
+
     }
 };
 

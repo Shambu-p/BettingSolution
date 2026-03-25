@@ -1,0 +1,360 @@
+{
+  "name": "attachment",
+  "backup_order": 20,
+  "title": "Attachment",
+  "id": "attachment",
+  "application_id": "global",
+  "actions": [
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Update",
+      "class": "zbtn",
+      "action": "defaultUpdate",
+      "stayOnForm": true
+    }
+  ],
+  "activityRoles": [],
+  "canReadAttachment": [],
+  "canAddAttachment": [],
+  "realId": "sys_id",
+  "idColumn": "name",
+  "fields": {
+    "sys_id": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 32,
+      "required": false,
+      "id": "sys_id",
+      "label": "System Id",
+      "description": "",
+      "order": 1,
+      "visible": false,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager",
+        "sells"
+      ],
+      "updateRoles": []
+    },
+    "name": {
+      "type": "text",
+      "minLength": 1,
+      "maxLength": 100,
+      "required": true,
+      "id": "name",
+      "label": "Name",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "readRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ]
+    },
+    "table": {
+      "type": "text",
+      "minLength": 3,
+      "maxLength": 50,
+      "required": true,
+      "id": "table",
+      "label": "Table Name",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "readRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ]
+    },
+    "record": {
+      "type": "text",
+      "minLength": 32,
+      "maxLength": 38,
+      "id": "record",
+      "label": "Record",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "readRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ]
+    },
+    "file_name": {
+      "type": "text",
+      "minLength": 5,
+      "maxLength": 100,
+      "id": "file_name",
+      "label": "File Name",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "readRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ]
+    },
+    "extension": {
+      "type": "text",
+      "minLength": 1,
+      "maxLength": 50,
+      "id": "extension",
+      "label": "Extension",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "readRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "sells"
+      ]
+    },
+    "created_on": {
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "id": "created_on",
+      "label": "Created On",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_on": {
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "id": "updated_on",
+      "label": "Updated On",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "created_by": {
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "id": "created_by",
+      "label": "Created By",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "onChange": "default",
+      "displayField": "full_name",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_by": {
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "id": "updated_by",
+      "label": "Updated By",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "onChange": "default",
+      "displayField": "full_name",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    }
+  },
+  "writeRoles": [
+    "admin",
+    "finance",
+    "branch_manager",
+    "sells"
+  ],
+  "readRoles": [
+    "admin",
+    "finance",
+    "branch_manager",
+    "sells"
+  ],
+  "updateRoles": [
+    "admin",
+    "finance",
+    "branch_manager",
+    "sells"
+  ],
+  "deleteRoles": [
+    "admin"
+  ],
+  "keys": [
+    {
+      "id": "reference_attachment_user_created_by",
+      "table": "user",
+      "column": "created_by",
+      "property": "creater"
+    },
+    {
+      "id": "reference_attachment_user_updated_by",
+      "table": "user",
+      "column": "updated_by",
+      "property": "updater"
+    }
+  ],
+  "children": [
+    {
+      "id": "reference_attachmentDocument_attachment_attachment_id",
+      "table": "attachment_document",
+      "property": "Documents"
+    }
+  ],
+  "additionalFilter": [],
+  "createAaccessCondition": true,
+  "deleteAccessCondition": true,
+  "updateAaccessCondition": true,
+  "onsubmit": "defaultOnsubmit",
+  "listLoader": "defaultListLoader",
+  "onload": "defaultOnload",
+  "relatedList": [
+    {
+      "id": "ref_attachment_docs",
+      "table": "attachment_document",
+      "label": "Documents",
+      "column_id": "attachment_id",
+      "order": 1,
+      "readRoles": [
+        "admin"
+      ]
+    }
+  ]
+}

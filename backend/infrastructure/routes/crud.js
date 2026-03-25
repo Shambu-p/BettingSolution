@@ -184,6 +184,18 @@ module.exports = class Crud {
 
                 }
 
+                if(relation && ["children", "reference_children"].includes(relation)) {
+
+                    if(fieldRules[req.params.tableName] && fieldRules[req.params.tableName].children) {
+                        let related_tables = fieldRules[req.params.tableName].children;
+    
+                        related_tables.forEach(related_table => {
+                            include[related_table.property] = true;
+                        });
+                    }
+
+                }
+
                 this.dependencies.logger(req.params.tableName, whereQuery);
 
                 const totalCount = await this.dependencies.databasePrisma[req.params.tableName].findMany({

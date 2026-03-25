@@ -20,11 +20,14 @@ import ErrorPage from "../Views/Error";
 
 
 //// import section ////
+// import YayalPage from "./YayalPage";
+// import BuilderHomePage from "./BuilderHomePage";
+import EyukaPage from "./EyukaPage";
 import YohannesComponent from "./YohannesComponent";
 import CustomPage from "./CustomPage";
 import AbComponent from "./AbComponent";
 import Mikcomponent from "./Mikcomponent";
-import EyukaPage from "./EyukaPage";
+import SamiGreate from "./SamiGreate";
 //// import section ////
 
 async function ComponentRegistry() {
@@ -48,6 +51,13 @@ async function ComponentRegistry() {
     "process-detail": ProcessDetail,
     "page-builder": PageBuilder,
 
+
+
+	// "builder-table-def": TableDefination,
+	// "builder-related-list": RelatedListConfigForm,
+	// "builder-button-config": ButtonConfigForm,
+	// "builder-field-config": FieldConfig,
+
     // "adc1aaa7-debf-4157-b454-8850412d5cad": YohannesComponent,
     // "c4cc9893-fd5a-4070-8960-bf37ccb34cd1": AbComponent,
     // "df172af0-2c69-4ccb-807d-591087b74d4b": Mikcomponent,
@@ -58,6 +68,15 @@ async function ComponentRegistry() {
   };
 
   //// mapping section ////
+
+
+	try {
+		registry["a6c6c485-5688-45c8-9fc0-dbc804133494"] = (await import("./EyukaPage")).default;
+	}catch (err) {
+		console.error("❌ Failed to load component 'EyukaPage':", err);
+		registry["a6c6c485-5688-45c8-9fc0-dbc804133494"] = ErrorPage;
+	}
+
 
 	try {
 		registry["adc1aaa7-debf-4157-b454-8850412d5cad"] = (await import("./YohannesComponent")).default;
@@ -92,10 +111,10 @@ async function ComponentRegistry() {
 
 
 	try {
-		registry["a6c6c485-5688-45c8-9fc0-dbc804133494"] = (await import("./EyukaPage")).default;
+		registry["9095c623-e715-4a25-abe5-2e36f2c8b71d"] = (await import("./SamiGreate")).default;
 	}catch (err) {
-		console.error("❌ Failed to load component 'EyukaPage':", err);
-		registry["a6c6c485-5688-45c8-9fc0-dbc804133494"] = ErrorPage;
+		console.error("❌ Failed to load component 'SamiGreate':", err);
+		registry["9095c623-e715-4a25-abe5-2e36f2c8b71d"] = ErrorPage;
 	}
 
 //// mapping section ////

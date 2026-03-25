@@ -1,0 +1,298 @@
+{
+  "name": "delivery",
+  "backup_order": 10,
+  "title": "Delivery",
+  "id": "delivery",
+  "application_id": "global",
+  "activityRoles": [
+    "admin"
+  ],
+  "canReadAttachment": [
+    "admin"
+  ],
+  "canAddAttachment": [],
+  "realId": "sys_id",
+  "idColumn": "name",
+  "fields": {
+    "sys_id": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 32,
+      "required": false,
+      "id": "sys_id",
+      "label": "System Id",
+      "description": "",
+      "order": 1,
+      "visible": false,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "name": {
+      "id": "name",
+      "label": "Name",
+      "description": "",
+      "type": "text",
+      "minLength": 2,
+      "maxLength": 50,
+      "required": true,
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "phone_number": {
+      "id": "phone_number",
+      "label": "Phone Number",
+      "description": "",
+      "type": "text",
+      "minLength": 10,
+      "maxLength": 14,
+      "required": true,
+      "unique": true,
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "vehicle_type": {
+      "id": "vehicle_type",
+      "label": "Vehicle Type",
+      "description": "",
+      "type": "select",
+      "minLength": 3,
+      "maxLength": 20,
+      "required": true,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "vehicle_number": {
+      "id": "vehicle_number",
+      "label": "Vehicle Number",
+      "description": "",
+      "type": "text",
+      "minLength": 1,
+      "maxLength": 20,
+      "required": true,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "created_on": {
+      "id": "created_on",
+      "label": "Created On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 40,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_on": {
+      "id": "updated_on",
+      "label": "Updated by",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 50,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "created_by": {
+      "id": "created_by",
+      "label": "Created by",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 60,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_by": {
+      "id": "updated_by",
+      "label": "Updated by",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 70,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    }
+  },
+  "keys": [
+    {
+      "id": "reference_delivery_created_by",
+      "table": "user",
+      "column": "created_by",
+      "property": "creater"
+    },
+    {
+      "id": "reference_delivery_updated_by",
+      "table": "user",
+      "column": "updated_by",
+      "property": "updater"
+    }
+  ],
+  "children": [
+    {
+      "id": "reference_sell_delivery",
+      "table": "sell",
+      "property": "deliveredSells"
+    },
+    {
+      "id": "reference_transfer_delivery",
+      "table": "transfer",
+      "property": "deliveredTransfers"
+    }
+  ],
+  "writeRoles": [
+    "admin"
+  ],
+  "updateRoles": [
+    "admin"
+  ],
+  "readRoles": [
+    "admin",
+    "branch_manager",
+    "finance",
+    "sells"
+  ],
+  "deleteRoles": [
+    "admin"
+  ],
+  "additionalFilter": [],
+  "createAccessCondition": true,
+  "updateAccessCondition": [],
+  "deleteAccessCondition": true,
+  "createScript": {},
+  "updateScript": {},
+  "deleteScript": {},
+  "onsubmit": "defaultOnsubmit",
+  "listLoader": "defaultListLoader",
+  "onload": "defaultOnload",
+  "relatedList": [],
+  "actions": [
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Update",
+      "class": "zbtn",
+      "action": "defaultUpdate",
+      "stayOnForm": false
+    }
+  ]
+}

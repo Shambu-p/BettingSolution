@@ -36,6 +36,25 @@ model user {
   attachmentDocumentsUpdated			attachment_document[]		@relation("reference_attachmentDocument_user_updated_by")
   choicesCreated			choice[]		@relation("reference_choice_user_created_by")
   choicesUpdated			choice[]		@relation("reference_choice_user_updated_by")
+  NavigationsCreated			navigation_role[]		@relation("reference_nav_role_user_created_by")
+  NavigationsUpdated			navigation_role[]		@relation("reference_nav_role_user_updated_by")
+  autoGenerateUpdated			auto_number[]		@relation("reference_auto_number_user_updated_by")
+  activityCreated			activity[]		@relation("reference_activity_user_created_by")
+  activityUpdated			activity[]		@relation("reference_activity_user_updated_by")
+  CreatedApiUsers			api_user[]		@relation("reference_api_user_created_by")
+  UpdatedApiUsers			api_user[]		@relation("reference_api_user_updated_by")
+  UpdatedEndpoints			endpoint[]		@relation("reference_endpoint_updated_by")
+  CreatedEndpoints			endpoint[]		@relation("reference_endpoint_created_by")
+  processesCreated			process[]		@relation("reference_process_user_created_by")
+  processesUpdated			process[]		@relation("reference_process_user_updated_by")
+  flowsCreated			flow_defination[]		@relation("reference_flow_defination_user_created_by")
+  flowsUpdated			flow_defination[]		@relation("reference_flow_defination_user_updated_by")
+  waitingProcessesCreated			waiting_process[]		@relation("reference_waiting_process_user_created_by")
+  waitingProcessesUpdated			waiting_process[]		@relation("reference_waiting_process_user_updated_by")
+  UIComponentsCreated			ui_component[]		@relation("reference_ui_component_created_by")
+  UIComponentsUpdated			ui_component[]		@relation("reference_ui_component_updated_by")
+  navigationCreated			system_nav[]		@relation("reference_system_nav_user_created_by")
+  navigationUpdated			system_nav[]		@relation("reference_system_nav_user_updated_by")
   inventoryCreated			inventory_item[]		@relation("reference_inventory_created_by")
   inventoryUpdated			inventory_item[]		@relation("reference_inventory_updated_by")
   deliveryCreated			delivery[]		@relation("reference_delivery_created_by")
@@ -62,13 +81,10 @@ model user {
   productionsCreated			production[]		@relation("reference_production_user_created_by")
   productionsUpdated			production[]		@relation("reference_production_user_updated_by")
   autoGenerateCreated			auto_number[]		@relation("reference_auto_number_user_created_by")
-  autoGenerateUpdated			auto_number[]		@relation("reference_auto_number_user_updated_by")
   consumptionCreated			production_consumption[]		@relation("reference_production_consumption_user_created_by")
   consumptionUpdated			production_consumption[]		@relation("reference_production_consumption_user_updated_by")
   finishedProductCreated			finished_product[]		@relation("reference_finished_product_user_created_by")
   finishedProductUpdated			finished_product[]		@relation("reference_finished_product_user_updated_by")
-  activityCreated			activity[]		@relation("reference_activity_user_created_by")
-  activityUpdated			activity[]		@relation("reference_activity_user_updated_by")
   Sells			sell[]		@relation("reference_sell_sold_by")
   sellsCreated			sell[]		@relation("reference_sell_user_created_by")
   sellsUpdated			sell[]		@relation("reference_sell_user_updated_by")
@@ -92,24 +108,24 @@ model user {
   issueUpdater			issue_ticket[]		@relation("reference_issue_user_updated_by")
   approvedTransfers			transfer[]		@relation("reference_transfer_user_approved_by")
   acceptedTransfers			transfer[]		@relation("reference_user_transfer_accepted_by")
+  StationCreated			station[]		@relation("reference_charger_station_user_created_by")
+  StationUpdated			station[]		@relation("reference_charger_station_user_updated_by")
+  PaymentRateCreated			payment_rate[]		@relation("reference_charger_payment_rate_user_created_by")
+  PaymentRateUpdated			payment_rate[]		@relation("reference_charger_payment_rate_user_updated_by")
+  RateRangeCreated			rate_range[]		@relation("reference_rate_range_user_created_by")
+  RateRangeUpdated			rate_range[]		@relation("reference_rate_range_user_updated_by")
+  chargerConnectorCreated			charger_connector[]		@relation("reference_charger_connector_user_created_by")
+  chargerConnectorUpdated			charger_connector[]		@relation("reference_charger_connector_user_updated_by")
+  chargerAccessCardUser			charger_access_card[]		@relation("reference_charger_access_card_user_user_id")
+  chargerAccessCardCreated			charger_access_card[]		@relation("reference_charger_access_card_user_created_by")
+  chargerAccessCardUpdated			charger_access_card[]		@relation("reference_charger_access_card_user_updated_by")
+  chargedUser			charger_trx[]		@relation("reference_charger_trx_user_user_id")
+  chargerTrxCreated			charger_trx[]		@relation("reference_charger_trx_user_created_by")
+  chargerTrxUpdated			charger_trx[]		@relation("reference_charger_trx_user_updated_by")
   MainTrxCreated			main_transaction[]		@relation("reference_main_trx_user_created_by")
   MainTrxUpdater			main_transaction[]		@relation("reference_main_trx_user_updated_by")
-  CreatedApiUsers			api_user[]		@relation("reference_api_user_created_by")
-  UpdatedApiUsers			api_user[]		@relation("reference_api_user_updated_by")
-  UpdatedEndpoints			endpoint[]		@relation("reference_endpoint_updated_by")
-  CreatedEndpoints			endpoint[]		@relation("reference_endpoint_created_by")
-  processesCreated			process[]		@relation("reference_process_user_created_by")
-  processesUpdated			process[]		@relation("reference_process_user_updated_by")
-  flowsCreated			flow_defination[]		@relation("reference_flow_defination_user_created_by")
-  flowsUpdated			flow_defination[]		@relation("reference_flow_defination_user_updated_by")
-  waitingProcessesCreated			waiting_process[]		@relation("reference_waiting_process_user_created_by")
-  waitingProcessesUpdated			waiting_process[]		@relation("reference_waiting_process_user_updated_by")
   postsCreated			post[]		@relation("reference_post_user_created_by")
   postsUpdated			post[]		@relation("reference_post_user_updated_by")
-  UIComponentsCreated			ui_component[]		@relation("reference_ui_component_created_by")
-  UIComponentsUpdated			ui_component[]		@relation("reference_ui_component_updated_by")
-  navigationCreated			system_nav[]		@relation("reference_system_nav_user_created_by")
-  navigationUpdated			system_nav[]		@relation("reference_system_nav_user_updated_by")
   creater			user?		@relation("reference_user_user_created_by", fields: [created_by], references: [sys_id])
   updater			user?		@relation("reference_user_user_updated_by", fields: [updated_by], references: [sys_id])
 }
@@ -268,6 +284,9 @@ model store {
   sys_id			String		@id @default(uuid())
   name			String		 @db.VarChar(50)
   location			String		 @db.VarChar(100)
+  longitude			String?		 @db.VarChar(100)
+  latitude			String?		 @db.VarChar(100)
+  legacy_id			Int?		
   manager			String		 @db.VarChar(36)
   active			Boolean		
   created_on			DateTime?		
@@ -289,6 +308,9 @@ model store {
   fromStores			transfer[]		@relation("transfer_has_from_store")
   toStores			transfer[]		@relation("transfer_has_to_store")
   receveSlips			receive_product[]		@relation("reference_store_has_receive_products")
+  Chargers			station[]		@relation("reference_charger_station_branch_id")
+  ConnectorPorts			charger_connector[]		@relation("reference_charger_connector_branch_branch_id")
+  chargerTrxes			charger_trx[]		@relation("reference_charger_trx_store_branch_id")
   managedBy			user		@relation("reference_store_user_managed_by", fields: [manager], references: [sys_id])
   creater			user?		@relation("reference_store_user_created_by", fields: [created_by], references: [sys_id])
   updater			user?		@relation("reference_store_user_updated_by", fields: [updated_by], references: [sys_id])
@@ -902,8 +924,152 @@ model system_nav {
 
 
   ChildNav			system_nav[]		@relation("reference_system_nav_parent")
+  Roles			navigation_role[]		@relation("reference_system_nav_roles")
   creater			user?		@relation("reference_system_nav_user_created_by", fields: [created_by], references: [sys_id])
   updater			user?		@relation("reference_system_nav_user_updated_by", fields: [updated_by], references: [sys_id])
   ParentNav			system_nav?		@relation("reference_system_nav_parent", fields: [parent_id], references: [sys_id])
+}
+
+model navigation_role {
+  sys_id			String		@id @default(uuid())
+  role			String		 @db.VarChar(200)
+  nav_id			String?		 @db.VarChar(36)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  creater			user?		@relation("reference_nav_role_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_nav_role_user_updated_by", fields: [updated_by], references: [sys_id])
+  Navigation			system_nav?		@relation("reference_system_nav_roles", fields: [nav_id], references: [sys_id])
+}
+
+model station {
+  sys_id			String		@id @default(uuid())
+  name			String		 @db.VarChar(50)
+  legacy_id			String?		 @db.VarChar(50)
+  branch_id			String		 @db.VarChar(36)
+  longitude			String?		 @db.VarChar(100)
+  latitude			String?		 @db.VarChar(100)
+  status			String?		 @db.VarChar(100)
+  active			Boolean?		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  ConnectorPorts			charger_connector[]		@relation("reference_charger_connector_station_station_id")
+  Branch			store		@relation("reference_charger_station_branch_id", fields: [branch_id], references: [sys_id])
+  creater			user?		@relation("reference_charger_station_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_charger_station_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model payment_rate {
+  sys_id			String		@id @default(uuid())
+  name			String		 @db.VarChar(50)
+  description			String		 @db.LongText
+  active			Boolean		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  childRateRanges			rate_range[]		@relation("reference_payment_rate_rate_range_rate_id")
+  usingConnectors			charger_connector[]		@relation("reference_charger_connector_payment_rate_rate_id")
+  creater			user?		@relation("reference_charger_payment_rate_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_charger_payment_rate_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model rate_range {
+  sys_id			String		@id @default(uuid())
+  rate_id			String		 @db.VarChar(36)
+  type			String		 @db.VarChar(50)
+  from_kw			Float		 @db.Double
+  to_kw			Float		 @db.Double
+  rate_amount			Float		 @db.Double
+  fixed_amount			Float?		 @db.Double
+  fee_ratio			Float		 @db.Double
+  active			Boolean		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  parentRate			payment_rate		@relation("reference_payment_rate_rate_range_rate_id", fields: [rate_id], references: [sys_id])
+  creater			user?		@relation("reference_rate_range_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_rate_range_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model charger_connector {
+  sys_id			String		@id @default(uuid())
+  name			String		 @db.VarChar(50)
+  legacy_id			String?		 @db.VarChar(50)
+  branch_id			String		 @db.VarChar(36)
+  station_id			String		 @db.VarChar(36)
+  rate_id			String		 @db.VarChar(36)
+  status			String?		 @db.VarChar(100)
+  active			Boolean?		
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  chargerTransactions			charger_trx[]		@relation("reference_charger_trx_charger_connector_connector_id")
+  Station			station		@relation("reference_charger_connector_station_station_id", fields: [station_id], references: [sys_id])
+  Branch			store		@relation("reference_charger_connector_branch_branch_id", fields: [branch_id], references: [sys_id])
+  PaymentRate			payment_rate		@relation("reference_charger_connector_payment_rate_rate_id", fields: [rate_id], references: [sys_id])
+  creater			user?		@relation("reference_charger_connector_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_charger_connector_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model charger_access_card {
+  sys_id			String		@id @default(uuid())
+  id_token			String		@unique @db.VarChar(50)
+  id_number			String?		 @db.VarChar(50)
+  status			String?		 @db.VarChar(50)
+  wallet_amount			Float?		 @db.Double
+  user_id			String		 @db.VarChar(36)
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  chargerTransactions			charger_trx[]		@relation("reference_charger_trx_access_card_card_id")
+  User			user		@relation("reference_charger_access_card_user_user_id", fields: [user_id], references: [sys_id])
+  creater			user?		@relation("reference_charger_access_card_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_charger_access_card_user_updated_by", fields: [updated_by], references: [sys_id])
+}
+
+model charger_trx {
+  sys_id			String		@id @default(uuid())
+  legacy_id			String		 @db.VarChar(50)
+  id_token			String		 @db.VarChar(50)
+  user_id			String		 @db.VarChar(36)
+  card_id			String		 @db.VarChar(36)
+  branch_id			String		 @db.VarChar(36)
+  connector_id			String		 @db.VarChar(36)
+  status			String?		 @db.VarChar(50)
+  charge_amount			Float?		 @db.Double
+  rate			Float?		 @db.Double
+  total_payment			Float?		 @db.Double
+  fee_collected			Float?		 @db.Double
+  created_on			DateTime?		
+  updated_on			DateTime?		
+  created_by			String?		 @db.VarChar(36)
+  updated_by			String?		 @db.VarChar(36)
+
+
+  Branch			store		@relation("reference_charger_trx_store_branch_id", fields: [branch_id], references: [sys_id])
+  AccessCard			charger_access_card		@relation("reference_charger_trx_access_card_card_id", fields: [card_id], references: [sys_id])
+  ChargerConnector			charger_connector		@relation("reference_charger_trx_charger_connector_connector_id", fields: [connector_id], references: [sys_id])
+  User			user		@relation("reference_charger_trx_user_user_id", fields: [user_id], references: [sys_id])
+  creater			user?		@relation("reference_charger_trx_user_created_by", fields: [created_by], references: [sys_id])
+  updater			user?		@relation("reference_charger_trx_user_updated_by", fields: [updated_by], references: [sys_id])
 }
 

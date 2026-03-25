@@ -47,7 +47,7 @@ const userDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "phone": {
@@ -67,7 +67,7 @@ const userDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "active": {
@@ -85,7 +85,7 @@ const userDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "password": {
@@ -103,8 +103,8 @@ const userDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
-            "updateRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells]
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
+            "updateRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner]
         },
         "created_on": {
             id: "created_on",
@@ -122,7 +122,7 @@ const userDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin, UserRoles.Guest],
+            "readRoles": [UserRoles.Admin, UserRoles.Guest, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         },
         "updated_on": {
@@ -141,7 +141,7 @@ const userDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin, UserRoles.Guest],
+            "readRoles": [UserRoles.Admin, UserRoles.Guest, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         },
         "created_by": {
@@ -165,7 +165,7 @@ const userDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin, UserRoles.Guest],
+            "readRoles": [UserRoles.Admin, UserRoles.Guest, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         },
         "updated_by": {
@@ -188,7 +188,7 @@ const userDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin, UserRoles.Guest],
+            "readRoles": [UserRoles.Admin, UserRoles.Guest, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         }
     },
@@ -282,6 +282,105 @@ const userDefination = {
             "table": "choice",
             "property": "choicesUpdated"
         },
+        {
+            "id": "reference_nav_role_user_created_by",
+            "table": "navigation_role",
+            "property": "NavigationsCreated"
+        },
+        {
+            "id": "reference_nav_role_user_updated_by",
+            "table": "navigation_role",
+            "property": "NavigationsUpdated"
+        },
+        {
+            "id": "reference_auto_number_user_updated_by",
+            "table": "auto_number",
+            "property": "autoGenerateUpdated"
+        },
+        {
+            "id": "reference_activity_user_created_by",
+            "table": "activity",
+            "property": "activityCreated"
+        },
+        {
+            "id": "reference_activity_user_updated_by",
+            "table": "activity",
+            "property": "activityUpdated"
+        },
+        {
+            "id": "reference_api_user_created_by",
+            "table": "api_user",
+            "property": "CreatedApiUsers"
+        },
+        {
+            "id": "reference_api_user_updated_by",
+            "table": "api_user",
+            "property": "UpdatedApiUsers"
+        },
+        {
+            "id": "reference_endpoint_updated_by",
+            "table": "endpoint",
+            "property": "UpdatedEndpoints"
+        },
+        {
+            "id": "reference_endpoint_created_by",
+            "table": "endpoint",
+            "property": "CreatedEndpoints"
+        },
+
+        {
+            "id": "reference_process_user_created_by",
+            "table": "process",
+            "property": "processesCreated"
+        },
+        {
+            "id": "reference_process_user_updated_by",
+            "table": "process",
+            "property": "processesUpdated"
+        },
+        {
+            "id": "reference_flow_defination_user_created_by",
+            "table": "flow_defination",
+            "property": "flowsCreated"
+        },
+        {
+            "id": "reference_flow_defination_user_updated_by",
+            "table": "flow_defination",
+            "property": "flowsUpdated"
+        },
+        {
+            "id": "reference_waiting_process_user_created_by",
+            "table": "waiting_process",
+            "property": "waitingProcessesCreated"
+        },
+        {
+            "id": "reference_waiting_process_user_updated_by",
+            "table": "waiting_process",
+            "property": "waitingProcessesUpdated"
+        },
+        {
+            "id": "reference_ui_component_created_by",
+            "table": "ui_component",
+            "property": "UIComponentsCreated"
+        },
+        {
+            "id": "reference_ui_component_updated_by",
+            "table": "ui_component",
+            "property": "UIComponentsUpdated"
+        },
+        {
+            "id": "reference_system_nav_user_created_by",
+            "table": "system_nav",
+            "property": "navigationCreated"
+        },
+        {
+            "id": "reference_system_nav_user_updated_by",
+            "table": "system_nav",
+            "property": "navigationUpdated"
+        },
+
+
+
         {
             "id": "reference_inventory_created_by",
             "table": "inventory_item",
@@ -413,11 +512,7 @@ const userDefination = {
             "table": "auto_number",
             "property": "autoGenerateCreated"
         },
-        {
-            "id": "reference_auto_number_user_updated_by",
-            "table": "auto_number",
-            "property": "autoGenerateUpdated"
-        },
+        
         {
             "id": "reference_production_consumption_user_created_by",
             "table": "production_consumption",
@@ -438,16 +533,8 @@ const userDefination = {
             "table": "finished_product",
             "property": "finishedProductUpdated"
         },
-        {
-            "id": "reference_activity_user_created_by",
-            "table": "activity",
-            "property": "activityCreated"
-        },
-        {
-            "id": "reference_activity_user_updated_by",
-            "table": "activity",
-            "property": "activityUpdated"
-        },
+
+
         {
             "id": "reference_sell_sold_by",
             "table": "sell",
@@ -564,6 +651,80 @@ const userDefination = {
             "property": "acceptedTransfers"
         },
         {
+            "id": "reference_charger_station_user_created_by",
+            "table": "station",
+            "property": "StationCreated"
+        },
+        {
+            "id": "reference_charger_station_user_updated_by",
+            "table": "station",
+            "property": "StationUpdated"
+        },
+        {
+            "id": "reference_charger_payment_rate_user_created_by",
+            "table": "payment_rate",
+            "property": "PaymentRateCreated"
+        },
+        {
+            "id": "reference_charger_payment_rate_user_updated_by",
+            "table": "payment_rate",
+            "property": "PaymentRateUpdated"
+        },
+        {
+            "id": "reference_rate_range_user_created_by",
+            "table": "rate_range",
+            "property": "RateRangeCreated"
+        },
+        {
+            "id": "reference_rate_range_user_updated_by",
+            "table": "rate_range",
+            "property": "RateRangeUpdated"
+        },
+        {
+            "id": "reference_charger_connector_user_created_by",
+            "table": "charger_connector",
+            "property": "chargerConnectorCreated"
+        },
+        {
+            "id": "reference_charger_connector_user_updated_by",
+            "table": "charger_connector",
+            "property": "chargerConnectorUpdated"
+        },
+        {
+            "id": "reference_charger_access_card_user_user_id",
+            "table": "charger_access_card",
+            "property": "chargerAccessCardUser"
+        },
+        {
+            "id": "reference_charger_access_card_user_created_by",
+            "table": "charger_access_card",
+            "property": "chargerAccessCardCreated"
+        },
+        {
+            "id": "reference_charger_access_card_user_updated_by",
+            "table": "charger_access_card",
+            "property": "chargerAccessCardUpdated"
+        },
+        {
+            "id": "reference_charger_trx_user_user_id",
+            "table": "charger_trx",
+            "property": "chargedUser"
+        },
+        {
+            "id": "reference_charger_trx_user_created_by",
+            "table": "charger_trx",
+            "property": "chargerTrxCreated"
+        },
+        {
+            "id": "reference_charger_trx_user_updated_by",
+            "table": "charger_trx",
+            "property": "chargerTrxUpdated"
+        },
+
+
+
+
+        {
             "id": "reference_main_trx_user_created_by",
             "table": "main_transaction",
             "property": "MainTrxCreated"
@@ -572,57 +733,6 @@ const userDefination = {
             "id": "reference_main_trx_user_updated_by",
             "table": "main_transaction",
             "property": "MainTrxUpdater"
-        },
-        {
-            "id": "reference_api_user_created_by",
-            "table": "api_user",
-            "property": "CreatedApiUsers"
-        },
-        {
-            "id": "reference_api_user_updated_by",
-            "table": "api_user",
-            "property": "UpdatedApiUsers"
-        },
-        {
-            "id": "reference_endpoint_updated_by",
-            "table": "endpoint",
-            "property": "UpdatedEndpoints"
-        },
-        {
-            "id": "reference_endpoint_created_by",
-            "table": "endpoint",
-            "property": "CreatedEndpoints"
-        },
-
-        {
-            "id": "reference_process_user_created_by",
-            "table": "process",
-            "property": "processesCreated"
-        },
-        {
-            "id": "reference_process_user_updated_by",
-            "table": "process",
-            "property": "processesUpdated"
-        },
-        {
-            "id": "reference_flow_defination_user_created_by",
-            "table": "flow_defination",
-            "property": "flowsCreated"
-        },
-        {
-            "id": "reference_flow_defination_user_updated_by",
-            "table": "flow_defination",
-            "property": "flowsUpdated"
-        },
-        {
-            "id": "reference_waiting_process_user_created_by",
-            "table": "waiting_process",
-            "property": "waitingProcessesCreated"
-        },
-        {
-            "id": "reference_waiting_process_user_updated_by",
-            "table": "waiting_process",
-            "property": "waitingProcessesUpdated"
         },
         {
             "id": "reference_post_user_created_by",
@@ -634,32 +744,14 @@ const userDefination = {
             "table": "post",
             "property": "postsUpdated"
         },
-        {
-            "id": "reference_ui_component_created_by",
-            "table": "ui_component",
-            "property": "UIComponentsCreated"
-        },
-        {
-            "id": "reference_ui_component_updated_by",
-            "table": "ui_component",
-            "property": "UIComponentsUpdated"
-        },
 
-        {
-            "id": "reference_system_nav_user_created_by",
-            "table": "system_nav",
-            "property": "navigationCreated"
-        },
-        {
-            "id": "reference_system_nav_user_updated_by",
-            "table": "system_nav",
-            "property": "navigationUpdated"
-        }
+        
+
 
     ],
     "writeRoles": [UserRoles.Admin],
     "updateRoles": [UserRoles.Admin],
-    "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
+    "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
     "deleteRoles": [UserRoles.Admin],
     "additionalFilter": [
         {
@@ -736,7 +828,7 @@ const userDefination = {
             label: "User Role",
             "column_id": "user_id",
             "order": 1,
-            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells]
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner]
         },
         {
             "id": "ref_manage_stores",
@@ -744,7 +836,7 @@ const userDefination = {
             label: "Stores Managed",
             "column_id": "manager",
             "order": 1,
-            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells]
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner]
         },
         {
             "id": "ref_work_stores",
@@ -752,7 +844,15 @@ const userDefination = {
             label: "Works In",
             "column_id": "user_id",
             "order": 1,
-            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells]
+            "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner]
+        },
+        {
+            "id": "ref_charger_access_cards",
+            "table": "charger_access_card",
+            label: "Charger Access Cards",
+            "column_id": "user_id",
+            "order": 1,
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner, UserRoles.Sells, , UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner]
         }
     ],
     actions: [

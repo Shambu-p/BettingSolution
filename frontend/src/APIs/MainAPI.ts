@@ -133,7 +133,7 @@ class MainAPI {
         }
     }
 
-    public static async getAllv2(token: string, tableName: string, pageNumber: number, pageSize: number, condition?: any, order_by?: any, relation?: any): Promise<IPagination<any>> {
+    public static async getAllv2(token: string, tableName: string, pageNumber: number, pageSize: number, condition?: any, order_by?: any, relation?: ("reference"|"children"|"children_reference")): Promise<IPagination<any>> {
 
         try {
 

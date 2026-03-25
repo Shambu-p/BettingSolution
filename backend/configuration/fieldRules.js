@@ -70,6 +70,13 @@ const fieldRules = {
 	post: require("./Forms/postDefination"),
 	ui_component: require("./Forms/UIComponentDefination"),
 	system_nav: require("./Forms/systemNavigationDefination"),
+	navigation_role: require("./Forms/navigationRoleDefination"),
+	station: require("./Forms/stationDefination"),
+	payment_rate: require("./Forms/paymentRateDefination"),
+	rate_range: require("./Forms/rateRangeDefination"),
+	charger_connector: require("./Forms/chargerConnectorDefination"),
+	charger_access_card: require("./Forms/accessCardDefination"),
+	charger_trx: require("./Forms/chargerTrxDefination")
 };
 
 module.exports = fieldRules;
