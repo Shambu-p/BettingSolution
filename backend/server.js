@@ -13,10 +13,24 @@ const ScriptRoute = require("./infrastructure/routes/script");
 const AppBuilderRoutes = require("./infrastructure/routes/appBuilderRoutes");
 // const swaggerUi = require('swagger-ui-express');
 // const swaggerSpec = require('./infrastructure/Swagger/Swagger');
+const http = require("http");
+const { Server } = require("socket.io");
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(cors());
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
+});
+
+
 // app.use(express.json());
 
 // app.use((req, res, next) => {
@@ -25,10 +39,88 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 //     res.setHeader('X-Frame-Options', 'DENY');
 //     next();
 // });
-app.use(cors());
+
+const liveUsersPath = path.join(__dirname, 'live_users.json');
+
+function getLiveUsers() {
+    try {
+        const data = fs.readFileSync(liveUsersPath, 'utf8');
+        return JSON.parse(data ?? "{}");
+    } catch (err) {
+        return {};
+    }
+}
+
+function saveLiveUsers(liveUsers) {
+    fs.writeFileSync(liveUsersPath, JSON.stringify(liveUsers, null, 2));
+}
 
 const dependencies = new ProjectDependencies();
+
+async function getUser(token) {
+    try {
+        let user = await dependencies.tokenGenerator.verify(token, dependencies.appSecretKey);/* as JwtPayload*/;
+        if(!user) {
+            return null;
+        }
+        return {
+            Token: token,
+            ...user
+        };
+    } catch (error) {
+        console.error("Error in getUser:", error);
+        return null;
+    }
+}
+
+io.on("connection", (socket) => {
+    socket.on("register", async (user_token) => {
+        let verified_user = await getUser(user_token);
+        if(verified_user) {
+            const liveUsers = getLiveUsers();
+            if (!liveUsers[verified_user.sys_id]) liveUsers[verified_user.sys_id] = [];
+            if (!liveUsers[verified_user.sys_id].includes(socket.id)) liveUsers[verified_user.sys_id].push(socket.id);
+            saveLiveUsers(liveUsers);
+        }
+    });
+
+    socket.on("disconnect", () => {
+        const liveUsers = getLiveUsers();
+        for (const [userId, ids] of Object.entries(liveUsers)) {
+            const idx = ids.indexOf(socket.id);
+            if (idx !== -1) {
+                ids.splice(idx, 1);
+                if (ids.length === 0) delete liveUsers[userId];
+                saveLiveUsers(liveUsers);
+                break;
+            }
+        }
+    });
+});
+
+function emitJsonData(type, userId, data) {
+    const liveUsers = getLiveUsers();
+    const socketIds = liveUsers[userId] || [];
+    socketIds.forEach(socketId => {
+        io.to(socketId).emit(type, data);
+    });
+}
+
+function broadcastJsonData(type, data) {
+    const liveUsers = getLiveUsers();
+    Object.values(liveUsers).forEach(socketIds => {
+        socketIds.forEach(socketId => {
+            io.to(socketId).emit(type, data);
+        });
+    });
+}
+
+dependencies.emitJsonData = emitJsonData;
+dependencies.broadcastJsonData = broadcastJsonData;
 const port = dependencies.port;
+
+// const dependencies = new ProjectDependencies();
+// const port = dependencies.port;
 
 //ROUTERS
 const crudrouter = new CrudRouter(dependencies);
@@ -65,6 +157,10 @@ app.use((req, res) => {
 
 app.listen(port, () => {
     console.log(`server listening on port ${port}`);
+});
+
+server.listen(1111, () => {
+    console.log(`socket server listening on port 1111`);
 });
 
 // setInterval(() => {
