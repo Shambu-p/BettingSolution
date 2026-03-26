@@ -1,0 +1,336 @@
+{
+  "name": "account",
+  "backup_order": 80,
+  "title": "System Accounts",
+  "id": "account",
+  "application_id": "global",
+  "canReadAttachment": [
+    "admin"
+  ],
+  "canAddAttachment": [
+    "admin"
+  ],
+  "activityRoles": [
+    "admin"
+  ],
+  "realId": "sys_id",
+  "idColumn": "account_number",
+  "fields": {
+    "sys_id": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 32,
+      "required": false,
+      "id": "sys_id",
+      "label": "System Id",
+      "description": "",
+      "order": 1,
+      "visible": false,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin",
+        "finance"
+      ],
+      "updateRoles": []
+    },
+    "account_number": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 3,
+      "required": false,
+      "unique": true,
+      "id": "account_number",
+      "label": "Account Number",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "finance"
+      ],
+      "updateRoles": []
+    },
+    "name": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 3,
+      "required": true,
+      "unique": true,
+      "id": "name",
+      "label": "Account Name",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "finance"
+      ],
+      "updateRoles": []
+    },
+    "type": {
+      "type": "select",
+      "maxLength": 40,
+      "minLength": 3,
+      "required": true,
+      "id": "type",
+      "label": "Account Type",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "finance"
+      ],
+      "updateRoles": []
+    },
+    "status": {
+      "id": "status",
+      "label": "Account Status",
+      "description": "",
+      "type": "boolean",
+      "minLength": 1,
+      "maxLength": 50,
+      "required": false,
+      "order": 20,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "finance"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "balance": {
+      "id": "balance",
+      "label": "Total Balance",
+      "description": "",
+      "type": "float",
+      "minLength": 1,
+      "maxLength": 11,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "finance",
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "related_account": {
+      "type": "reference",
+      "maxLength": 40,
+      "minLength": 32,
+      "required": false,
+      "id": "related_account",
+      "label": "Related Account",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "references": "account",
+      "displayField": "account_number",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "finance"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "created_on": {
+      "id": "created_on",
+      "label": "Created On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 30,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_on": {
+      "id": "updated_on",
+      "label": "Updated On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 35,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "created_by": {
+      "id": "created_by",
+      "label": "Created by",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 40,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_by": {
+      "id": "updated_by",
+      "label": "Updated by",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 45,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    }
+  },
+  "keys": [
+    {
+      "id": "reference_related_account",
+      "table": "account",
+      "column": "related_account",
+      "property": "related"
+    },
+    {
+      "id": "reference_account_user_created_by",
+      "table": "user",
+      "column": "created_by",
+      "property": "creater"
+    },
+    {
+      "id": "reference_account_user_updated_by",
+      "table": "user",
+      "column": "updated_by",
+      "property": "updater"
+    }
+  ],
+  "children": [
+    {
+      "id": "reference_related_account",
+      "table": "account",
+      "property": "relatedAccounts"
+    },
+    {
+      "id": "reference_transaction_account_id",
+      "table": "main_transaction",
+      "property": "GLTrxs"
+    }
+  ],
+  "writeRoles": [
+    "admin"
+  ],
+  "updateRoles": [
+    "admin"
+  ],
+  "readRoles": [
+    "admin",
+    "finance"
+  ],
+  "deleteRoles": [
+    "admin"
+  ],
+  "additionalFilter": [],
+  "createAccessCondition": true,
+  "updateAccessCondition": [],
+  "deleteAccessCondition": true,
+  "createScript": {
+    "before": "createAccountBefore"
+  },
+  "updateScript": {},
+  "deleteScript": {},
+  "onsubmit": "defaultOnsubmit",
+  "listLoader": "defaultListLoader",
+  "onload": "defaultOnload",
+  "relatedList": [],
+  "actions": [
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Update",
+      "class": "zbtn",
+      "action": "defaultUpdate",
+      "stayOnForm": false
+    }
+  ]
+}

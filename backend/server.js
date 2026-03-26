@@ -10,6 +10,7 @@ const FlowRoute = require("./infrastructure/routes/FlowRoute");
 const AuthService = require("./infrastructure/service/authentication/auth");
 const External = require("./infrastructure/routes/external");
 const ScriptRoute = require("./infrastructure/routes/script");
+const AppBuilderRoutes = require("./infrastructure/routes/appBuilderRoutes");
 // const swaggerUi = require('swagger-ui-express');
 // const swaggerSpec = require('./infrastructure/Swagger/Swagger');
 
@@ -36,6 +37,7 @@ const flowrouter = new FlowRoute(dependencies);
 const filerouter = new FileRouter(dependencies);
 const externalAPI = new External(dependencies);
 const scriptRoute = new ScriptRoute(dependencies);
+const appBuilder = new AppBuilderRoutes(dependencies);
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/api/crud", crudrouter.getRoute(dependencies));
 app.use("/api/system", systemrouter.getRoute());
@@ -43,6 +45,7 @@ app.use("/api/flow", flowrouter.getRoute());
 app.use("/api/auth", authRouter(dependencies));
 app.use("/api/file", filerouter.getRoute());
 app.use("/api/scripts", scriptRoute.getRoute());
+app.use("/api/builder", appBuilder.getRoute());
 app.all("/api/external/*", AuthService.authenticateAPI, externalAPI.getRoute());
 
 app.use((req, res) => {

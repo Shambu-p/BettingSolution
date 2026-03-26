@@ -1,5 +1,6 @@
 const { exec } = require('child_process');
 const fs = require('fs');
+const path = require('path');
 const FieldType = require('../../Interface/FieldType');
 const prisma = require("@prisma/client");
 const FieldsMapper = require('../FieldMapper');
@@ -39,30 +40,29 @@ class MigrationManager {
 
             Object.keys(collection.fields).forEach((anket) => {
 
-                if(anket == "sys_id") {
+                if (anket == "sys_id") {
                     return;
                 }
 
                 let additional = "";
-                if(collection.fields[anket].unique) {
+                if (collection.fields[anket].unique) {
                     additional += `@unique`;
                 }
 
-                if([FieldType.string, FieldType.choice, FieldType.email, FieldType.password].includes(collection.fields[anket].type)) {
+                if ([FieldType.string, FieldType.choice, FieldType.email, FieldType.password].includes(collection.fields[anket].type)) {
                     additional += ` @db.VarChar(${collection.fields[anket].maxLength ?? 10})`;
-                } else if([FieldType.longText, FieldType.script, FieldType.richText].includes(collection.fields[anket].type)) {
+                } else if ([FieldType.longText, FieldType.script, FieldType.richText].includes(collection.fields[anket].type)) {
                     additional += ` @db.LongText`;
-                } else if(collection.fields[anket].type == FieldType.reference) {
+                } else if (collection.fields[anket].type == FieldType.reference) {
                     additional += ` @db.VarChar(36)`;
-                } else if(collection.fields[anket].type == FieldType.double) {
+                } else if (collection.fields[anket].type == FieldType.double) {
                     additional += ` @db.Double`;
-                } else if(collection.fields[anket].type == FieldType.float) {
+                } else if (collection.fields[anket].type == FieldType.float) {
                     additional += ` @db.Float`;
                 }
 
-                collectionString += `  ${anket}\t\t\t${
-                    stringTypes.includes(collection.fields[anket].type) ? "String" : typeMap[collection.fields[anket].type]
-                }${collection.fields[anket].required ? "" : "?"}\t\t${additional}\n`;
+                collectionString += `  ${anket}\t\t\t${stringTypes.includes(collection.fields[anket].type) ? "String" : typeMap[collection.fields[anket].type]
+                    }${collection.fields[anket].required ? "" : "?"}\t\t${additional}\n`;
 
             });
 
@@ -83,11 +83,11 @@ class MigrationManager {
         let current_schema = fs.readFileSync(schema_path, "utf8");
         let schema_parts = current_schema.split("//// customization tables ////");
         let base_schema = schema_parts[0];
-        if(base_schema) {
+        if (base_schema) {
             base_schema += "//// customization tables ////\n\n";
             base_schema += result;
             fs.writeFileSync(schema_path, base_schema);
-        } else { 
+        } else {
             throw new Error("base schema not found!");
         }
 
@@ -96,9 +96,9 @@ class MigrationManager {
 
     static async backupData(backup_folder, database, collections) {
 
-        for(let single_table of collections.sort((a, b) => (a.backup_order > b.backup_order ? 1 : -1))) {
+        for (let single_table of collections.sort((a, b) => (a.backup_order > b.backup_order ? 1 : -1))) {
 
-            if(prisma.Prisma.ModelName[single_table.name]) {
+            if (prisma.Prisma.ModelName[single_table.name]) {
 
                 fs.writeFileSync(
                     `${backup_folder}/${single_table.name}_backup.json`,
@@ -118,12 +118,61 @@ class MigrationManager {
 
     }
 
+    // const fs = require('fs').promises;
+
+
+    /**
+     * Moves backup JSON files to a new timestamped folder.
+     * @param {string} sourceDir - Where the files currently live.
+     * @param {string} targetBaseDir - Where the new folder should be created.
+     */
+    static async archiveBackupFiles(sourceDir, targetBaseDir) {
+        try {
+            // 1. Generate the timestamp (YYYY-MM-DD_HH-mm-ss)
+            const now = new Date();
+            const timestamp = now.toISOString()
+                .replace(/T/, '_')
+                .replace(/:/g, '-')
+                .split('.')[0];
+
+            const folderName = `${timestamp}_Backup`;
+            const targetDirPath = path.join(targetBaseDir, folderName);
+
+            // 2. Create the new directory (Sync)
+            // { recursive: true } ensures parent folders are created if they don't exist
+            fs.mkdirSync(targetDirPath, { recursive: true });
+
+            // 3. Read the source directory (Sync)
+            const allFiles = fs.readdirSync(sourceDir);
+
+            // 4. Filter for files ending in '_backup.json'
+            const filesToMove = allFiles.filter(file => file.endsWith('_backup.json'));
+
+            if (filesToMove.length === 0) {
+                console.log('No backup files found to move.');
+                return;
+            }
+
+            // 5. Move each file (Sync)
+            filesToMove.forEach(file => {
+                const oldPath = path.join(sourceDir, file);
+                const newPath = path.join(targetDirPath, file);
+
+                fs.copyFileSync(oldPath, newPath);
+            });
+
+            console.log(`Successfully moved ${filesToMove.length} files to: ${targetDirPath}`);
+        } catch (error) {
+            console.error('Failed to move backup files:', error);
+        }
+    }
+
     static async cleanData(database, table_names, collections) {
 
         let all_table = table_names.map(nm => collections[nm]).sort((a, b) => (a.backup_order < b.backup_order ? 1 : -1));
 
-        for(let delete_single of all_table) {
-            if(prisma.Prisma.ModelName[delete_single.name]) {
+        for (let delete_single of all_table) {
+            if (prisma.Prisma.ModelName[delete_single.name]) {
                 await database[delete_single.name].deleteMany();
             }
         }
@@ -138,8 +187,8 @@ class MigrationManager {
 
         let all_table = collections.sort((a, b) => (a.backup_order < b.backup_order ? 1 : -1));
 
-        for(let delete_single of all_table) {
-            if(prisma.Prisma.ModelName[delete_single.name]) {
+        for (let delete_single of all_table) {
+            if (prisma.Prisma.ModelName[delete_single.name]) {
                 await database[delete_single.name].deleteMany();
             }
         }
@@ -150,11 +199,11 @@ class MigrationManager {
 
         let all_table = collections.sort((a, b) => (a.backup_order > b.backup_order ? 1 : -1));
 
-        for(let single_table of all_table) {
+        for (let single_table of all_table) {
 
-            if(fs.existsSync(`${backup_folder}/${single_table.name}_backup.json`)) {
+            if (fs.existsSync(`${backup_folder}/${single_table.name}_backup.json`)) {
 
-                if(prisma.Prisma.ModelName[single_table.name]) {
+                if (prisma.Prisma.ModelName[single_table.name]) {
 
                     let backup_data = JSON.parse(
                         fs.readFileSync(`${backup_folder}/${single_table.name}_backup.json`, 'utf8')
@@ -166,13 +215,13 @@ class MigrationManager {
                         });
 
                         console.log(`${single_table.name} backup data restored`);
-                        
-                    } catch(error) {
+
+                    } catch (error) {
                         // console.log(`error occured while restoring ${single_table.name} backup data`);
                         // console.log(error);
                         await this.restoreSingle(single_table.name, database, backup_data);
                     }
-    
+
 
                 } else {
                     console.log(`error table ${single_table.name} not found!`);
@@ -187,15 +236,15 @@ class MigrationManager {
     }
 
     static async restoreSingle(table_id, database, data) {
-        
-        if(!Array.isArray(data)) {
+
+        if (!Array.isArray(data)) {
             console.log("data is not an array! restoring has failed!");
             return;
         }
 
         let faild_data = [];
 
-        for(let index in data) {
+        for (let index in data) {
 
             try {
 
@@ -204,15 +253,15 @@ class MigrationManager {
                     data: preparedData
                 });
 
-            } catch(error){
+            } catch (error) {
                 faild_data.push(data[index]);
             }
 
         }
 
-        if(faild_data.length > 0) {
-            
-            if(data.length > faild_data.length) {
+        if (faild_data.length > 0) {
+
+            if (data.length > faild_data.length) {
                 await this.restoreSingle(table_id, database, faild_data);
             } else {
                 console.log(`records with sys_id ${faild_data.map(fd => fd.sys_id).join(", ")} cannot be restored in ${table_id} table`);

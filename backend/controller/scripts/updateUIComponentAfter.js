@@ -30,8 +30,10 @@ async function updateUIComponentAfter(reqUser, data, changes, dependencies, smsS
         usage: data.usage
     });
 
-    let uiManager = new ComponentManager("../frontend");
-    uiManager.updateComponent(Utils.toPascalCase(data.name), data.component_script);
+    if(data.component_script) {
+        let uiManager = new ComponentManager("../frontend");
+        uiManager.updateComponent(Utils.toPascalCase(data.name), data.component_script);
+    }
 
     if(is_usage_changed && is_route_params_changed && is_ui_type_changed) {
         let routeMapping = uiManager.buildRouteMapping(found_components);

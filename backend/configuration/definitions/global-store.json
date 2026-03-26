@@ -1,0 +1,606 @@
+{
+  "name": "store",
+  "backup_order": 15,
+  "title": "Store",
+  "id": "store",
+  "application_id": "global",
+  "activityRoles": [
+    "admin",
+    "branch_manager"
+  ],
+  "canReadAttachment": [
+    "admin",
+    "branch_manager"
+  ],
+  "canAddAttachment": [
+    "branch_manager"
+  ],
+  "realId": "sys_id",
+  "idColumn": "name",
+  "fields": {
+    "sys_id": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 32,
+      "required": false,
+      "id": "sys_id",
+      "label": "System Id",
+      "description": "",
+      "order": 1,
+      "visible": false,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager",
+        "sells"
+      ],
+      "updateRoles": []
+    },
+    "name": {
+      "id": "name",
+      "label": "Name",
+      "description": "",
+      "type": "text",
+      "minLength": 2,
+      "maxLength": 50,
+      "required": true,
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "location": {
+      "id": "location",
+      "label": "Store Location",
+      "description": "",
+      "type": "text",
+      "minLength": 2,
+      "maxLength": 100,
+      "required": true,
+      "order": 5,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "manager": {
+      "id": "manager",
+      "label": "Manager",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": true,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "references": "user",
+      "displayField": "full_name",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "active": {
+      "id": "active",
+      "label": "Is Active",
+      "description": "",
+      "type": "boolean",
+      "required": true,
+      "defaultValue": true,
+      "order": 25,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager",
+        "sells"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "created_on": {
+      "id": "created_on",
+      "label": "Created On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 30,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_on": {
+      "id": "updated_on",
+      "label": "Updated On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 35,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "created_by": {
+      "id": "created_by",
+      "label": "Created by",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 40,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_by": {
+      "id": "updated_by",
+      "label": "Updated by",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 45,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    }
+  },
+  "keys": [
+    {
+      "id": "reference_store_user_managed_by",
+      "table": "user",
+      "column": "manager",
+      "property": "managedBy"
+    },
+    {
+      "id": "reference_store_user_created_by",
+      "table": "user",
+      "column": "created_by",
+      "property": "creater"
+    },
+    {
+      "id": "reference_store_user_updated_by",
+      "table": "user",
+      "column": "updated_by",
+      "property": "updater"
+    }
+  ],
+  "children": [
+    {
+      "id": "reference_store_has_store_item",
+      "table": "store_item",
+      "property": "storeItems"
+    },
+    {
+      "id": "reference_product_item_has_one_store",
+      "table": "store_product",
+      "property": "storeProducts"
+    },
+    {
+      "id": "reference_store_has_purchase",
+      "table": "purchase",
+      "property": "storePurchases"
+    },
+    {
+      "id": "reference_store_has_purchase_item",
+      "table": "purchase_item",
+      "property": "storePurchaseItems"
+    },
+    {
+      "id": "reference_store_has_production",
+      "table": "production",
+      "property": "Productions"
+    },
+    {
+      "id": "reference_store_has_production_consumption",
+      "table": "production_consumption",
+      "property": "storeConsumption"
+    },
+    {
+      "id": "reference_store_has_finished_product",
+      "table": "finished_product",
+      "property": "finishedProducts"
+    },
+    {
+      "id": "reference_store_has_sell",
+      "table": "sell",
+      "property": "storeSells"
+    },
+    {
+      "id": "reference_store_has_sell_product",
+      "table": "sell_product",
+      "property": "storeSellProduct"
+    },
+    {
+      "id": "reference_store_has_worker",
+      "table": "user_store",
+      "property": "workers"
+    },
+    {
+      "id": "transfer_has_from_store",
+      "table": "transfer",
+      "property": "fromStores"
+    },
+    {
+      "id": "transfer_has_to_store",
+      "table": "transfer",
+      "property": "toStores"
+    },
+    {
+      "id": "reference_store_has_receive_products",
+      "table": "receive_product",
+      "property": "receveSlips"
+    }
+  ],
+  "writeRoles": [
+    "admin"
+  ],
+  "updateRoles": [
+    "admin",
+    "branch_manager"
+  ],
+  "readRoles": [
+    "admin",
+    "branch_manager",
+    "production_manager",
+    "sells",
+    "finance"
+  ],
+  "deleteRoles": [
+    "admin"
+  ],
+  "additionalFilter": [
+    {
+      "condition": [
+        {
+          "left": "finance",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": "admin",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        }
+      ],
+      "filter": [
+        {
+          "column": "sys_id",
+          "operator": "in",
+          "value": {
+            "name": "currentUser",
+            "property": "Stores"
+          },
+          "connector": "AND"
+        }
+      ]
+    },
+    {
+      "condition": [
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "admin",
+          "connector": "OR"
+        },
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "finance",
+          "connector": "OR"
+        }
+      ],
+      "filter": []
+    }
+  ],
+  "createAccessCondition": true,
+  "updateAccessCondition": [
+    {
+      "left": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "operator": "contains",
+      "right": {
+        "name": "currentData",
+        "property": "manager"
+      },
+      "connector": "OR"
+    },
+    {
+      "left": {
+        "name": "currentUser",
+        "property": "Roles"
+      },
+      "operator": "contains",
+      "right": "admin",
+      "connector": "OR"
+    },
+    {
+      "left": {
+        "name": "currentUser",
+        "property": "Roles"
+      },
+      "operator": "contains",
+      "right": "finance",
+      "connector": "OR"
+    }
+  ],
+  "deleteAccessCondition": true,
+  "createScript": {},
+  "updateScript": {},
+  "deleteScript": {},
+  "onsubmit": "defaultOnsubmit",
+  "listLoader": "defaultListLoader",
+  "onload": "defaultOnload",
+  "relatedList": [
+    {
+      "id": "ref_store_items",
+      "table": "store_item",
+      "label": "R.M. Level",
+      "column_id": "store_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager",
+        "sells"
+      ]
+    },
+    {
+      "id": "ref_store_product",
+      "table": "store_product",
+      "label": "F. Products Level",
+      "column_id": "store_id",
+      "order": 2,
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager",
+        "sells"
+      ]
+    },
+    {
+      "id": "ref_store_purchases",
+      "table": "purchase",
+      "label": "Purchases",
+      "column_id": "store_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance"
+      ]
+    },
+    {
+      "id": "ref_store_sells",
+      "table": "sell",
+      "label": "Sells",
+      "column_id": "store_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "sells",
+        "finance"
+      ]
+    },
+    {
+      "id": "ref_store_productions",
+      "table": "production",
+      "label": "R.M. Production Order",
+      "column_id": "store_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "production_manager"
+      ]
+    },
+    {
+      "id": "ref_order_request_out",
+      "table": "transfer",
+      "label": "Order Request Out",
+      "column_id": "store_from_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "sells",
+        "finance"
+      ]
+    },
+    {
+      "id": "ref_order_request_in",
+      "table": "transfer",
+      "label": "Return Request",
+      "column_id": "store_to_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "sells"
+      ]
+    },
+    {
+      "id": "ref_store_purchase_item",
+      "table": "purchase_item",
+      "label": "R.M. In",
+      "column_id": "store_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance"
+      ]
+    },
+    {
+      "id": "ref_store_consumption",
+      "table": "production_consumption",
+      "label": "R.M. Out",
+      "column_id": "store_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance"
+      ]
+    },
+    {
+      "id": "ref_store_produced_items",
+      "table": "finished_product",
+      "label": "F.P. In",
+      "column_id": "store_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager"
+      ]
+    },
+    {
+      "id": "ref_store_product_out",
+      "table": "sell_product",
+      "label": "F.P. Out",
+      "column_id": "store_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "finance",
+        "sells"
+      ]
+    },
+    {
+      "id": "ref_store_receive_product_out",
+      "table": "receive_product",
+      "label": "Receive F.P.",
+      "column_id": "store_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "production_manager",
+        "finance"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Update",
+      "class": "zbtn",
+      "action": "defaultUpdate",
+      "stayOnForm": true
+    }
+  ]
+}

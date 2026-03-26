@@ -69,11 +69,11 @@ function LoginPage() {
                 <div className="col-sm-12 col-md-8 col-lg-4 h-100" style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
                     <div className="w-100">
                         <div className="d-flex justify-content-center mb-1">
-                            <img src="./images/byae_logo.png" style={{width: "200px"}} alt="logo" />
+                            <img src="./images/ev_charger_logo_no_bg.png" style={{width: "200px"}} alt="logo" />
                             {/* <img src="./images/splash_screen.png" style={{width: "100px"}} alt="logo" /> */}
                         </div>
                         <p className="text-center lead fs-3" style={{color: "var(--text_color)"}}>
-                            <strong>BYAE Business P.L.C.</strong>
+                            <strong>Green Addis</strong>
                         </p>
                     </div>
                     <div className={isMobile ? "zpanle w-100" : "card zpanel w-100 border-0 shadow-sm"} style={isMobile ? style.mobile : style.desktop}>

@@ -1,0 +1,305 @@
+{
+  "name": "process",
+  "title": "Process",
+  "id": "process",
+  "application_id": "global",
+  "backup_order": 30,
+  "realId": "sys_id",
+  "idColumn": "flow_id",
+  "canReadAttachment": [
+    "admin",
+    "branch_manager"
+  ],
+  "canAddAttachment": [
+    "admin"
+  ],
+  "activityRoles": [
+    "admin"
+  ],
+  "fields": {
+    "sys_id": {
+      "type": "text",
+      "visible": false,
+      "readonly": true,
+      "order": 1,
+      "description": "",
+      "maxLength": 40,
+      "minLength": 32,
+      "required": false,
+      "id": "sys_id",
+      "label": "System Id",
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "flow_id": {
+      "id": "flow_id",
+      "label": "Flow Definition",
+      "type": "reference",
+      "references": "flow_defination",
+      "displayField": "name",
+      "required": true,
+      "description": "The flow definition this process belongs to",
+      "order": 2,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "state": {
+      "id": "state",
+      "label": "State",
+      "type": "select",
+      "maxLength": 50,
+      "minLength": 3,
+      "required": true,
+      "order": 3,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "options": [
+        {
+          "value": "RUNNING",
+          "label": "Running"
+        },
+        {
+          "value": "COMPLETED",
+          "label": "Completed"
+        },
+        {
+          "value": "FAILED",
+          "label": "Failed"
+        },
+        {
+          "value": "CANCELLED",
+          "label": "Cancelled"
+        }
+      ],
+      "writeRoles": [
+        "admin",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "started_on": {
+      "id": "started_on",
+      "label": "Started On",
+      "type": "datetime-local",
+      "required": true,
+      "order": 4,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "finished_on": {
+      "id": "finished_on",
+      "label": "Finished On",
+      "type": "datetime-local",
+      "required": false,
+      "order": 5,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "system"
+      ],
+      "updateRoles": [
+        "admin",
+        "system"
+      ],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "created_on": {
+      "id": "created_on",
+      "label": "Created On",
+      "type": "datetime-local",
+      "readonly": true,
+      "order": 9,
+      "visible": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "updated_on": {
+      "id": "updated_on",
+      "label": "Updated On",
+      "type": "datetime-local",
+      "readonly": true,
+      "order": 10,
+      "visible": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "created_by": {
+      "id": "created_by",
+      "label": "Created By",
+      "type": "reference",
+      "references": "user",
+      "displayField": "full_name",
+      "readonly": true,
+      "order": 11,
+      "visible": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    },
+    "updated_by": {
+      "id": "updated_by",
+      "label": "Updated By",
+      "type": "reference",
+      "references": "user",
+      "displayField": "full_name",
+      "readonly": true,
+      "order": 12,
+      "visible": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "updateRoles": [],
+      "readRoles": [
+        "admin",
+        "system"
+      ]
+    }
+  },
+  "keys": [
+    {
+      "id": "reference_flow_definition_processes",
+      "table": "flow_defination",
+      "column": "flow_id",
+      "property": "flow"
+    },
+    {
+      "id": "reference_process_user_created_by",
+      "table": "user",
+      "column": "created_by",
+      "property": "creater"
+    },
+    {
+      "id": "reference_process_user_updated_by",
+      "table": "user",
+      "column": "updated_by",
+      "property": "updater"
+    }
+  ],
+  "children": [
+    {
+      "id": "reference_waiting_process_process_id",
+      "table": "waiting_process",
+      "property": "waitingProcesses"
+    }
+  ],
+  "writeRoles": [
+    "admin",
+    "system"
+  ],
+  "updateRoles": [
+    "admin",
+    "system"
+  ],
+  "readRoles": [
+    "admin",
+    "system"
+  ],
+  "deleteRoles": [
+    "admin",
+    "system"
+  ],
+  "additionalFilter": [],
+  "createAccessCondition": true,
+  "updateAccessCondition": true,
+  "deleteAccessCondition": true,
+  "createScript": {},
+  "updateScript": {
+    "before": "updateProcessBefore"
+  },
+  "deleteScript": {},
+  "onsubmit": "defaultOnsubmit",
+  "listLoader": "defaultListLoader",
+  "onload": "defaultOnload",
+  "relatedList": [],
+  "actions": [
+    {
+      "roles": [
+        "admin",
+        "system"
+      ],
+      "lable": "Update",
+      "class": "zbtn",
+      "action": "defaultUpdate",
+      "stayOnForm": false
+    },
+    {
+      "roles": [
+        "admin",
+        "system"
+      ],
+      "lable": "Execution Detail",
+      "class": "btn-secondary",
+      "action": "processDetailview",
+      "stayOnForm": true,
+      "noRedirect": true,
+      "notBelow": true,
+      "showOnNewForm": false
+    }
+  ]
+}

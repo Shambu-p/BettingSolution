@@ -95,6 +95,7 @@ class SystemRoute {
 
                 console.log("saving backup");
                 await MigrationManager.backupData("./Runtime/Backup", this.dependencies.databasePrisma, collections);
+                await MigrationManager.archiveBackupFiles("./Runtime/Backup", "./Runtime");
 
                 res.status(200).json({
                     message: "success!"

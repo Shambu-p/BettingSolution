@@ -57,11 +57,12 @@
     /* box-shadow: 0 0 10px 1px var(--button_bg_hover); */
 }
 
-.zinput, .zinput:disabled {
+.zinput{
     background: var(--panel_bg);
     color: var(--text_color);
     border-color: var(--border_color);
     font-size: 13px !important;
+    transition-duration: 0.3s;
 }
 
 .zinput:disabled {
@@ -69,6 +70,7 @@
     color: var(--text_color);
     border-color: var(--border_color);
     opacity: 0.5;
+    font-size: 13px !important;
 }
 
 .zinput option, .zoption {
@@ -91,10 +93,15 @@
 } */
 
 .zinput:focus {
+    background: var(--panel_bg);
     border-color: var(--button_bg);
     /* box-shadow: 0 0 2px 4px var(--input_ring); */
-    background: var(--panel_bg);
+    /* background: var(--panel_bg); */
     color: var(--text_color);
+}
+
+.zinput:hover, input:hover {
+    background-color: var(--input-ring-color) !important;
 }
 
 input:focus {
@@ -113,6 +120,10 @@ thead {
 td, th, thead, tr {
     border: none !important;
 }
+
+
+
+
 
 .z-add-btn {
     background: transparent;

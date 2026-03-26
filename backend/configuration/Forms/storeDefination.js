@@ -69,6 +69,63 @@ const storeDefination = {
             "readRoles": [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.ProductionManager, UserRoles.Sells],
             "updateRoles": [UserRoles.Admin]
         },
+        "longitude": {
+            id: "longitude",
+            label: "Longitude",
+            description: "",
+            "type": FieldType.string,
+            "minLength": 1,
+            "maxLength": 100,
+            "required": false,
+
+            order: 5,
+            visible: true,
+            readonly: false,
+            notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
+            "updateRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner]
+        },
+        "latitude": {
+            id: "latitude",
+            label: "Latitude",
+            description: "",
+            "type": FieldType.string,
+            "minLength": 1,
+            "maxLength": 100,
+            "required": false,
+
+            order: 5,
+            visible: true,
+            readonly: false,
+            notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
+            "updateRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner]
+        },
+        "legacy_id": {
+            id: "legacy_id",
+            label: "Legacy Id",
+            description: "",
+            "type": FieldType.number,
+            "minLength": 1,
+            "maxLength": 100,
+            "required": false,
+
+            order: 5,
+            visible: true,
+            readonly: true,
+            notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
+            "updateRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner]
+        },
         "manager": {
             id: "manager",
             label: "Manager",
@@ -279,6 +336,21 @@ const storeDefination = {
             "id": "reference_store_has_receive_products",
             "table": "receive_product",
             "property": "receveSlips"
+        },
+        {
+            "id": "reference_charger_station_branch_id",
+            "table": "station",
+            "property": "Chargers"
+        },
+        {
+            "id": "reference_charger_connector_branch_branch_id",
+            "table": "charger_connector",
+            "property": "ConnectorPorts"
+        },
+        {
+            "id": "reference_charger_trx_store_branch_id",
+            "table": "charger_trx",
+            "property": "chargerTrxes"
         }
     ],
     "writeRoles": [UserRoles.Admin],
@@ -378,6 +450,7 @@ const storeDefination = {
     ],
     "deleteAccessCondition": true,
     "createScript": {
+        before: "createBranchBefore"
     },
     "updateScript": {
     },

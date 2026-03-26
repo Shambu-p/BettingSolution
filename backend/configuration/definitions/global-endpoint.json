@@ -1,0 +1,355 @@
+{
+  "name": "endpoint",
+  "backup_order": 35,
+  "title": "API User",
+  "id": "endpoint",
+  "application_id": "global",
+  "activityRoles": [
+    "admin"
+  ],
+  "canReadAttachment": [],
+  "canAddAttachment": [],
+  "realId": "sys_id",
+  "idColumn": "route",
+  "fields": {
+    "sys_id": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 32,
+      "required": false,
+      "id": "sys_id",
+      "label": "System Id",
+      "description": "",
+      "order": 1,
+      "visible": false,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "route": {
+      "type": "text",
+      "maxLength": 400,
+      "minLength": 3,
+      "required": true,
+      "unique": true,
+      "id": "route",
+      "label": "Route",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "method": {
+      "type": "select",
+      "maxLength": 100,
+      "minLength": 3,
+      "required": true,
+      "id": "method",
+      "label": "Method",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "api_user_id": {
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": true,
+      "id": "api_user_id",
+      "label": "API User",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "references": "api_user",
+      "displayField": "user_name",
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "type": {
+      "type": "select",
+      "maxLength": 100,
+      "minLength": 3,
+      "required": true,
+      "id": "type",
+      "label": "Type",
+      "description": "read, create, update, delete, advanced",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "table_name": {
+      "type": "text",
+      "maxLength": 100,
+      "minLength": 3,
+      "required": false,
+      "id": "table_name",
+      "label": "Table Name",
+      "description": "The name of the table",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "fields": {
+      "type": "textarea",
+      "maxLength": 900,
+      "minLength": 3,
+      "required": false,
+      "id": "fields",
+      "label": "Fields",
+      "description": "The fields of the table",
+      "order": 1,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "access_conditions": {
+      "type": "textarea",
+      "maxLength": 900,
+      "minLength": 3,
+      "required": false,
+      "id": "access_conditions",
+      "label": "Access Conditions",
+      "description": "The access conditions for the table records",
+      "order": 1,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "created_on": {
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "id": "created_on",
+      "label": "Created On",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_on": {
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "id": "updated_on",
+      "label": "Updated On",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "created_by": {
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "id": "created_by",
+      "label": "Created By",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_by": {
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "id": "updated_by",
+      "label": "Updated By",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": false,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    }
+  },
+  "keys": [
+    {
+      "id": "reference_endpoint_created_by",
+      "table": "user",
+      "column": "created_by",
+      "property": "creater"
+    },
+    {
+      "id": "reference_endpoint_updated_by",
+      "table": "user",
+      "column": "updated_by",
+      "property": "updater"
+    },
+    {
+      "id": "reference_endpoint_api_user",
+      "table": "api_user",
+      "column": "api_user_id",
+      "property": "apiUser"
+    }
+  ],
+  "children": [],
+  "writeRoles": [
+    "admin"
+  ],
+  "readRoles": [
+    "admin"
+  ],
+  "updateRoles": [
+    "admin"
+  ],
+  "deleteRoles": [
+    "admin"
+  ],
+  "additionalFilter": [],
+  "createAccessCondition": true,
+  "deleteAccessCondition": true,
+  "updateAccessCondition": true,
+  "createScript": {
+    "after": "createEndpointAfter",
+    "before": "createEndpointBefore"
+  },
+  "updateScript": {},
+  "deleteScript": {},
+  "onsubmit": "defaultOnsubmit",
+  "listLoader": "defaultListLoader",
+  "onload": "defaultOnload",
+  "relatedList": [],
+  "actions": [
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Update",
+      "class": "zbtn",
+      "action": "defaultUpdate",
+      "stayOnForm": false
+    },
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Design",
+      "class": "btn-primary",
+      "action": "changeDesignerView",
+      "stayOnForm": true,
+      "noRedirect": true,
+      "notBelow": true,
+      "showOnNewForm": false
+    }
+  ]
+}

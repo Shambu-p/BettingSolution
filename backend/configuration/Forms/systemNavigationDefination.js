@@ -28,7 +28,7 @@ const systemNavigationDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         },
         "name": {
@@ -48,7 +48,7 @@ const systemNavigationDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "link": {
@@ -67,7 +67,7 @@ const systemNavigationDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "order": {
@@ -86,7 +86,7 @@ const systemNavigationDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "icon": {
@@ -105,7 +105,7 @@ const systemNavigationDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "parent_id": {
@@ -126,7 +126,7 @@ const systemNavigationDefination = {
             displayField: "name",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "active": {
@@ -145,7 +145,7 @@ const systemNavigationDefination = {
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
         "created_on": {
@@ -164,7 +164,7 @@ const systemNavigationDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         },
         "updated_on": {
@@ -183,7 +183,7 @@ const systemNavigationDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         },
         "created_by": {
@@ -207,7 +207,7 @@ const systemNavigationDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         },
         "updated_by": {
@@ -230,7 +230,7 @@ const systemNavigationDefination = {
             onChange: "default",
 
             "writeRoles": [],
-            "readRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": []
         }
     },
@@ -259,11 +259,16 @@ const systemNavigationDefination = {
             "id": "reference_system_nav_parent",
             "table": "system_nav",
             "property": "ChildNav"
+        },
+        {
+            "id": "reference_system_nav_roles",
+            "table": "navigation_role",
+            "property": "Roles"
         }
     ],
     "writeRoles": [UserRoles.Admin],
     "updateRoles": [UserRoles.Admin],
-    "readRoles": [UserRoles.Admin],
+    "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
     "deleteRoles": [UserRoles.Admin],
     "additionalFilter": [
     ],
@@ -289,6 +294,22 @@ const systemNavigationDefination = {
         //     "order": 1,
         //     "readRoles": [UserRoles.Admin, UserRoles.BranchManager]
         // }
+        {
+            "id": "ref_nav_roles",
+            "table": "navigation_role",
+            label: "Roles",
+            "column_id": "nav_id",
+            "order": 1,
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner]
+        },
+        {
+            "id": "ref_childrens",
+            "table": "system_nav",
+            label: "Children",
+            "column_id": "parent_id",
+            "order": 1,
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner]
+        }
     ],
     actions: [
         {

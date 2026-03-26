@@ -1,0 +1,740 @@
+{
+  "name": "production",
+  "backup_order": 40,
+  "title": "Production Order Raw Material",
+  "id": "production",
+  "application_id": "global",
+  "canReadAttachment": [
+    "admin"
+  ],
+  "canAddAttachment": [
+    "admin"
+  ],
+  "activityRoles": [
+    "admin"
+  ],
+  "realId": "sys_id",
+  "idColumn": "prod_number",
+  "fields": {
+    "sys_id": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 32,
+      "required": false,
+      "id": "sys_id",
+      "label": "System Id",
+      "description": "",
+      "order": 1,
+      "visible": false,
+      "readonly": true,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager",
+        "sells"
+      ],
+      "updateRoles": []
+    },
+    "prod_number": {
+      "type": "text",
+      "maxLength": 40,
+      "minLength": 3,
+      "required": false,
+      "unique": true,
+      "id": "prod_number",
+      "label": "Production Number",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "production_manager",
+        "finance"
+      ],
+      "updateRoles": []
+    },
+    "store_id": {
+      "id": "store_id",
+      "label": "Store/Branch",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": true,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": false,
+      "onChange": "default",
+      "references": "store",
+      "displayField": "name",
+      "writeRoles": [
+        "admin",
+        "branch_manager"
+      ],
+      "readRoles": [
+        "admin",
+        "finance",
+        "branch_manager",
+        "production_manager",
+        "sells"
+      ],
+      "updateRoles": []
+    },
+    "status": {
+      "id": "status",
+      "label": "Production Status",
+      "description": "",
+      "type": "select",
+      "minLength": 1,
+      "maxLength": 50,
+      "required": false,
+      "order": 20,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "branch_manager"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager"
+      ],
+      "updateRoles": [
+        "admin",
+        "branch_manager",
+        "production_manager"
+      ]
+    },
+    "managed_by": {
+      "id": "managed_by",
+      "label": "Managed By",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": true,
+      "onChange": "default",
+      "references": "user",
+      "displayField": "full_name",
+      "writeRoles": [
+        "admin",
+        "branch_manager"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager"
+      ],
+      "updateRoles": [
+        "admin",
+        "branch_manager"
+      ]
+    },
+    "total_consumed_price": {
+      "id": "total_consumed_price",
+      "label": "Consumed Price",
+      "description": "",
+      "type": "float",
+      "minLength": 1,
+      "maxLength": 11,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "finance",
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "total_produced_price": {
+      "id": "total_produced_price",
+      "label": "Produced Price",
+      "description": "",
+      "type": "float",
+      "minLength": 1,
+      "maxLength": 11,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "finance",
+        "admin"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "remark": {
+      "id": "remark",
+      "label": "Remark",
+      "description": "",
+      "type": "textarea",
+      "minLength": 3,
+      "maxLength": 999,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [
+        "admin"
+      ],
+      "readRoles": [
+        "finance",
+        "admin",
+        "production_manager"
+      ],
+      "updateRoles": [
+        "admin"
+      ]
+    },
+    "cancel_reason": {
+      "id": "cancel_reason",
+      "label": "Cancellation Reason",
+      "description": "",
+      "type": "textarea",
+      "minLength": 3,
+      "maxLength": 999,
+      "required": false,
+      "order": 10,
+      "visible": true,
+      "readonly": false,
+      "notOnList": true,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "branch_manager"
+      ],
+      "readRoles": [
+        "finance",
+        "admin",
+        "branch_manager",
+        "production_manager"
+      ],
+      "updateRoles": [
+        "admin",
+        "branch_manager"
+      ]
+    },
+    "started_on": {
+      "id": "started_on",
+      "label": "Started On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 30,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "branch_manager"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager"
+      ],
+      "updateRoles": [
+        "admin",
+        "branch_manager"
+      ]
+    },
+    "finished_on": {
+      "id": "finished_on",
+      "label": "Finished On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 30,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [
+        "admin",
+        "branch_manager"
+      ],
+      "readRoles": [
+        "admin",
+        "branch_manager",
+        "finance",
+        "production_manager"
+      ],
+      "updateRoles": [
+        "admin",
+        "production_manager"
+      ]
+    },
+    "created_on": {
+      "id": "created_on",
+      "label": "Created On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 30,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_on": {
+      "id": "updated_on",
+      "label": "Updated On",
+      "description": "",
+      "type": "datetime-local",
+      "defaultValue": {
+        "name": "currentDate"
+      },
+      "order": 35,
+      "visible": true,
+      "readonly": true,
+      "notOnList": false,
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "created_by": {
+      "id": "created_by",
+      "label": "Created by",
+      "description": "",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 40,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    },
+    "updated_by": {
+      "id": "updated_by",
+      "label": "Updated by",
+      "type": "reference",
+      "minLength": 32,
+      "maxLength": 38,
+      "defaultValue": {
+        "name": "currentUser",
+        "property": "Id"
+      },
+      "order": 45,
+      "visible": true,
+      "readonly": true,
+      "notOnList": true,
+      "references": "user",
+      "displayField": "full_name",
+      "onChange": "default",
+      "writeRoles": [],
+      "readRoles": [
+        "admin"
+      ],
+      "updateRoles": []
+    }
+  },
+  "keys": [
+    {
+      "id": "reference_store_has_production",
+      "table": "store",
+      "column": "store_id",
+      "property": "productionStore"
+    },
+    {
+      "id": "reference_production_managed_by",
+      "table": "user",
+      "column": "managed_by",
+      "property": "ManagedBy"
+    },
+    {
+      "id": "reference_production_user_created_by",
+      "table": "user",
+      "column": "created_by",
+      "property": "creater"
+    },
+    {
+      "id": "reference_production_user_updated_by",
+      "table": "user",
+      "column": "updated_by",
+      "property": "updater"
+    }
+  ],
+  "children": [
+    {
+      "id": "reference_production_has_production_consumption",
+      "table": "production_consumption",
+      "property": "Consumption"
+    },
+    {
+      "id": "reference_production_has_finished_product",
+      "table": "finished_product",
+      "property": "finishedProducts"
+    },
+    {
+      "id": "reference_production_transaction",
+      "table": "transaction",
+      "property": "transactions"
+    },
+    {
+      "id": "reference_production_has_receive_product",
+      "table": "receive_product",
+      "property": "ReceiveSlips"
+    }
+  ],
+  "writeRoles": [
+    "admin"
+  ],
+  "updateRoles": [
+    "admin",
+    "branch_manager",
+    "production_manager"
+  ],
+  "readRoles": [
+    "admin",
+    "branch_manager",
+    "production_manager"
+  ],
+  "deleteRoles": [
+    "admin"
+  ],
+  "additionalFilter": [
+    {
+      "condition": [
+        {
+          "left": "admin",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": "finance",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "branch_manager",
+          "connector": "AND"
+        }
+      ],
+      "filter": [
+        {
+          "column": "store_id",
+          "operator": "in",
+          "value": {
+            "name": "currentUser",
+            "property": "Stores"
+          },
+          "connector": "AND"
+        },
+        {
+          "column": "status",
+          "operator": "not",
+          "value": "draft",
+          "connector": "AND"
+        }
+      ]
+    },
+    {
+      "condition": [
+        {
+          "left": "admin",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": "finance",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "production_manager",
+          "connector": "AND"
+        }
+      ],
+      "filter": [
+        {
+          "column": "store_id",
+          "operator": "in",
+          "value": {
+            "name": "currentUser",
+            "property": "Stores"
+          },
+          "connector": "AND"
+        },
+        {
+          "column": "managed_by",
+          "operator": "equals",
+          "value": {
+            "name": "currentUser",
+            "property": "sys_id"
+          },
+          "connector": "AND"
+        },
+        {
+          "column": "status",
+          "operator": "not",
+          "value": "draft",
+          "connector": "AND"
+        }
+      ]
+    },
+    {
+      "condition": [
+        {
+          "left": "admin",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        },
+        {
+          "left": "finance",
+          "operator": "notIn",
+          "right": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "connector": "AND"
+        }
+      ],
+      "filter": [
+        {
+          "column": "store_id",
+          "operator": "in",
+          "value": {
+            "name": "currentUser",
+            "property": "Stores"
+          },
+          "connector": "AND"
+        },
+        {
+          "column": "status",
+          "operator": "not",
+          "value": "draft",
+          "connector": "AND"
+        }
+      ]
+    },
+    {
+      "condition": [
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "admin",
+          "connector": "OR"
+        },
+        {
+          "left": {
+            "name": "currentUser",
+            "property": "Roles"
+          },
+          "operator": "contains",
+          "right": "finance",
+          "connector": "OR"
+        }
+      ],
+      "filter": []
+    }
+  ],
+  "createAccessCondition": true,
+  "updateAccessCondition": [],
+  "deleteAccessCondition": true,
+  "createScript": {
+    "before": "createProductionBefore"
+  },
+  "updateScript": {
+    "before": "updateProductionBefore",
+    "after": "updateProductionAfter"
+  },
+  "deleteScript": {},
+  "onsubmit": "defaultOnsubmit",
+  "listLoader": "defaultListLoader",
+  "onload": "defaultOnload",
+  "relatedList": [
+    {
+      "id": "ref_production_consumption",
+      "table": "production_consumption",
+      "label": "Consumption",
+      "column_id": "production_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "branch_manager"
+      ]
+    },
+    {
+      "id": "ref_finished_product",
+      "table": "finished_product",
+      "label": "Finished Goods",
+      "column_id": "production_id",
+      "order": 1,
+      "readRoles": [
+        "admin",
+        "branch_manager"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Accept/Start Production",
+      "class": "btn-success",
+      "action": "acceptConsumption",
+      "condition": "acceptConsumptionCondition",
+      "stayOnForm": true
+    },
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Send Production Order",
+      "class": "btn-warning",
+      "action": "requestConsumption",
+      "condition": "requestConsumptionCondition",
+      "stayOnForm": true
+    },
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Ask Production Approval",
+      "class": "btn-warning",
+      "action": "requestProductionItemApproval",
+      "condition": "requestProductionItemApprovalCondition",
+      "stayOnForm": true
+    },
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Accept Produced Items",
+      "class": "btn-success",
+      "action": "acceptProducedItems",
+      "condition": "acceptProducedItemsCondition",
+      "stayOnForm": true
+    },
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Cancel",
+      "class": "btn-danger",
+      "action": "cancelProduction",
+      "condition": "cancelProductionCondition",
+      "stayOnForm": true
+    },
+    {
+      "roles": [
+        "admin"
+      ],
+      "lable": "Update",
+      "class": "zbtn",
+      "action": "defaultUpdate",
+      "stayOnForm": true
+    },
+    {
+      "roles": [
+        "admin",
+        "branch_manager"
+      ],
+      "lable": "Change View",
+      "class": "btn-success",
+      "action": "changeProductionView",
+      "stayOnForm": true,
+      "noRedirect": true,
+      "notBelow": true,
+      "showOnNewForm": true
+    }
+  ]
+}
