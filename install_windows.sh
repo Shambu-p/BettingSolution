@@ -1,28 +1,36 @@
 #!/bin/bash
 
 if [ -z "$1" ]; then
-    echo "Usage: $0 <download_directory>"
+    echo "Usage: $0 <system_name> <database_name>"
+    exit 1
+fi
+
+if [ -z "$2" ]; then
+    echo "Usage: $0 <system_name> <database_name>"
     exit 1
 fi
 
 # Set variables
 ZIP_URL="https://example.com/file.zip"  # URL of the zip file
-DOWNLOAD_DIR="$1"                       # Where to save the zip file
-EXTRACT_DIR="$DOWNLOAD_DIR"     # Where to extract the contents
+# DOWNLOAD_DIR="$1"                     # Where to save the zip file
+DOWNLOAD_DIR="$(pwd)"                   # Where to save the zip file
+SYSTEM_NAME="$1"                       	# Name of the System
+DATABASE_NAME="$2"                     	# database name
+EXTRACT_DIR="$(cygpath -m "$DOWNLOAD_DIR")"     		# Where to extract the contents
 CONTROL_DIR="$EXTRACT_DIR/control"      # Name of the created file
 BACKEND_DIR="$EXTRACT_DIR/backend"      # Name of the created file
 FRONTEND_DIR="$EXTRACT_DIR/frontend"    # Name of the created file
 NODE_VERSION="20.19.0"
 
-BACKEND_CONFIG_NAME="$BACKEND_DIR/ecosystem.config.js"                  # Name of the created file
+BACKEND_CONFIG_NAME="$BACKEND_DIR\ecosystem.config.js"                  # Name of the created file
 BACKEND_STARTER_CONFIGURATION=$(cat <<EOF
 module.exports = {
 	apps: [{
-		name: "trading_system_backend",
+		name: "${SYSTEM_NAME}_backend",
 		script: "$BACKEND_DIR/server.js",
 		env: {
 			NODE_ENV: "development",
-			DATABASE_URL: "mysql://root:@localhost:3306/trading_system_db"
+			DATABASE_URL: "mysql://root:@localhost:3306/$DATABASE_NAME"
 		},
 		env_staging: {
 			NODE_ENV: "staging",
@@ -37,11 +45,11 @@ module.exports = {
 EOF
 )  # Dynamic content
 
-CONTROL_CONFIG_NAME="$CONTROL_DIR/ecosystem.config.js"                  # Name of the created file
+CONTROL_CONFIG_NAME="$CONTROL_DIR\ecosystem.config.js"                  # Name of the created file
 CONTROL_STARTER_CONFIGURATION=$(cat <<EOF
 module.exports = {
 	apps: [{
-		name: "trading_system_control",
+		name: "${SYSTEM_NAME}_control",
 		script: "$CONTROL_DIR/server.js",
 		env: {
 			NODE_ENV: "development",
@@ -59,11 +67,11 @@ module.exports = {
 EOF
 )  # Dynamic content
 
-CONTROL_SYS_CONFIG_NAME="$CONTROL_DIR/configuration.json"                  # Name of the created file
+CONTROL_SYS_CONFIG_NAME="$CONTROL_DIR\configuration.json"                  # Name of the created file
 CONTROL_CONFIGURATION=$(cat <<EOF
 {
     "main_server_location": "$BACKEND_DIR",
-    "process_id": "trading_system_backend",
+    "process_id": "${DATABASE_NAME}_backend",
     "main_api_address": "http://localhost:3005"
 }
 EOF

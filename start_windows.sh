@@ -8,7 +8,7 @@
 # Set the Node.js version you want to use
 NODE_VERSION="20.11.0"
 # Main_DIR="$1"
-Main_DIR=$(pwd)
+Main_DIR="$(pwd)"
 MainBackend="$Main_DIR/backend"
 ControlProject="$Main_DIR/control"
 FrontendProject="$Main_DIR/frontend"
