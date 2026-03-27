@@ -51,19 +51,114 @@ const paymentRateDefination = {
             "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner]
         },
-        "description": {
-            id: "description",
-            label: "Description",
+        "meter_value": {
+            id: "meter_value",
+            label: "Meter Value",
             description: "",
-            "type": FieldType.longText,
+            "type": FieldType.double,
             "minLength": 2,
-            "maxLength": 255,
+            "maxLength": 50,
             "required": true,
 
             order: 1,
             visible: true,
             readonly: false,
             notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
+            "updateRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner]
+        },
+        "per_kw": {
+            id: "per_kw",
+            label: "Per kW (Birr)",
+            description: "",
+            "type": FieldType.double,
+            "minLength": 2,
+            "maxLength": 50,
+            "required": true,
+
+            order: 1,
+            visible: true,
+            readonly: false,
+            notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
+            "updateRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner]
+        },
+        "per_session": {
+            id: "per_session",
+            label: "Per Session (Birr)",
+            description: "",
+            "type": FieldType.double,
+            "minLength": 2,
+            "maxLength": 50,
+            "required": false,
+
+            order: 1,
+            visible: false,
+            readonly: false,
+            notOnList: true,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
+            "updateRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner]
+        },
+        "per_minute": {
+            id: "per_minute",
+            label: "Per Minute (Birr)",
+            description: "",
+            "type": FieldType.double,
+            "minLength": 2,
+            "maxLength": 50,
+            "required": false,
+
+            order: 1,
+            visible: false,
+            readonly: false,
+            notOnList: true,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
+            "updateRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner]
+        },
+        "fee_ratio": {
+            id: "fee_ratio",
+            label: "Fee Ratio",
+            description: "",
+            "type": FieldType.double,
+            "minLength": 2,
+            "maxLength": 50,
+            "required": true,
+
+            order: 1,
+            visible: true,
+            readonly: false,
+            notOnList: true,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
+            "updateRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner]
+        },
+        "tenant_id": {
+            id: "tenant_id",
+            label: "Tenant ID",
+            description: "",
+            "type": FieldType.string,
+            "minLength": 2,
+            "maxLength": 50,
+            "required": true,
+
+            order: 1,
+            visible: true,
+            readonly: false,
+            notOnList: true,
             onChange: "default",
 
             "writeRoles": [UserRoles.Admin, UserRoles.ChargeStationOwner],
