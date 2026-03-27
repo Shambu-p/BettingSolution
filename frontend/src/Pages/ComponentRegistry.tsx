@@ -22,12 +22,13 @@ import ErrorPage from "../Views/Error";
 //// import section ////
 // import YayalPage from "./YayalPage";
 // import BuilderHomePage from "./BuilderHomePage";
+import SamiGreate from "./SamiGreate";
 import EyukaPage from "./EyukaPage";
 import YohannesComponent from "./YohannesComponent";
 import CustomPage from "./CustomPage";
 import AbComponent from "./AbComponent";
 import Mikcomponent from "./Mikcomponent";
-import SamiGreate from "./SamiGreate";
+import TransactionLiveUpdate from "./TransactionLiveUpdate";
 //// import section ////
 
 async function ComponentRegistry() {
@@ -68,6 +69,29 @@ async function ComponentRegistry() {
   };
 
   //// mapping section ////
+
+	// try {
+	// 	registry["1c74b817-c90d-4fc9-a495-2c27efa8b3ad"] = (await import("./YayalPage")).default;
+	// }catch (err) {
+	// 	console.error("❌ Failed to load component 'YayalPage':", err);
+	// 	registry["1c74b817-c90d-4fc9-a495-2c27efa8b3ad"] = ErrorPage;
+	// }
+
+
+	// try {
+	// 	registry["283d6a67-c0c6-4bac-b228-1e2cb785ff4a"] = (await import("./BuilderHomePage")).default;
+	// }catch (err) {
+	// 	console.error("❌ Failed to load component 'BuilderHomePage':", err);
+	// 	registry["283d6a67-c0c6-4bac-b228-1e2cb785ff4a"] = ErrorPage;
+	// }
+
+
+	try {
+		registry["9095c623-e715-4a25-abe5-2e36f2c8b71d"] = (await import("./SamiGreate")).default;
+	}catch (err) {
+		console.error("❌ Failed to load component 'SamiGreate':", err);
+		registry["9095c623-e715-4a25-abe5-2e36f2c8b71d"] = ErrorPage;
+	}
 
 
 	try {
@@ -111,10 +135,10 @@ async function ComponentRegistry() {
 
 
 	try {
-		registry["9095c623-e715-4a25-abe5-2e36f2c8b71d"] = (await import("./SamiGreate")).default;
+		registry["b6adce51-c6b5-423d-a807-f342f65dbdc0"] = (await import("./TransactionLiveUpdate")).default;
 	}catch (err) {
-		console.error("❌ Failed to load component 'SamiGreate':", err);
-		registry["9095c623-e715-4a25-abe5-2e36f2c8b71d"] = ErrorPage;
+		console.error("❌ Failed to load component 'TransactionLiveUpdate':", err);
+		registry["b6adce51-c6b5-423d-a807-f342f65dbdc0"] = ErrorPage;
 	}
 
 //// mapping section ////

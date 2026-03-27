@@ -251,12 +251,12 @@ function App(params: any) {
                                             {/* Desktop Route Mapping */}
 		<Route path="1c74b817-c90d-4fc9-a495-2c27efa8b3ad/:id" element={<Pages page={"1c74b817-c90d-4fc9-a495-2c27efa8b3ad"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
 		<Route path="283d6a67-c0c6-4bac-b228-1e2cb785ff4a" element={<Pages page={"283d6a67-c0c6-4bac-b228-1e2cb785ff4a"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
+		<Route path="9095c623-e715-4a25-abe5-2e36f2c8b71d/:id" element={<Pages page={"9095c623-e715-4a25-abe5-2e36f2c8b71d"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
 		<Route path="a6c6c485-5688-45c8-9fc0-dbc804133494/:id" element={<Pages page={"a6c6c485-5688-45c8-9fc0-dbc804133494"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
 		<Route path="adc1aaa7-debf-4157-b454-8850412d5cad" element={<Pages page={"adc1aaa7-debf-4157-b454-8850412d5cad"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
 		<Route path="b8b8ce04-4e2b-469b-92f9-57b270ff6744/:name" element={<Pages page={"b8b8ce04-4e2b-469b-92f9-57b270ff6744"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
 		<Route path="c4cc9893-fd5a-4070-8960-bf37ccb34cd1" element={<Pages page={"c4cc9893-fd5a-4070-8960-bf37ccb34cd1"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
 		<Route path="df172af0-2c69-4ccb-807d-591087b74d4b" element={<Pages page={"df172af0-2c69-4ccb-807d-591087b74d4b"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
-		<Route path="9095c623-e715-4a25-abe5-2e36f2c8b71d/:id" element={<Pages page={"9095c623-e715-4a25-abe5-2e36f2c8b71d"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
 {/* Desktop Route Mapping */}
                                             <Route path="*" element={<Error />} />
                                         </Route>
@@ -281,7 +281,7 @@ function App(params: any) {
                                             <Route path="create-sell/:id" element={<Pages page={"create-sell"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
 
                                             {/* Mobile Route Mapping */}
-
+		<Route path="b6adce51-c6b5-423d-a807-f342f65dbdc0/:id" element={<Pages page={"b6adce51-c6b5-423d-a807-f342f65dbdc0"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
 {/* Mobile Route Mapping */}
 
                                         </Route>
