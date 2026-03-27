@@ -40,6 +40,7 @@ import TransferListScreen from "./Mobile/TransferListScreen";
 import MainPopUp from "./Components/Extra/MainPopUp";
 import DateSettings from "./Components/Reusables/DateSettings";
 import Installation from "./Views/Installation";
+import SocketContext from "./Contexts/SocketContext";
 
 // import FinanceDashboard from "./Views/FinanceDashboard";
 // import StoreManagerDashboard from "./Views/StoreManagerDashboard";
@@ -81,6 +82,7 @@ function App(params: any) {
     });
 
     const [forms, setForms] = useState<any[]>([]);
+    const [socketReceivers, setSocketReceiver] = useState<any>({});
 
     // const location = useLocation();
     // const navigate = useNavigate();
@@ -203,9 +205,22 @@ function App(params: any) {
         window.localStorage.setItem("dateConfig", JSON.stringify(config));
     }
 
+    const setReceiver = (receiverId: string, receiver: (message: any) => Promise<void>) => {
+        setSocketReceiver((prev: any) => ({...prev, [receiverId]: receiver}));
+    }
+
+    const removeReceiver = (receiverId: string, receiver: (message: any) => Promise<void>) => {
+        setSocketReceiver((prev: any) => ({...prev, [receiverId]: undefined}));
+    }
+
+    const sendToServer = (message: any) => {
+        
+    }
+
 
     return (
         <ZThemeContext.Provider value={{ theme, setTheme: changeTheme, setUiSettings, uiSettings }}>
+            <SocketContext.Provider value={{}} >
             <AlertContext.Provider value={{ showAlert, alertMessage, alertType, setAlertType, setAlert, setWaiting, showWaiting, menu, setMenu, openPopup, popup, setPopUp, setShowDateSettingPanel, showDateSettingPanel }}>
                 <AuthContext.Provider value={{
                     isLoggedIn, loggedUser, setLoggedUser, setLoggedIn, setCookie, cookies, removeCookie, authWaiting, localData, onLogin, forms, changeDateConfig
@@ -249,15 +264,15 @@ function App(params: any) {
                                             <Route path="page-builder/:id" element={<Pages page={"page-builder"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
                                             
                                             {/* Desktop Route Mapping */}
-		<Route path="1c74b817-c90d-4fc9-a495-2c27efa8b3ad/:id" element={<Pages page={"1c74b817-c90d-4fc9-a495-2c27efa8b3ad"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
-		<Route path="283d6a67-c0c6-4bac-b228-1e2cb785ff4a" element={<Pages page={"283d6a67-c0c6-4bac-b228-1e2cb785ff4a"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
-		<Route path="9095c623-e715-4a25-abe5-2e36f2c8b71d/:id" element={<Pages page={"9095c623-e715-4a25-abe5-2e36f2c8b71d"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
-		<Route path="a6c6c485-5688-45c8-9fc0-dbc804133494/:id" element={<Pages page={"a6c6c485-5688-45c8-9fc0-dbc804133494"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
-		<Route path="adc1aaa7-debf-4157-b454-8850412d5cad" element={<Pages page={"adc1aaa7-debf-4157-b454-8850412d5cad"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
-		<Route path="b8b8ce04-4e2b-469b-92f9-57b270ff6744/:name" element={<Pages page={"b8b8ce04-4e2b-469b-92f9-57b270ff6744"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
-		<Route path="c4cc9893-fd5a-4070-8960-bf37ccb34cd1" element={<Pages page={"c4cc9893-fd5a-4070-8960-bf37ccb34cd1"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
-		<Route path="df172af0-2c69-4ccb-807d-591087b74d4b" element={<Pages page={"df172af0-2c69-4ccb-807d-591087b74d4b"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
-{/* Desktop Route Mapping */}
+                                                <Route path="1c74b817-c90d-4fc9-a495-2c27efa8b3ad/:id" element={<Pages page={"1c74b817-c90d-4fc9-a495-2c27efa8b3ad"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
+                                                <Route path="283d6a67-c0c6-4bac-b228-1e2cb785ff4a" element={<Pages page={"283d6a67-c0c6-4bac-b228-1e2cb785ff4a"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
+                                                <Route path="9095c623-e715-4a25-abe5-2e36f2c8b71d/:id" element={<Pages page={"9095c623-e715-4a25-abe5-2e36f2c8b71d"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
+                                                <Route path="a6c6c485-5688-45c8-9fc0-dbc804133494/:id" element={<Pages page={"a6c6c485-5688-45c8-9fc0-dbc804133494"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
+                                                <Route path="adc1aaa7-debf-4157-b454-8850412d5cad" element={<Pages page={"adc1aaa7-debf-4157-b454-8850412d5cad"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
+                                                <Route path="b8b8ce04-4e2b-469b-92f9-57b270ff6744/:name" element={<Pages page={"b8b8ce04-4e2b-469b-92f9-57b270ff6744"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
+                                                <Route path="c4cc9893-fd5a-4070-8960-bf37ccb34cd1" element={<Pages page={"c4cc9893-fd5a-4070-8960-bf37ccb34cd1"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
+                                                <Route path="df172af0-2c69-4ccb-807d-591087b74d4b" element={<Pages page={"df172af0-2c69-4ccb-807d-591087b74d4b"} parentType="main_ui" routeData={{}} dataPassed={{}} />} />
+                                            {/* Desktop Route Mapping */}
                                             <Route path="*" element={<Error />} />
                                         </Route>
                                         <Route path="/workspace/:workspace_id" element={<OperationManagement />} >
@@ -306,6 +321,7 @@ function App(params: any) {
                     </BrowserRouter>
                 </AuthContext.Provider>
             </AlertContext.Provider>
+            </SocketContext.Provider>
         </ZThemeContext.Provider>
     );
 
