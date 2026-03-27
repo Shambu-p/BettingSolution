@@ -39,7 +39,7 @@ class External {
                     api_result = await this.getList(endpoint, req);
                 } else {
                     req.systemUser = SystemUser;
-                    let api_script = require(`../../controller/APIScripts/${endpoint.sys_id}`);
+                    const api_script = require(`../../controller/APIScripts/${endpoint.sys_id}`);
                     api_result = await api_script(req, this.dependencies, this.smsService, DefaultController);  
                 }
 
