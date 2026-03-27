@@ -9,11 +9,13 @@ import Utils from "../Models/Utils";
 import UserRoles from "../Enums/UserRoles";
 import Operators from "../Enums/Operators";
 import { isMobile } from "react-device-detect";
+import SocketContext from "../Contexts/SocketContext";
 
 const TransactionLiveUpdate = (props: any) => {
 
     const {loggedUser, cookies, localData} = useContext(AuthContext);
     const { setAlert, setWaiting, showWaiting, setMenu, menu } = useContext(AlertContext);
+    const {sendMessage} = useContext(SocketContext);
 
     // const params = useParams();
 
@@ -25,8 +27,8 @@ const TransactionLiveUpdate = (props: any) => {
             <h1 className="text-center fs-2">Live Update</h1>
 
             <div className="d-flex justify-content-center">
-                <span className="fs-1">18<sub>Kw</sub></span>
-                <span className="fs-1">18<sub>Kw</sub></span>
+                <span className="fs-1"><b>18</b><sub>Kw</sub></span>
+                <span className="fs-1"><b>18</b><sub>Kw</sub></span>
             </div>
 
 

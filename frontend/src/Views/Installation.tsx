@@ -33,7 +33,7 @@ function Installation() {
     const [installationStep, setInstallationStep] = useState<any>({
         "current": "introduction",
         "stapesCompleted": [],
-        "stapesWaiting": [ "setup_db", "setup_basic_data", "register_user"]
+        "stapesWaiting": [ "setup_db", "register_user"]
     });
     
 
@@ -58,7 +58,7 @@ function Installation() {
             setInstallationStep({
                 "current": "introduction",
                 "stapesCompleted": [],
-                "stapesWaiting": [ "setup_db", "setup_basic_data", "register_user"]
+                "stapesWaiting": [ "setup_db", "register_user"]
             });
         }
     }
@@ -183,8 +183,8 @@ function Installation() {
                                 <div className="d-flex justify-content-center  mb-5">
                                     <div className="col-9">
                                         <div className="form-check">
-                                            <input className="form-check-input" disabled type="checkbox" value="" checked={installationStep.stapesCompleted.includes("setup_db")} />
-                                            <label className="form-check-label">
+                                            <input id="is_db_setup" className="form-check-input" disabled type="checkbox" value="" checked={installationStep.stapesCompleted.includes("setup_db")} />
+                                            <label for="is_db_setup" className="form-check-label">
                                                 Setup Database Schema
                                             </label>
                                         </div>
@@ -195,8 +195,8 @@ function Installation() {
                                             </label>
                                         </div> */}
                                         <div className="form-check">
-                                            <input className="form-check-input" disabled type="checkbox" value="" checked={installationStep.stapesCompleted.includes("register_user")} />
-                                            <label className="form-check-label">
+                                            <input id="is_user_registered" className="form-check-input" disabled type="checkbox" value="" checked={installationStep.stapesCompleted.includes("register_user")} />
+                                            <label for="is_user_registered" className="form-check-label">
                                                 Register Default User (Optional)
                                             </label>
                                         </div>

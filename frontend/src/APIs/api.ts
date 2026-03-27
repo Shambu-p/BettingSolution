@@ -9,6 +9,8 @@ export const props: any = {
     // baseURL: "/api/",
     baseURL: "http://localhost:3005/api/",
     // baseURL: "http://144.172.79.96:3005/api/",
+    
+    SOCKET_URL: "http://localhost:1111",
 
     headers: {
         //    "x-api-key": "8b628b19eb0e96a249aa7d735c71917ef46076688b2691486d543077dec369bb"

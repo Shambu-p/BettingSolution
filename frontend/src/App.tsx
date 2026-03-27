@@ -23,7 +23,7 @@ import UISettings from "./Components/Reusables/UISettings";
 import SignupForm from "./Views/FirstAcount";
 // import ChangeDefaultPasswordPage from "./Views/ChageDefaultPassword";
 import MainAPI from "./APIs/MainAPI";
-import { Authorized, normal } from "./APIs/api";
+import { Authorized, normal, props } from "./APIs/api";
 import SystemActions from "./Views/SystemActions";
 import MobileHome from "./Mobile/MobileHome";
 import MobileMainScreen from "./Mobile/MobileMainScreen";
@@ -41,6 +41,8 @@ import MainPopUp from "./Components/Extra/MainPopUp";
 import DateSettings from "./Components/Reusables/DateSettings";
 import Installation from "./Views/Installation";
 import SocketContext from "./Contexts/SocketContext";
+import { io } from 'socket.io-client';
+import { Api } from "@mui/icons-material";
 
 // import FinanceDashboard from "./Views/FinanceDashboard";
 // import StoreManagerDashboard from "./Views/StoreManagerDashboard";
@@ -62,6 +64,8 @@ function App(params: any) {
     const [uiSettings, setUiSettings] = useState<boolean>(false);
     const [showDateSettingPanel, setShowDateSettingPanel] = useState<boolean>(false);
     const [popup, setPopUp] = useState<boolean>(false);
+    const [isSocketConnected, setIsSocketConnected] = useState<boolean>(false);
+    const [socketConnection, setSocketConnection] = useState<any>(null);
     const [popupParamData, setPopUpParamData] = useState<any>({});
     const [theme, setTheme] = useState<any>({
         scheme: "zlight",
@@ -124,6 +128,54 @@ function App(params: any) {
         }
 
     }, []);
+
+    useEffect(() => {
+        if (!loggedUser) {
+            console.log("No logged user, skipping socket connection");
+            return;
+        }
+
+        if(!cookies.login_token) {
+            console.log("No login token found, skipping socket connection");
+            return;
+        }
+
+        const socket = io(props.SOCKET_URL, {
+            autoConnect: false, // We will manually connect when the app loads
+        });
+
+        // 1. Connect the socket
+        socket.connect();
+
+        // function onStatusUpdate(value) {
+        //     setLastMessage(value);
+        // }
+
+        // 2. Set up event listeners
+        socket.on('connect', () => {
+            setIsSocketConnected(true);
+            setAlert("Connected to server", "success");
+            socket.emit("register", { token: cookies.login_token });
+        });
+
+        socket.on('disconnect', () => {
+            setAlert("Disconnected from server. Attempting to reconnect...", "warning");
+            setIsSocketConnected(false);
+        });
+
+        // socket.on('chargeUpdate', onStatusUpdate);
+
+        setSocketConnection(socket);
+
+        // 3. CLEANUP: This is crucial!
+        return () => {
+            // socket.off('connect', onConnect);
+            // socket.off('disconnect', onDisconnect);
+            socket.disconnect();
+            setSocketConnection(null);
+        };
+
+    }, [loggedUser]);
 
     const setAlert = (
         message: string,
@@ -190,13 +242,6 @@ function App(params: any) {
 
     }
 
-    const onLogin = async (signinUser: any) => {
-
-        // window.localStorage.setItem("loggedUser", JSON.stringify(signinUser));
-        await loadLocalData(signinUser.Token);
-
-    }
-
     const changeDateConfig = (config: any) => {
         setLocalData((prev: LocalData) => ({
             ...prev,
@@ -206,21 +251,43 @@ function App(params: any) {
     }
 
     const setReceiver = (receiverId: string, receiver: (message: any) => Promise<void>) => {
-        setSocketReceiver((prev: any) => ({...prev, [receiverId]: receiver}));
+        socketConnection.on(receiverId, async (message: any) => {
+            await receiver(message);
+        });
+        // setSocketReceiver((prev: any) => ({...prev, [receiverId]: receiver}));
     }
 
-    const removeReceiver = (receiverId: string, receiver: (message: any) => Promise<void>) => {
-        setSocketReceiver((prev: any) => ({...prev, [receiverId]: undefined}));
+    const removeReceiver = (receiverId: string) => {
+
+        if(socketConnection && isSocketConnected) {
+
+            socketConnection.off(receiverId);
+            setSocketReceiver((prev: any) => ({...prev, [receiverId]: undefined}));
+
+        }
+
     }
 
     const sendToServer = (message: any) => {
-        
+        if(socketConnection && isSocketConnected) {
+            socketConnection.emit("message", message);
+        }
     }
+
+    const onLogin = async (signinUser: any) => {
+
+        // window.localStorage.setItem("loggedUser", JSON.stringify(signinUser));
+        await loadLocalData(signinUser.Token);
+
+    }
+
+    
+
 
 
     return (
         <ZThemeContext.Provider value={{ theme, setTheme: changeTheme, setUiSettings, uiSettings }}>
-            <SocketContext.Provider value={{}} >
+            <SocketContext.Provider value={{setReceiver, removeReceiver, sendMessage: sendToServer}} >
             <AlertContext.Provider value={{ showAlert, alertMessage, alertType, setAlertType, setAlert, setWaiting, showWaiting, menu, setMenu, openPopup, popup, setPopUp, setShowDateSettingPanel, showDateSettingPanel }}>
                 <AuthContext.Provider value={{
                     isLoggedIn, loggedUser, setLoggedUser, setLoggedIn, setCookie, cookies, removeCookie, authWaiting, localData, onLogin, forms, changeDateConfig
