@@ -249,6 +249,44 @@ const chargerTrxDefination = {
             "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
             "updateRoles": [UserRoles.Admin]
         },
+        "started_on": {
+            id: "started_on",
+            label: "Started On",
+            description: "",
+            "type": FieldType.dateTime,
+            "defaultValue": {
+                "name": "currentDate"
+            },
+
+            order: 30,
+            visible: true,
+            readonly: true,
+            notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
+            "updateRoles": [UserRoles.Admin]
+        },
+        "ended_on": {
+            id: "ended_on",
+            label: "Ended On",
+            description: "",
+            "type": FieldType.dateTime,
+            "defaultValue": {
+                "name": "currentDate"
+            },
+
+            order: 30,
+            visible: true,
+            readonly: true,
+            notOnList: false,
+            onChange: "default",
+
+            "writeRoles": [UserRoles.Admin],
+            "readRoles": [UserRoles.Admin, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
+            "updateRoles": [UserRoles.Admin]
+        },
         "created_on": {
             id: "created_on",
             label: "Created On",
@@ -485,6 +523,8 @@ const chargerTrxDefination = {
     "createScript": {
     },
     "updateScript": {
+        before: "updateChargerTrxBefore",
+        after: "updateChargerTrxAfter"
     },
     "deleteScript": {
     },

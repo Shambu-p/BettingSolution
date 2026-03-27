@@ -75,19 +75,19 @@ const AuthService = {
                         const domain = new URL(origin).hostname;
                         if (apiUser.domain_ip != domain) {
                             console.log("client origin and allowed domain not matched ", domain);
-                            throw dependencies.exceptionHandling.throwError("Domain not allowed");
+                            throw dependencies.exceptionHandling.throwError("Domain not allowed", 403);
                         }
                     } else if (referer) {
                         const domain = new URL(referer).hostname;
                         if (apiUser.domain_ip != domain) {
                             console.log("referer and allowed domain not matched ", domain);
-                            throw dependencies.exceptionHandling.throwError("Domain not allowed");
+                            throw dependencies.exceptionHandling.throwError("Domain not allowed", 403);
                         }
                     } else {
 
                         // 3. Check IP
                         if (apiUser.domain_ip != clientIP) {
-                            throw dependencies.exceptionHandling.throwError("IP not allowed");
+                            throw dependencies.exceptionHandling.throwError("IP not allowed", 403);
                         }
 
                     }

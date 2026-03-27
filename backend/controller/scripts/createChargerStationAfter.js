@@ -5,18 +5,18 @@ const fs = require("fs");
 
 async function createChargerStationAfter(reqUser, data, dependencies, smsService) {
 
-    if(data.type == "advanced") {
+//     if(data.type == "advanced") {
 
-        let content = `
+//         let content = `
 
-module.export = (req, dependencies, notification) => {
+// module.export = (req, dependencies, notification) => {
 
-}`;
+// }`;
     
     
-        fs.writeFileSync(`./controller/APIScripts/${data.sys_id}.js`, content, "utf-8");
+//         fs.writeFileSync(`./controller/APIScripts/${data.sys_id}.js`, content, "utf-8");
     
-    }
+//     }
 
     return data;
 

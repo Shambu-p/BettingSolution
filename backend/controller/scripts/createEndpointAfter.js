@@ -9,7 +9,7 @@ async function createEndpointAfter(reqUser, data, dependencies, smsService) {
 
         let content = `
 
-module.export = (req, dependencies, notification) => {
+module.exports = (req, dependencies, notification) => {
 
 }`;
     

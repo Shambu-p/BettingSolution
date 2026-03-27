@@ -3,7 +3,7 @@ const UserRoles = require("../../Interface/UserRoles");
 const SystemUser = {
     sys_id: "e3136470-7370-4d94-a012-8c8edca900ce",
     Id: "e3136470-7370-4d94-a012-8c8edca900ce",
-    Roles: [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.Sells],
+    Roles: [UserRoles.Admin, UserRoles.BranchManager, UserRoles.Finance, UserRoles.Sells, UserRoles.ProductionManager, UserRoles.ChargeStationOperator, UserRoles.ChargeStationOwner],
     "full_name": "System User",
     "phone": "0930376854",
     "active": true,

@@ -377,6 +377,7 @@ function () {
                                 <div className="card-header fw-semibold">Conditions (JSON)</div>
                                 <div className="card-body">
                                     <textarea
+                                        placeholder="Condtion Json"
                                         className={`form-control zinput ${conditionsError ? "is-invalid" : ""}`}
                                         rows={16}
                                         value={conditionsText}
